@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starbucks Korea</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        border-bottom: 1px solid #ddd;
+        background: white;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #006241;
+      }
+
+      nav a {
+        font-size: 13px;
+        margin: 0 15px;
+        text-decoration: none;
+        color: black;
+        font-weight: lighter;
+      }
+
+      .hero {
+        height: 400px;
+        background: url("https://images.unsplash.com/photo-1509042239860-f550ce710b93")
+          center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 36px;
+        font-weight: bold;
+      }
+
+      .section {
+        padding: 50px;
+        text-align: center;
+      }
+
+      .cards {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .card {
+        width: 250px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background: white;
+      }
+
+      .card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+      }
+
+      .card h3 {
+        margin: 10px 0;
+      }
+
+      .card p {
+        padding: 0 10px 10px;
+        font-size: 14px;
+      }
+
+      footer {
+        background: #006241;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+
+      /* 로그인 모달 */
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .login-box {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        width: 400px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .login-box input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .login-box button {
+        width: 100%;
+        padding: 10px;
+        background: #006241;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .login-box button:hover {
+        background: #004d30;
+      }
+
+      .note {
+        font-size: 11px;
+        color: #004d30;
+        margin-top: 10px;
+      }
+
+      h2 {
+        font-size: 29px; /* 전체 글자 크기 줄이기 */
+      }
+
+      .green {
+        color: #006241;
+      }
+
+      .remember {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 10px 0;
+        font-size: 14px;
+        color: #333;
+      }
+
+      /* 기본 체크박스 원형처럼 보이게 */
+      .remember input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        accent-color: #006241; /* 체크 색 (스타벅스 초록) */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img
+        height="75"
+        width="75"
+        src="https://cdn.simpleicons.org/starbucks/00704A"
+        style="margin-left:350px;"
+      />
+      <nav>
+        <a href="#">COFFEE</a>
+        <a href="#">MENU</a>
+        <a href="#">STORE</a>
+        <a href="#">ESG</a>
+        <a href="#">STARBUCKS REWARDS</a>
+        <a href="#">CORPORATE SALES</a>
+        <a href="#">WHAT'S NEW</a>
+      </nav>
+    </header>
+
+    <div class="hero">Welcome to Starbucks ☕</div>
+
+    <div class="section">
+      <h2>추천 메뉴</h2>
+      <div class="cards">
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085"
+          />
+          <h3>아메리카노</h3>
+          <p>진한 에스프레소와 물의 조화</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735"
+          />
+          <h3>카페 라떼</h3>
+          <p>부드러운 우유와 커피의 만남</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
+          />
+          <h3>카푸치노</h3>
+          <p>풍부한 거품이 매력적인 커피</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>© 2026 Starbucks Clone Practice</footer>
+
+    <!-- 로그인 모달 -->
+    <div class="modal">
+      <div class="login-box">
+        <h2>
+          <span class="green">Welcome!</span> 스타벅스 코리아에 오신 것을
+          환영합니다.
+        </h2>
+
+        <form action="" method="POST" onsubmit="return fakeLogin();">
+          <input placeholder="아이디를 입력해 주세요" required="" type="text" />
+          <input
+            name="password"
+            placeholder="비밀번호를 입력해 주세요"
+            required=""
+            type="password"
+          /><button class="login-btn" type="submit">로그인</button>
+        </form>
+
+        <p class="note">
+          * 타 사이트와 비밀번호를 동일하게 사용할 경우 도용의 위험이 있으므로,
+          정기적인 비밀번호 변경을 해주시길 바랍니다.
+        </p>
+        <p class="note">
+          * 스타벅스 코리아의 공식 홈페이지는 Internet Explorer 9.0 이상,
+          Chrome, Firefox, Safari 브라우저에 최적화 되어있습니다.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
