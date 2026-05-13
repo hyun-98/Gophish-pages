@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>T world 스타일 클론</title>
+    <style>
+      :root {
+        --primary: #5a2ea6;
+        --primary-dark: #452380;
+        --bg: #f6f7fb;
+        --text: #1e1f24;
+        --muted: #6d7180;
+        --card: #ffffff;
+        --line: #e9eaf1;
+        --radius: 16px;
+        --shadow: 0 10px 24px rgba(20, 20, 40, 0.08);
+        --max: 1200px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family:
+          "Pretendard",
+          "Noto Sans KR",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.4;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(var(--max), calc(100% - 32px));
+        margin-inline: auto;
+      }
+
+      /* Top utility bar */
+      .util {
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .util .container {
+        display: flex;
+        justify-content: flex-end;
+        gap: 18px;
+        padding: 10px 0;
+      }
+
+      /* Header */
+      header {
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        position: sticky;
+        top: 0;
+        z-index: 20;
+      }
+      .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+        gap: 20px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        font-size: 24px;
+        color: var(--primary);
+      }
+      .logo-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff5a7c, #7e4cff);
+      }
+      nav {
+        display: flex;
+        gap: 26px;
+        font-weight: 600;
+        color: #34384a;
+      }
+      nav a {
+        padding: 8px 0;
+        border-bottom: 2px solid transparent;
+      }
+      nav a:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .btn {
+        border: none;
+        border-radius: 999px;
+        padding: 10px 16px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .btn-outline {
+        background: #fff;
+        border: 1px solid #d6d9e6;
+        color: #3b3f50;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), #7a47d4);
+        color: #fff;
+        box-shadow: 0 8px 18px rgba(90, 46, 166, 0.28);
+      }
+
+      /* Hero */
+      .hero {
+        margin-top: 26px;
+        margin-bottom: 24px;
+      }
+      .hero-wrap {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 18px;
+      }
+      .hero-main {
+        background: linear-gradient(130deg, #6033b0, #8a5ce2 58%, #b18cff);
+        color: #fff;
+        border-radius: 24px;
+        padding: 36px;
+        min-height: 320px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+      .hero-main::after {
+        content: "";
+        position: absolute;
+        right: -60px;
+        bottom: -60px;
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.16);
+      }
+      .hero h1 {
+        font-size: 34px;
+        line-height: 1.25;
+        margin: 0 0 14px 0;
+      }
+      .hero p {
+        margin: 0 0 22px 0;
+        opacity: 0.92;
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        padding: 8px 12px;
+        font-size: 13px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+      }
+      .hero-side {
+        display: grid;
+        gap: 18px;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .quick {
+        padding: 20px;
+      }
+      .quick h3 {
+        margin: 0 0 14px 0;
+        font-size: 18px;
+      }
+      .quick-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .quick-item {
+        background: #f4f5fb;
+        border-radius: 12px;
+        padding: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #41465a;
+      }
+
+      /* Service icons */
+      .services {
+        margin: 6px 0 28px;
+      }
+      .service-row {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 12px;
+      }
+      .service {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        text-align: center;
+        padding: 16px 8px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #3f4457;
+      }
+      .service .icon {
+        width: 38px;
+        height: 38px;
+        margin: 0 auto 10px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #ece9ff, #ddd5ff);
+        display: grid;
+        place-items: center;
+        color: var(--primary);
+        font-weight: 800;
+      }
+
+      /* Promo cards */
+      .section-title {
+        font-size: 24px;
+        margin: 0 0 16px 0;
+      }
+      .promo {
+        margin-bottom: 30px;
+      }
+      .promo-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .promo-card {
+        padding: 22px;
+        min-height: 180px;
+      }
+      .promo-card h4 {
+        margin: 0 0 10px;
+        font-size: 19px;
+      }
+      .promo-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      /* Footer */
+      footer {
+        background: #fff;
+        border-top: 1px solid var(--line);
+        margin-top: 42px;
+      }
+      .footer-wrap {
+        padding: 24px 0 36px;
+        color: #6f7383;
+        font-size: 13px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        nav {
+          display: none;
+        }
+        .hero-wrap {
+          grid-template-columns: 1fr;
+        }
+        .service-row {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .promo-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          width: calc(100% - 24px);
+        }
+        .header-row {
+          height: 64px;
+        }
+        .logo {
+          font-size: 20px;
+        }
+        .hero-main {
+          padding: 24px;
+        }
+        .hero h1 {
+          font-size: 26px;
+        }
+        .service-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .promo-grid {
+          grid-template-columns: 1fr;
+        }
+        .header-actions .btn-outline {
+          display: none;
+        }
+      }
+
+      /* OVERLAY */
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        background: rgba(0, 0, 0, 0.5); /* 반투명 */
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 100vh;
+
+        z-index: 999; /* 맨 위로 */
+      }
+
+      /* MODAL */
+      .modal {
+        background: white;
+        padding: 100px;
+        border-radius: 5px;
+        width: 400px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .tworld {
+        color: #1f3bb3;
+        font-weight: bold;
+      }
+
+      .modal input {
+        padding: 15px;
+
+        border: none;
+        border-bottom: 0.01px solid #333;
+        outline: none;
+        width: auto;
+        padding: 14px;
+      }
+
+      .login-btn {
+        background: #2f6bff;
+        color: white;
+        border: none;
+        width: auto;
+        padding: 14px;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 12px;
+      }
+
+      /* hover */
+      .login-btn:hover {
+        background: #4c86ff;
+      }
+
+      /* 클릭 */
+      .login-btn:active {
+        background: #4c86ff;
+      }
+
+      /* 비활성 */
+      .login-btn:disabled {
+        background: #4c86ff;
+        cursor: not-allowed;
+      }
+
+      .modal-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+
+      .modal-header h2 {
+        margin: 0;
+        font-size: 24px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="util">
+      <div class="container">
+        <a href="#">고객센터</a>
+        <a href="#">매장찾기</a>
+        <a href="#">마이페이지</a>
+        <a href="#">로그인</a>
+      </div>
+    </div>
+
+    <header>
+      <div class="container header-row">
+        <a class="logo" href="#">
+          <span class="logo-dot"></span>
+          T world
+        </a>
+        <nav>
+          <a href="#">상품서비스</a>
+          <a href="#">혜택</a>
+          <a href="#">멤버십</a>
+          <a href="#">요금제</a>
+          <a href="#">고객지원</a>
+        </nav>
+        <div class="header-actions">
+          <button class="btn btn-outline">검색</button>
+          <button class="btn btn-primary">가입/로그인</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div class="hero-wrap">
+          <article class="hero-main">
+            <h1>일상을 연결하는<br />T world 스타일 메인 비주얼</h1>
+            <p>프로모션, 요금제, 멤버십 혜택을 한 번에 확인해보세요.</p>
+            <div>
+              <span class="chip"># 요금제 추천</span>
+              <span class="chip"># 멤버십 혜택</span>
+              <span class="chip"># 기기변경</span>
+            </div>
+          </article>
+
+          <div class="hero-side">
+            <article class="card quick">
+              <h3>자주 찾는 메뉴</h3>
+              <div class="quick-grid">
+                <a class="quick-item" href="#">요금 조회</a>
+                <a class="quick-item" href="#">납부/충전</a>
+                <a class="quick-item" href="#">가입 정보</a>
+                <a class="quick-item" href="#">USIM/eSIM</a>
+              </div>
+            </article>
+            <article class="card quick">
+              <h3>공지/이벤트</h3>
+              <div
+                style="font-size: 14px; color: #4a4f62; display: grid; gap: 8px"
+              >
+                <a href="#">- 5G 요금제 신규 혜택 오픈</a>
+                <a href="#">- 데이터 선물하기 이벤트</a>
+                <a href="#">- 점검 안내 (05/20 02:00~04:00)</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="services">
+        <div class="service-row">
+          <a class="service" href="#"
+            ><div class="icon">요</div>
+            요금제</a
+          >
+          <a class="service" href="#"
+            ><div class="icon">단</div>
+            단말</a
+          >
+          <a class="service" href="#"
+            ><div class="icon">멤</div>
+            멤버십</a
+          >
+          <a class="service" href="#"
+            ><div class="icon">결</div>
+            결합상품</a
+          >
+          <a class="service" href="#"
+            ><div class="icon">상</div>
+            상담예약</a
+          >
+          <a class="service" href="#"
+            ><div class="icon">혜</div>
+            혜택쿠폰</a
+          >
+        </div>
+      </section>
+
+      <section class="promo">
+        <h2 class="section-title">추천 콘텐츠</h2>
+        <div class="promo-grid">
+          <article class="card promo-card">
+            <h4>내게 맞는 요금제 찾기</h4>
+            <p>사용 패턴을 기반으로 가장 유리한 요금제를 추천합니다.</p>
+          </article>
+          <article class="card promo-card">
+            <h4>멤버십 제휴 혜택</h4>
+            <p>영화, 카페, 쇼핑 등 제휴 할인 혜택을 확인하세요.</p>
+          </article>
+          <article class="card promo-card">
+            <h4>기기변경 특별가</h4>
+            <p>최신 스마트폰 구매 혜택과 할부 정보를 제공합니다.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-wrap">
+        <div>SK telecom | T world 클론 데모</div>
+        <div>
+          이 코드는 학습용 샘플이며 실제 사이트와 기능/데이터는 다를 수
+          있습니다.
+        </div>
+        <div>© 2026 Clone Demo</div>
+      </div>
+    </footer>
+
+    <!-- LOGIN MODAL -->
+    <div class="overlay">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>T ID로 <span class="tworld">T world</span>에 로그인해보세요</h2>
+        </div>
+
+        <form action="" method="POST" onsubmit="return fakeLogin();">
+          <input
+            placeholder="이메일 주소 혹은 휴대폰 번호 형식의 ID"
+            required=""
+            type="text"
+          />
+          <input
+            name="password"
+            placeholder="비밀번호"
+            required=""
+            type="password"
+          /><button class="login-btn" type="submit">로그인</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

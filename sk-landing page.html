@@ -1,70 +1,83 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>NAVER</title>
-	<style type="text/css">body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f6f7;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NAVER</title>
+    <style type="text/css">
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f5f6f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
 
-    .login-box {
-      width: 380px;
-      background: white;
-      padding: 40px 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      text-align: center;
-    }
+      .login-box {
+        width: 380px;
+        background: white;
+        padding: 40px 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
 
-    .logo {
-      font-size: 32px;
-      font-weight: bold;
-      color: #0000FF;
-      margin-bottom: 30px;
-    }
+      .logo {
+        font-size: 32px;
+        font-weight: bold;
+        color: #0000ff;
+        margin-bottom: 30px;
+      }
 
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 10px;
-      border: 1px solid #dadada;
-      border-radius: 4px;
-      font-size: 14px;
-    }
+      input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 10px;
+        border: 1px solid #dadada;
+        border-radius: 4px;
+        font-size: 14px;
+      }
 
-    .login-btn {
-      width: 100%;
-      padding: 12px;
-      background-color: #0000FF;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
+      .login-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #0000ff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
 
-    .login-btn:hover {
-      background-color: #0000FF;
-    }
+      .login-btn:hover {
+        background-color: #0000ff;
+      }
 
-    .footer {
-      margin-top: 20px;
-      font-size: 12px;
-      color: #888;
-    }
-	</style>
-</head>
-<body>
-<div class="login-box">
-<div class="logo">T world</div>
+      .footer {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-box">
+      <div class="logo">T world</div>
 
-<form action="" method="POST" onsubmit="return fakeLogin()"><input placeholder="아이디" required="" type="text"/> <input name="password" placeholder="비밀번호" required="" type="password"/><button class="login-btn" type="submit">로그인</button></form>
+      <form action="" method="POST" onsubmit="return fakeLogin();">
+        <input placeholder="아이디" required="" type="text" />
+        <input
+          name="password"
+          placeholder="비밀번호"
+          required=""
+          type="password"
+        /><button class="login-btn" type="submit">로그인</button>
+      </form>
 
-<div class="footer">※ 본 페이지는 보안 교육용 테스트입니다.</div>
-</div>
-
-</body></html>
+      <div class="footer">※ 본 페이지는 보안 교육용 테스트입니다.</div>
+    </div>
+  </body>
+</html>

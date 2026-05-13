@@ -1,108 +1,159 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>예약 확정 안내</title>
-</head>
+  <head>
+    <title>예약 확정 안내</title>
+  </head>
 
-<body style="margin:0; padding:0; background:#f4f6f8; font-family:Arial,sans-serif;">
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background: #f4f6f8;
+      font-family: Arial, sans-serif;
+    "
+  >
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="center" style="padding: 20px">
+          <table
+            width="100%"
+            style="
+              max-width: 600px;
+              background: #fff;
+              margin: 30px auto;
+              border-radius: 8px;
+              overflow: hidden;
+            "
+          >
+            <!-- HEADER -->
+            <tr>
+              <td
+                style="
+                  background: #ff5a5f;
+                  color: #ffffff;
+                  padding: 20px;
+                  font-size: 18px;
+                  font-weight: bold;
+                "
+              >
+                🏡 숙소 예약이 확정되었습니다
+              </td>
+            </tr>
 
-<table width="100%" cellpadding="0" cellspacing="0">
-  <tr>
-    <td align="center">
+            <!-- BODY -->
+            <tr>
+              <td style="padding: 30px; color: #333">
+                <p style="font-size: 14px; margin: 0">안녕하세요 고객님,</p>
 
-      <table width="900" style="background:#fff; margin-top:30px; border-radius:8px; overflow:hidden;">
+                <p style="font-size: 14px; line-height: 1.6">
+                  요청하신 숙소 예약이 정상적으로 확정되었습니다.<br />
+                  아래 예약 정보를 확인해 주세요.
+                </p>
 
-        <!-- HEADER -->
-        <tr>
-          <td style="background:#FF5A5F; color:#FFFFFF; padding:20px; font-size:18px; font-weight:bold;">
-            🏡 숙소 예약이 확정되었습니다
-          </td>
-        </tr>
+                <!-- BOOKING INFO -->
+                <table
+                  width="100%"
+                  style="
+                    margin-top: 20px;
+                    background: #f9fafb;
+                    border: 1px solid #e5e7eb;
+                  "
+                >
+                  <tr>
+                    <td style="padding: 10px; font-size: 13px">예약번호</td>
+                    <td style="padding: 10px; text-align: right">
+                      BK-2026-58192
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 10px; font-size: 13px">숙소명</td>
+                    <td style="padding: 10px; text-align: right">
+                      Seoul Cozy Stay
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 10px; font-size: 13px">체크인</td>
+                    <td style="padding: 10px; text-align: right">2026-05-20</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 10px; font-size: 13px">체크아웃</td>
+                    <td style="padding: 10px; text-align: right">2026-05-22</td>
+                  </tr>
+                  <tr>
+                    <td
+                      style="padding: 10px; font-size: 13px; font-weight: bold"
+                    >
+                      결제 금액
+                    </td>
+                    <td
+                      style="
+                        padding: 10px;
+                        text-align: right;
+                        font-weight: bold;
+                        color: #222;
+                      "
+                    >
+                      240,000원
+                    </td>
+                  </tr>
+                </table>
 
-        <!-- BODY -->
-        <tr>
-          <td style="padding:30px; color:#333;">
+                <p style="margin-top: 20px; font-size: 13px; color: #555">
+                  체크인 안내 및 상세 정보는 아래 버튼을 통해 확인하실 수
+                  있습니다.
+                </p>
 
-            <p style="font-size:14px; margin:0;">안녕하세요 고객님,</p>
+                <!-- BUTTON -->
+                <div style="text-align: center; margin-top: 20px">
+                  <a
+                    href="{{.URL}}"
+                    style="
+                      display: inline-block;
+                      padding: 20px 32px;
+                      background: #ff5a5f;
+                      color: #ffffff;
+                      text-decoration: none;
+                      border-radius: 6px;
+                      font-size: 17px;
+                    "
+                  >
+                    예약 상세 보기
+                  </a>
+                </div>
 
-            <p style="font-size:14px; line-height:1.6;">
-              요청하신 숙소 예약이 정상적으로 확정되었습니다.<br>
-              아래 예약 정보를 확인해 주세요.
-            </p>
+                <!-- BACKUP LINK -->
+                <p style="margin-top: 20px; font-size: 11px; color: #888">
+                  버튼이 작동하지 않는 경우 아래 링크를 이용하세요.<br />
+                  <a href="{{.URL}}">{{.URL}}</a>
+                </p>
 
-            <!-- BOOKING INFO -->
-            <table width="100%" style="margin-top:20px; background:#f9fafb; border:1px solid #e5e7eb;">
-              <tr>
-                <td style="padding:10px; font-size:13px;">예약번호</td>
-                <td style="padding:10px; text-align:right;">BK-2026-58192</td>
-              </tr>
-              <tr>
-                <td style="padding:10px; font-size:13px;">숙소명</td>
-                <td style="padding:10px; text-align:right;">Seoul Cozy Stay</td>
-              </tr>
-              <tr>
-                <td style="padding:10px; font-size:13px;">체크인</td>
-                <td style="padding:10px; text-align:right;">2026-05-20</td>
-              </tr>
-              <tr>
-                <td style="padding:10px; font-size:13px;">체크아웃</td>
-                <td style="padding:10px; text-align:right;">2026-05-22</td>
-              </tr>
-              <tr>
-                <td style="padding:10px; font-size:13px; font-weight:bold;">결제 금액</td>
-                <td style="padding:10px; text-align:right; font-weight:bold; color:#222;">
-                  240,000원
-                </td>
-              </tr>
-            </table>
+                <!-- NOTICE -->
+                <div style="margin-top: 20px; font-size: 11px; color: #777">
+                  ※ 본 메일은 자동 발송된 안내 메일입니다.<br />
+                  ※ 예약 관련 문의는 고객센터로 연락 바랍니다.
+                </div>
+              </td>
+            </tr>
 
-            <p style="margin-top:20px; font-size:13px; color:#555;">
-              체크인 안내 및 상세 정보는 아래 버튼을 통해 확인하실 수 있습니다.
-            </p>
+            <!-- FOOTER -->
+            <tr>
+              <td
+                style="
+                  background: #f1f3f5;
+                  padding: 15px;
+                  font-size: 11px;
+                  text-align: center;
+                  color: #777;
+                "
+              >
+                © 2026 Accommodation Service
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
 
-            <!-- BUTTON -->
-            <div style="text-align:center; margin-top:20px;">
-              <a href="{{.URL}}" style="
-                display:inline-block;
-                padding:20px 32px;
-                background:#FF5A5F;
-                color:#FFFFFF;
-                text-decoration:none;
-                border-radius:6px;
-                font-size:17px;">
-                예약 상세 보기
-              </a>
-            </div>
-
-            <!-- BACKUP LINK -->
-            <p style="margin-top:20px; font-size:11px; color:#888;">
-              버튼이 작동하지 않는 경우 아래 링크를 이용하세요.<br>
-              <a href="{{.URL}}">{{.URL}}</a>
-            </p>
-
-            <!-- NOTICE -->
-            <div style="margin-top:20px; font-size:11px; color:#777;">
-              ※ 본 메일은 자동 발송된 안내 메일입니다.<br>
-              ※ 예약 관련 문의는 고객센터로 연락 바랍니다.
-            </div>
-
-          </td>
-        </tr>
-
-        <!-- FOOTER -->
-        <tr>
-          <td style="background:#f1f3f5; padding:15px; font-size:11px; text-align:center; color:#777;">
-            © 2026 Accommodation Service
-          </td>
-        </tr>
-
-      </table>
-
-    </td>
-  </tr>
-</table>
-
-<p>{{.Tracker}}</p>
-
-</body>
+    <p>{{.Tracker}}</p>
+  </body>
 </html>

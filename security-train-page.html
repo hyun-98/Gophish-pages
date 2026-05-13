@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>보안 인식 훈련 안내</title>
+  <style>
+    :root{
+      --bg:#f4f6fb;
+      --card:#ffffff;
+      --text:#1f2430;
+      --sub:#616b7f;
+      --line:#e3e8f3;
+      --primary:#3a57e8;
+      --ok:#0f9d58;
+      --warn:#f29900;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:"Noto Sans KR","Pretendard",system-ui,-apple-system,sans-serif;
+      line-height:1.5;
+    }
+    .wrap{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .card{
+      width:min(760px,100%);
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      box-shadow:0 14px 30px rgba(20,30,60,.08);
+      overflow:hidden;
+    }
+    .head{
+      padding:24px 24px 18px;
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg,#f8faff 0%,#fff 100%);
+    }
+    .badge{
+      display:inline-block;
+      font-size:12px;
+      font-weight:700;
+      color:#fff;
+      background:var(--ok);
+      border-radius:999px;
+      padding:5px 10px;
+      margin-bottom:10px;
+    }
+    h1{
+      margin:0;
+      font-size:24px;
+      letter-spacing:-.01em;
+    }
+    .sub{
+      margin:8px 0 0;
+      color:var(--sub);
+      font-size:14px;
+    }
+    .body{
+      padding:22px 24px 24px;
+      display:grid;
+      gap:16px;
+    }
+    .notice{
+      border:1px solid #ffe2b5;
+      background:#fff9ef;
+      color:#6a4a00;
+      border-radius:12px;
+      padding:12px 14px;
+      font-size:14px;
+    }
+    .box{
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:14px;
+    }
+    .box h2{
+      margin:0 0 8px;
+      font-size:16px;
+    }
+    .list{
+      margin:0;
+      padding-left:18px;
+      color:#2f3748;
+      font-size:14px;
+    }
+    .list li{margin:6px 0}
+    .meta{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    .meta-item{
+      border:1px dashed #d8deec;
+      border-radius:10px;
+      padding:10px 12px;
+      font-size:13px;
+      color:#44506a;
+      background:#fafcff;
+    }
+    .cta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:4px;
+    }
+    .btn{
+      border:none;
+      border-radius:10px;
+      padding:10px 14px;
+      font-weight:700;
+      cursor:pointer;
+      font-size:14px;
+    }
+    .btn-primary{
+      background:var(--primary);
+      color:#fff;
+    }
+    .btn-ghost{
+      background:#eef2ff;
+      color:#3148b9;
+    }
+    .foot{
+      border-top:1px solid var(--line);
+      color:var(--sub);
+      font-size:12px;
+      padding:12px 24px 16px;
+    }
+    @media (max-width:640px){
+      h1{font-size:20px}
+      .meta{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <main class="card" role="main" aria-labelledby="title">
+      <section class="head">
+        <span class="badge">공식 보안 인식 훈련</span>
+        <h1 id="title">이 페이지는 모의 피싱 훈련 페이지입니다</h1>
+        <p class="sub">
+          실제 공격이 아닌 사내 보안 교육 목적으로 운영됩니다. 개인정보/비밀번호는 수집하지 않습니다.
+        </p>
+      </section>
+
+      <section class="body">
+        <div class="notice">
+          ⚠️ 입력 폼은 의도적으로 제공하지 않습니다. 실제 서비스 계정 정보는 어디에도 입력하지 마세요.
+        </div>
+
+        <div class="meta">
+          <div class="meta-item"><strong>대상자:</strong> {{.FirstName}} {{.LastName}}</div>
+          <div class="meta-item"><strong>이메일:</strong> {{.Email}}</div>
+        </div>
+
+        <article class="box">
+          <h2>이번 메일에서 확인해야 했던 의심 신호</h2>
+          <ul class="list">
+            <li>발신자 도메인이 회사 공식 도메인과 유사하지만 다름</li>
+            <li>긴급성(즉시 조치 요구)을 과도하게 강조</li>
+            <li>링크 클릭을 유도하고 계정 확인/인증을 요구</li>
+            <li>문장 톤/서식이 평소 내부 공지와 다름</li>
+          </ul>
+        </article>
+
+        <article class="box">
+          <h2>다음 행동 가이드</h2>
+          <ul class="list">
+            <li>의심 메일은 링크 클릭 대신 보안팀에 신고</li>
+            <li>발신자 주소, 링크 URL, 첨부파일 확장자 먼저 확인</li>
+            <li>동일 비밀번호 재사용 금지 및 MFA 사용</li>
+          </ul>
+        </article>
+
+        <div class="cta">
+          <button class="btn btn-primary" id="completeBtn" type="button">교육 확인 완료</button>
+          <button class="btn btn-ghost" id="reportBtn" type="button">보안팀 신고 방법 보기</button>
+        </div>
+      </section>
+
+      <footer class="foot">
+        본 훈련은 조직 보안 인식 향상을 위한 합법적 시뮬레이션입니다.
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // 교육 완료 버튼: 단순 완료 메시지 (자격증명 수집 없음)
+    document.getElementById("completeBtn").addEventListener("click", function () {
+      alert("교육 확인이 완료되었습니다. 감사합니다.");
+    });
+
+    // 신고 방법 버튼: 안내 팝업 (환경에 맞는 연락처로 수정)
+    document.getElementById("reportBtn").addEventListener("click", function () {
+      alert("의심 메일은 security@example.com 또는 사내 헬프데스크로 신고하세요.");
+    });
+  </script>
+</body>
+</html>
