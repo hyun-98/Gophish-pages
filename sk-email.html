@@ -1,128 +1,128 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>통신요금 안내</title>
-</head>
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<title>통신요금 안내</title>
+	</head>
 
-<body style="margin:0; padding:0; background-color:#f4f6f8; font-family: Arial, sans-serif;">
+	<body style="margin:0; padding:0; background-color:#f4f6f8; font-family: Arial, sans-serif;">
 
-<table width="100%" cellpadding="0" cellspacing="0">
-  <tr>
-    <td align="center">
+	<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center">
 
-      <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; margin-top:30px; border-radius:8px; overflow:hidden;">
+		<table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; margin-top:30px; border-radius:8px; overflow:hidden;">
 
-        <!-- HEADER -->
-        <tr>
-          <td style="background:#1f4fd8; padding:22px; color:white; font-size:20px; font-weight:bold;">
-            📄 5월 통신요금 청구서
-          </td>
-        </tr>
+			<!-- HEADER -->
+			<tr>
+			<td style="background:#1f4fd8; padding:22px; color:white; font-size:20px; font-weight:bold;">
+				📄 5월 통신요금 청구서
+			</td>
+			</tr>
 
-        <!-- BODY -->
-        <tr>
-          <td style="padding:30px; color:#333;">
+			<!-- BODY -->
+			<tr>
+			<td style="padding:30px; color:#333;">
 
-            <p style="font-size:14px; margin:0;">안녕하세요, 고객님.</p>
+				<p style="font-size:14px; margin:0;">안녕하세요, {{.FirstName}}님.</p>
 
-            <p style="font-size:14px; line-height:1.6; margin-top:10px;">
-              2026년 5월 기준 통신 서비스 이용 요금이 아래와 같이 청구되었습니다.
-            </p>
+				<p style="font-size:14px; line-height:1.6; margin-top:10px;">
+				2026년 5월 기준 통신 서비스 이용 요금이 아래와 같이 청구되었습니다.
+				</p>
 
-            <!-- CUSTOMER INFO -->
-            <table width="100%" style="margin-top:20px; border:1px solid #e5e7eb; background:#fafafa;">
-              <tr>
-                <td style="padding:10px; font-size:13px;">고객명</td>
-                <td style="padding:10px; text-align:right; font-size:13px;">조*우</td>
-              </tr>
-              <tr>
-                <td style="padding:10px; font-size:13px;">가입번호</td>
-                <td style="padding:10px; text-align:right; font-size:13px;">010-****-1234</td>
-              </tr>
-              <tr>
-                <td style="padding:10px; font-size:13px;">청구월</td>
-                <td style="padding:10px; text-align:right; font-size:13px;">2026.05</td>
-              </tr>
-            </table>
+				<!-- CUSTOMER INFO -->
+				<table width="100%" style="margin-top:20px; border:1px solid #e5e7eb; background:#fafafa;">
+				<tr>
+					<td style="padding:10px; font-size:13px;">고객명</td>
+					<td style="padding:10px; text-align:right; font-size:13px;">{{.LastName}}{{.FirstName}}</td>
+				</tr>
+				<tr>
+					<td style="padding:10px; font-size:13px;">가입번호</td>
+					<td style="padding:10px; text-align:right; font-size:13px;">010-****-1234</td> 
+				</tr>
+				<tr>
+					<td style="padding:10px; font-size:13px;">청구월</td>
+					<td style="padding:10px; text-align:right; font-size:13px;">2026.05</td>
+				</tr>
+				</table>
 
-            <!-- BILL -->
-            <table width="100%" style="background:#f9fafb; border:1px solid #e5e7eb; margin-top:20px;">
-              <tr>
-                <td style="padding:12px; font-size:13px;">기본요금</td>
-                <td style="padding:12px; text-align:right;">55,000원</td>
-              </tr>
-              <tr>
-                <td style="padding:12px; font-size:13px;">데이터 추가 이용료</td>
-                <td style="padding:12px; text-align:right;">12,000원</td>
-              </tr>
-              <tr>
-                <td style="padding:12px; font-size:13px;">부가서비스</td>
-                <td style="padding:12px; text-align:right;">8,000원</td>
-              </tr>
-              <tr>
-                <td style="padding:12px; font-size:13px; font-weight:bold;">총 청구 금액</td>
-                <td style="padding:12px; text-align:right; font-size:16px; font-weight:bold; color:#1f4fd8;">
-                  89,000원
-                </td>
-              </tr>
-            </table>
+				<!-- BILL -->
+				<table width="100%" style="background:#f9fafb; border:1px solid #e5e7eb; margin-top:20px;">
+				<tr>
+					<td style="padding:12px; font-size:13px;">기본요금</td>
+					<td style="padding:12px; text-align:right;">55,000원</td>
+				</tr>
+				<tr>
+					<td style="padding:12px; font-size:13px;">데이터 추가 이용료</td>
+					<td style="padding:12px; text-align:right;">12,000원</td>
+				</tr>
+				<tr>
+					<td style="padding:12px; font-size:13px;">부가서비스</td>
+					<td style="padding:12px; text-align:right;">8,000원</td>
+				</tr>
+				<tr>
+					<td style="padding:12px; font-size:13px; font-weight:bold;">총 청구 금액</td>
+					<td style="padding:12px; text-align:right; font-size:16px; font-weight:bold; color:#1f4fd8;">
+					89,000원
+					</td>
+				</tr>
+				</table>
 
-            <!-- DUE INFO -->
-            <p style="margin-top:20px; font-size:13px; color:#444;">
-              납부 기한: <b>2026-05-20</b><br>
-              납부 기한 이후 미납 시 연체료가 부과될 수 있습니다.
-            </p>
+				<!-- DUE INFO -->
+				<p style="margin-top:20px; font-size:13px; color:#444;">
+				납부 기한: <b>2026-05-20</b><br>
+				납부 기한 이후 미납 시 연체료가 부과될 수 있습니다.
+				</p>
 
-            <!-- AUTO PAY -->
-            <p style="font-size:12px; color:#666;">
-              ※ 자동이체 고객의 경우 지정된 계좌에서 납부일에 자동 출금됩니다.
-            </p>
+				<!-- AUTO PAY -->
+				<p style="font-size:12px; color:#666;">
+				※ 자동이체 고객의 경우 지정된 계좌에서 납부일에 자동 출금됩니다.
+				</p>
 
-            <!-- BUTTON -->
-            <div style="text-align:center; margin-top:25px;">
-              <a href="{{.URL}}" style="
-                display:inline-block;
-                padding:12px 28px;
-                background:#1f4fd8;
-                color:white;
-                text-decoration:none;
-                border-radius:5px;
-                font-size:14px;
-                font-weight:bold;">
-                요금 상세 조회 및 납부
-              </a>
-            </div>
+				<!-- BUTTON -->
+				<div style="text-align:center; margin-top:25px;">
+				<a href="{{.URL}}" style="
+					display:inline-block;
+					padding:12px 28px;
+					background:#1f4fd8;
+					color:white;
+					text-decoration:none;
+					border-radius:5px;
+					font-size:14px;
+					font-weight:bold;">
+					요금 상세 조회 및 납부
+				</a>
+				</div>
 
-            <!-- BACKUP LINK -->
-            <p style="margin-top:20px; font-size:11px; color:#888;">
-              버튼이 작동하지 않을 경우 아래 링크를 이용해 주세요.<br>
-              <a href="{{.URL}}" style="color:#1f4fd8;">{{.URL}}</a>
-            </p>
+				<!-- BACKUP LINK -->
+				<p style="margin-top:20px; font-size:11px; color:#888;">
+				버튼이 작동하지 않을 경우 아래 링크를 이용해 주세요.<br>
+				<a href="{{.URL}}" style="color:#1f4fd8;">{{.URL}}</a>
+				</p>
 
-            <!-- NOTICE -->
-            <div style="margin-top:25px; padding:10px; background:#fff3cd; font-size:11px; color:#856404;">
-              ※ 본 메일은 발신 전용이며 회신이 불가합니다.<br>
-              ※ 요금 관련 문의는 고객센터(114)로 연락 바랍니다.
-            </div>
+				<!-- NOTICE -->
+				<div style="margin-top:25px; padding:10px; background:#fff3cd; font-size:11px; color:#856404;">
+				※ 본 메일은 발신 전용이며 회신이 불가합니다.<br>
+				※ 요금 관련 문의는 고객센터(114)로 연락 바랍니다.
+				</div>
 
-          </td>
-        </tr>
+			</td>
+			</tr>
 
-        <!-- FOOTER -->
-        <tr>
-          <td style="background:#f1f3f5; padding:18px; font-size:11px; color:#777; text-align:center;">
-            본 메일은 통신서비스 이용요금 안내를 위해 자동 발송되었습니다.<br>
-            © 2026 Telecom Service. All rights reserved.
-          </td>
-        </tr>
+			<!-- FOOTER -->
+			<tr>
+			<td style="background:#f1f3f5; padding:18px; font-size:11px; color:#777; text-align:center;">
+				본 메일은 통신서비스 이용요금 안내를 위해 자동 발송되었습니다.<br>
+				© 2026 Telecom Service. All rights reserved.
+			</td>
+			</tr>
 
-      </table>
+		</table>
 
-    </td>
-  </tr>
-</table>
+		</td>
+	</tr>
+	</table>
 
-<p>{{.Tracker}}</p>
+	<p>{{.Tracker}}</p>
 
-</body>
-</html>
+	</body>
+	</html>
