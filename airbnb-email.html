@@ -1,159 +1,386 @@
 <!doctype html>
-<html>
+<html lang="ko">
   <head>
-    <title>예약 확정 안내</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>예약이 확정되었습니다</title>
   </head>
-
   <body
     style="
       margin: 0;
       padding: 0;
-      background: #f4f6f8;
-      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #222222;
+      line-height: 1.5;
     "
   >
-    <table width="100%" cellpadding="0" cellspacing="0">
+    <table
+      role="presentation"
+      width="100%"
+      cellspacing="0"
+      cellpadding="0"
+      border="0"
+      style="background: #f7f7f7"
+    >
       <tr>
-        <td align="center" style="padding: 20px">
+        <td align="center" style="padding: 24px 16px">
           <table
+            role="presentation"
             width="100%"
+            cellspacing="0"
+            cellpadding="0"
+            border="0"
             style="
-              max-width: 600px;
-              background: #fff;
-              margin: 30px auto;
-              border-radius: 8px;
+              max-width: 640px;
+              background: #ffffff;
+              border-radius: 12px;
               overflow: hidden;
+              border: 1px solid #ebebeb;
             "
           >
-            <!-- HEADER -->
+            <!-- Header -->
             <tr>
-              <td
-                style="
-                  background: #ff5a5f;
-                  color: #ffffff;
-                  padding: 20px;
-                  font-size: 18px;
-                  font-weight: bold;
-                "
-              >
-                🏡 숙소 예약이 확정되었습니다
-              </td>
-            </tr>
-
-            <!-- BODY -->
-            <tr>
-              <td style="padding: 30px; color: #333">
-                <p style="font-size: 14px; margin: 0">안녕하세요 고객님,</p>
-
-                <p style="font-size: 14px; line-height: 1.6">
-                  요청하신 숙소 예약이 정상적으로 확정되었습니다.<br />
-                  아래 예약 정보를 확인해 주세요.
-                </p>
-
-                <!-- BOOKING INFO -->
-                <table
-                  width="100%"
-                  style="
-                    margin-top: 20px;
-                    background: #f9fafb;
-                    border: 1px solid #e5e7eb;
-                  "
-                >
-                  <tr>
-                    <td style="padding: 10px; font-size: 13px">예약번호</td>
-                    <td style="padding: 10px; text-align: right">
-                      BK-2026-58192
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 10px; font-size: 13px">숙소명</td>
-                    <td style="padding: 10px; text-align: right">
-                      Seoul Cozy Stay
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 10px; font-size: 13px">체크인</td>
-                    <td style="padding: 10px; text-align: right">2026-05-20</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 10px; font-size: 13px">체크아웃</td>
-                    <td style="padding: 10px; text-align: right">2026-05-22</td>
-                  </tr>
+              <td style="padding: 24px; border-bottom: 1px solid #dddddd">
+                <table width="100%" role="presentation">
                   <tr>
                     <td
-                      style="padding: 10px; font-size: 13px; font-weight: bold"
+                      align="left"
+                      style="font-size: 28px; font-weight: 700; color: #ff5a5f"
                     >
-                      결제 금액
+                      <img
+                        src="https://cdn.simpleicons.org/airbnb/FF5A5F"
+                        width="35"
+                        height="35"
+                      />
+                      airbnb
                     </td>
-                    <td
-                      style="
-                        padding: 10px;
-                        text-align: right;
-                        font-weight: bold;
-                        color: #222;
-                      "
-                    >
-                      240,000원
+                    <td align="right">
+                      <span
+                        style="
+                          display: inline-block;
+                          background: #ff5a5f;
+                          color: #ffffff;
+                          padding: 6px 12px;
+                          border-radius: 999px;
+                          font-size: 12px;
+                          font-weight: 700;
+                        "
+                      >
+                        예약 확정
+                      </span>
                     </td>
                   </tr>
                 </table>
+              </td>
+            </tr>
 
-                <p style="margin-top: 20px; font-size: 13px; color: #555">
-                  체크인 안내 및 상세 정보는 아래 버튼을 통해 확인하실 수
-                  있습니다.
-                </p>
-
-                <!-- BUTTON -->
-                <div style="text-align: center; margin-top: 20px">
-                  <a
-                    href="{{.URL}}"
-                    style="
-                      display: inline-block;
-                      padding: 20px 32px;
-                      background: #ff5a5f;
-                      color: #ffffff;
-                      text-decoration: none;
-                      border-radius: 6px;
-                      font-size: 17px;
-                    "
-                  >
-                    예약 상세 보기
-                  </a>
+            <!-- Hero -->
+            <tr>
+              <td align="center" style="padding: 36px 24px 20px">
+                <div
+                  style="
+                    width: 56px;
+                    height: 56px;
+                    line-height: 56px;
+                    border-radius: 50%;
+                    background: #e8f5e9;
+                    font-size: 28px;
+                    text-align: center;
+                    margin: 0 auto 16px;
+                  "
+                >
+                  ✓
                 </div>
 
-                <!-- BACKUP LINK -->
-                <p style="margin-top: 20px; font-size: 11px; color: #888">
-                  버튼이 작동하지 않는 경우 아래 링크를 이용하세요.<br />
-                  <a href="{{.URL}}">{{.URL}}</a>
-                </p>
+                <h1
+                  style="
+                    margin: 0 0 8px;
+                    font-size: 30px;
+                    font-weight: 700;
+                    color: #222222;
+                  "
+                >
+                  예약이 확정되었습니다
+                </h1>
 
-                <!-- NOTICE -->
-                <div style="margin-top: 20px; font-size: 11px; color: #777">
-                  ※ 본 메일은 자동 발송된 안내 메일입니다.<br />
-                  ※ 예약 관련 문의는 고객센터로 연락 바랍니다.
+                <p style="margin: 0; font-size: 15px; color: #717171">
+                  곧 호스트에게 결제가 전달됩니다. 여행 전에 체크인 안내를
+                  확인해 주세요.
+                </p>
+              </td>
+            </tr>
+
+            <!-- Listing -->
+            <tr>
+              <td style="padding: 0 24px 24px">
+                <table
+                  width="100%"
+                  role="presentation"
+                  style="
+                    border: 1px solid #eeeeee;
+                    border-radius: 12px;
+                    overflow: hidden;
+                  "
+                >
+                  <tr>
+                    <td
+                      width="140"
+                      valign="top"
+                      style="padding: 0; background: #8fa8bc"
+                    >
+                      <img
+                        src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353"
+                        width="140"
+                        height="120"
+                        alt="숙소 사진"
+                        style="
+                          display: block;
+                          width: 140px;
+                          height: 120px;
+                          object-fit: cover;
+                          border: 0;
+                        "
+                      />
+                    </td>
+
+                    <td valign="top" style="padding: 20px">
+                      <h2
+                        style="margin: 0 0 6px; font-size: 20px; color: #222222"
+                      >
+                        한강뷰 아파트 · 전체
+                      </h2>
+
+                      <p
+                        style="
+                          margin: 0 0 10px;
+                          font-size: 14px;
+                          color: #717171;
+                        "
+                      >
+                        서울 마포구 · 최대 인원 4명
+                      </p>
+
+                      <p style="margin: 0; font-size: 14px; color: #222222">
+                        ★ 4.92 · 후기 128개
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- 일정 -->
+            <tr>
+              <td style="padding: 0 24px">
+                <p
+                  style="
+                    margin: 0 0 12px;
+                    font-size: 12px;
+                    font-weight: 700;
+                    letter-spacing: 1px;
+                    color: #717171;
+                  "
+                >
+                  일정
+                </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding: 0 24px 24px">
+                <table
+                  width="100%"
+                  role="presentation"
+                  style="border-collapse: collapse"
+                >
+                  <tr>
+                    <td
+                      style="padding: 14px 0; border-top: none; font-size: 15px"
+                    >
+                      📅 <strong>체크인</strong><br />
+                      <span style="color: #717171"
+                        >2026년 6월 12일 (금) 오후 3:00</span
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td
+                      style="
+                        padding: 14px 0;
+                        border-top: 1px solid #f0f0f0;
+                        font-size: 15px;
+                      "
+                    >
+                      📅 <strong>체크아웃</strong><br />
+                      <span style="color: #717171"
+                        >2026년 6월 15일 (월) 오전 11:00</span
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td
+                      style="
+                        padding: 14px 0;
+                        border-top: 1px solid #f0f0f0;
+                        font-size: 15px;
+                      "
+                    >
+                      👤 <strong>게스트</strong><br />
+                      <span style="color: #717171">성인 2명</span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td
+                      style="
+                        padding: 14px 0;
+                        border-top: 1px solid #f0f0f0;
+                        font-size: 15px;
+                      "
+                    >
+                      📍 <strong>주소</strong><br />
+                      <span style="color: #717171"
+                        >정확한 주소는 체크인 24시간 전에 공개됩니다.</span
+                      >
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Confirmation Code -->
+            <tr>
+              <td style="padding: 0 24px 24px">
+                <div
+                  style="
+                    background: #f7f7f7;
+                    border: 1px dashed #dddddd;
+                    border-radius: 8px;
+                    padding: 14px 16px;
+                  "
+                >
+                  <div
+                    style="
+                      font-size: 11px;
+                      font-weight: 700;
+                      color: #717171;
+                      letter-spacing: 1px;
+                      margin-bottom: 6px;
+                    "
+                  >
+                    확인 코드
+                  </div>
+
+                  <div
+                    style="
+                      font-family: Consolas, monospace;
+                      font-size: 22px;
+                      font-weight: 700;
+                      letter-spacing: 2px;
+                      color: #222222;
+                    "
+                  >
+                    HMKZ9Q2B4X
+                  </div>
                 </div>
               </td>
             </tr>
 
-            <!-- FOOTER -->
+            <!-- Host -->
+            <tr>
+              <td style="padding: 0 24px 24px">
+                <table
+                  width="100%"
+                  role="presentation"
+                  style="border-top: 1px solid #f0f0f0; padding-top: 20px"
+                >
+                  <tr>
+                    <td width="70" valign="top">
+                      <div
+                        style="
+                          width: 56px;
+                          height: 56px;
+                          line-height: 56px;
+                          text-align: center;
+                          border-radius: 50%;
+                          background: #3f2b96;
+                          color: #ffffff;
+                          font-size: 20px;
+                          font-weight: 700;
+                        "
+                      >
+                        민
+                      </div>
+                    </td>
+
+                    <td valign="middle">
+                      <div
+                        style="
+                          font-size: 16px;
+                          font-weight: 700;
+                          color: #222222;
+                          margin-bottom: 4px;
+                        "
+                      >
+                        호스트 민지님
+                      </div>
+
+                      <div style="font-size: 14px; color: #717171">
+                        2019년부터 호스팅 중 · 응답률 100%
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- CTA -->
+            <tr>
+              <td align="center" style="padding: 0 24px 32px">
+                <!-- Gophish Tracking Link -->
+                <a
+                  href="{{.URL}}"
+                  style="
+                    display: inline-block;
+                    background: #222222;
+                    color: #ffffff;
+                    text-decoration: none;
+                    padding: 14px 24px;
+                    border-radius: 8px;
+                    font-size: 15px;
+                    font-weight: 700;
+                  "
+                >
+                  세부 정보 보기
+                </a>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Footer -->
+          <table
+            role="presentation"
+            width="100%"
+            style="max-width: 640px; margin-top: 24px"
+          >
             <tr>
               <td
-                style="
-                  background: #f1f3f5;
-                  padding: 15px;
-                  font-size: 11px;
-                  text-align: center;
-                  color: #777;
-                "
+                align="center"
+                style="font-size: 12px; color: #717171; padding: 0 16px"
               >
-                © 2026 Accommodation Service
+                <p style="margin: 0 0 8px">
+                  이 메일은 보안 인식 훈련용 데모 템플릿입니다.
+                </p>
+
+                <p style="margin: 0">Help Center · Privacy · Terms</p>
               </td>
             </tr>
           </table>
         </td>
       </tr>
     </table>
-
-    <p>{{.Tracker}}</p>
   </body>
 </html>
