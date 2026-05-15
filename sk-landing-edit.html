@@ -46,15 +46,16 @@
       /* Top utility bar */
       .util {
         background: #fff;
-        border-bottom: 1px solid var(--line);
+        border-bottom: 1 var(--line);
         font-size: 13px;
         color: var(--muted);
+        white-space: nowrap;
       }
       .util .container {
         display: flex;
         justify-content: flex-end;
-        gap: 18px;
-        padding: 10px 0;
+        gap: 30px;
+        padding: 30px 0;
       }
 
       /* Header */
@@ -69,9 +70,39 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 72px;
+        height: 40px;
         gap: 20px;
       }
+      .header-link {
+        display: flex;
+        gap: 26px;
+        align-items: center;
+        font-size: 19px;
+        color: var(--c-text);
+        padding-left: 30px;
+      }
+      .header-link a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .header-icons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 20px;
+        align-items: center;
+        font-size: 12px;
+        color: var(--c-text);
+      }
+      .header-icons a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+
       .logo {
         display: flex;
         align-items: center;
@@ -346,15 +377,26 @@
       /* MODAL */
       .modal {
         background: white;
-        padding: 100px;
+        padding: 50px; /*왼쪽 여백*/
         border-radius: 5px;
-        width: 400px;
+        width: 90%;
+        max-width: 400px;
 
         display: flex;
         flex-direction: column;
         gap: 12px;
 
         align-items: flex-start;
+        text-align: left;
+      }
+      .modal-header {
+        margin-bottom: 12px;
+      }
+
+      .modal-header h2 {
+        margin: 0;
+        font-size: 38px;
+        font-weight: 500;
         text-align: left;
       }
 
@@ -364,24 +406,24 @@
       }
 
       .modal input {
-        padding: 15px;
-
         border: none;
         border-bottom: 0.01px solid #333;
         outline: none;
-        width: auto;
-        padding: 14px;
+        width: 90%;
+        max-width: 400px;
+        padding: 15px;
       }
 
       .login-btn {
         background: #2f6bff;
         color: white;
         border: none;
-        width: auto;
-        padding: 14px;
+        width: 90%;
+        max-width: 400px;
+        padding: 15px;
         border-radius: 10px;
         cursor: pointer;
-        margin-top: 12px;
+        margin-top: 40px;
       }
 
       /* hover */
@@ -400,49 +442,70 @@
         cursor: not-allowed;
       }
 
-      .modal-header {
+      .mordal-bottom {
+        width: 100%;
+
         display: flex;
         flex-direction: column;
+
         align-items: center;
-        gap: 12px;
-        margin-bottom: 14px;
       }
 
-      .modal-header h2 {
-        margin: 0;
-        font-size: 24px;
-        text-align: left;
+      .mordal-bottom h2 {
+        margin-top: 0.5cm;
+        font-style: var(--muted);
+        font-size: small;
+        font-display: var(--muted);
+        color: grey;
+
+        width: 90%;
+
+        text-align: center;
+      }
+
+      .authentication-button {
+        width: 40%;
+        max-width: 200px;
+        font-size: 80%;
+        background: white;
+        color: #4c86ff;
+        border-radius: 5cap;
+
+        padding: 15px;
+        cursor: pointer;
       }
     </style>
   </head>
-  <body>
-    <div class="util">
-      <div class="container">
-        <a href="#">고객센터</a>
-        <a href="#">매장찾기</a>
-        <a href="#">마이페이지</a>
-        <a href="#">로그인</a>
-      </div>
-    </div>
 
+  <body>
     <header>
       <div class="container header-row">
         <a class="logo" href="#">
           <span class="logo-dot"></span>
           T world
         </a>
-        <nav>
-          <a href="#">상품서비스</a>
-          <a href="#">혜택</a>
-          <a href="#">멤버십</a>
-          <a href="#">요금제</a>
-          <a href="#">고객지원</a>
-        </nav>
-        <div class="header-actions">
-          <button class="btn btn-outline">검색</button>
-          <button class="btn btn-primary">가입/로그인</button>
+        <div class="util">
+          <div class="container">
+            <a href="#">T 우주</a>
+            <a href="#">T roaming</a>
+            <a href="#">T membership</a>
+          </div>
         </div>
       </div>
+      <br />
+      <nav class="header-link">
+        <a href="#">상품서비스</a>
+        <a href="#">T 다이렉트샵</a>
+        <a href="#">혜택</a>
+        <a href="#">고객지원</a>
+        <a href="#">MY</a>
+      </nav>
+
+      <nav class="header-icons">
+        <a href="#"><span class="icon-circle">♡</span>로그인기능</a>
+        <a href="#"><span class="icon-circle">↻</span>검색기능</a>
+        <a href="#"><span class="icon-circle">🛒</span>메뉴</a>
+      </nav>
     </header>
 
     <main class="container">
@@ -560,6 +623,13 @@
             required=""
             type="password"
           /><button class="login-btn" type="submit">로그인</button>
+
+          <div class="mordal-bottom">
+            <h2>ID/PW가 생각나지 않으면</h2>
+            <button class="authentication-button" type="button">
+              휴대폰 인증 로그인
+            </button>
+          </div>
         </form>
       </div>
     </div>

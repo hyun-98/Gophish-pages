@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SK Inc. (SK 주식회사)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sk-red: #e8192c;
+    --sk-dark: #111111;
+    --sk-gray: #666666;
+    --sk-light: #f5f5f5;
+    --sk-white: #ffffff;
+    --sk-border: #e0e0e0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+    color: var(--sk-dark);
+    background: var(--sk-white);
+    overflow-x: hidden;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.3s;
+  }
+
+  header.scrolled {
+    background: #fff;
+    border-bottom: 1px solid var(--sk-border);
+  }
+
+  .header-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 48px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 40px;
+    height: 40px;
+    background: var(--sk-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-mark svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+  }
+
+  header.scrolled .logo-text { color: var(--sk-dark); }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  nav a {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 100%;
+    height: 2px;
+    background: var(--sk-red);
+    transition: right 0.3s;
+  }
+
+  nav a:hover::after { right: 0; }
+  nav a:hover { color: #fff; }
+
+  header.scrolled nav a { color: var(--sk-gray); }
+  header.scrolled nav a:hover { color: var(--sk-dark); }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .lang-btn {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 5px 12px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+  }
+
+  header.scrolled .lang-btn {
+    color: var(--sk-gray);
+    border-color: var(--sk-border);
+  }
+
+  .lang-btn:hover {
+    background: var(--sk-red);
+    border-color: var(--sk-red);
+    color: #fff;
+  }
+
+  .search-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: rgba(255,255,255,0.8);
+    transition: color 0.2s;
+    background: none;
+    border: none;
+  }
+
+  header.scrolled .search-btn { color: var(--sk-gray); }
+  .search-btn:hover { color: var(--sk-red); }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 70% 50%, rgba(232,25,44,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(232,25,44,0.06) 0%, transparent 50%),
+      linear-gradient(135deg, #0a0a0a 0%, #111 50%, #0d0d0d 100%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 48px;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--sk-red);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+
+  .hero-title {
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.0;
+    letter-spacing: -2px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .hero-title .accent { color: var(--sk-red); }
+
+  .hero-subtitle {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--sk-red);
+    color: #fff;
+    padding: 16px 32px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-primary:hover {
+    background: #c5121f;
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    padding: 16px 32px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.25s;
+  }
+
+  .btn-ghost:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.5);
+    transform: translateY(-2px);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.4);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1s 1.5s forwards;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  .hero-stats {
+    position: absolute;
+    right: 48px;
+    bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    opacity: 0;
+    animation: fadeIn 1s 1.2s forwards;
+  }
+
+  .stat-item {
+    text-align: right;
+  }
+
+  .stat-num {
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ===== SECTION COMMON ===== */
+  section { padding: 100px 0; }
+
+  .section-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .section-header {
+    margin-bottom: 60px;
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--sk-red);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -1px;
+  }
+
+  .section-divider {
+    width: 48px;
+    height: 3px;
+    background: var(--sk-red);
+    margin-top: 24px;
+  }
+
+  /* ===== BUSINESS AREAS ===== */
+  .business {
+    background: var(--sk-dark);
+    color: #fff;
+  }
+
+  .business .section-title { color: #fff; }
+
+  .biz-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 48px;
+  }
+
+  .biz-tab {
+    padding: 16px 32px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.4);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+
+  .biz-tab.active {
+    color: #fff;
+    border-bottom-color: var(--sk-red);
+  }
+
+  .biz-tab:hover { color: rgba(255,255,255,0.8); }
+
+  .biz-panels { position: relative; }
+
+  .biz-panel {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .biz-panel.active { display: grid; }
+
+  .biz-card {
+    background: rgba(255,255,255,0.04);
+    padding: 40px 36px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .biz-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 100%;
+    height: 2px;
+    background: var(--sk-red);
+    transition: right 0.4s;
+  }
+
+  .biz-card:hover::before { right: 0; }
+
+  .biz-card:hover {
+    background: rgba(255,255,255,0.07);
+    transform: translateY(-4px);
+  }
+
+  .biz-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(232,25,44,0.15);
+    border: 1px solid rgba(232,25,44,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    font-size: 20px;
+  }
+
+  .biz-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .biz-card-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+  }
+
+  /* ===== ESG ===== */
+  .esg { background: var(--sk-light); }
+
+  .esg-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+
+  .esg-card {
+    background: #fff;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    border: 1px solid var(--sk-border);
+  }
+
+  .esg-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.08);
+  }
+
+  .esg-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--sk-red);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .esg-card:hover::after { transform: scaleX(1); }
+
+  .esg-letter {
+    font-size: 80px;
+    font-weight: 800;
+    color: rgba(232,25,44,0.08);
+    position: absolute;
+    top: 20px; right: 24px;
+    line-height: 1;
+  }
+
+  .esg-card-icon {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .esg-card-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .esg-card-desc {
+    font-size: 14px;
+    color: var(--sk-gray);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .esg-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .esg-list li {
+    font-size: 12px;
+    color: var(--sk-gray);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .esg-list li::before {
+    content: '';
+    width: 16px;
+    height: 1px;
+    background: var(--sk-red);
+    flex-shrink: 0;
+  }
+
+  /* ===== AWARDS ===== */
+  .awards { background: #fff; }
+
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .award-item {
+    padding: 40px 32px;
+    background: var(--sk-light);
+    text-align: center;
+    transition: all 0.25s;
+  }
+
+  .award-item:hover {
+    background: var(--sk-dark);
+    color: #fff;
+  }
+
+  .award-logo {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--sk-red);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .award-name {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    transition: color 0.25s;
+  }
+
+  .award-item:hover .award-name { color: #fff; }
+
+  .award-detail {
+    font-size: 12px;
+    color: var(--sk-gray);
+    line-height: 1.6;
+    transition: color 0.25s;
+  }
+
+  .award-item:hover .award-detail { color: rgba(255,255,255,0.6); }
+
+  /* ===== SHAREHOLDER ===== */
+  .shareholder {
+    background: var(--sk-dark);
+    color: #fff;
+  }
+
+  .shareholder-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .shareholder .section-title { color: #fff; }
+
+  .sr-desc {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+    margin-top: 28px;
+  }
+
+  .sr-highlight {
+    margin-top: 40px;
+    padding: 32px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+  }
+
+  .sr-hl-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--sk-red);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .sr-hl-text {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+  }
+
+  .sr-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .chart-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .chart-year {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    width: 40px;
+    flex-shrink: 0;
+  }
+
+  .chart-bars {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .bar-wrap { display: flex; align-items: center; gap: 10px; }
+
+  .bar {
+    height: 12px;
+    transition: width 1s ease;
+  }
+
+  .bar-div { background: var(--sk-red); }
+  .bar-rep { background: rgba(232,25,44,0.35); }
+
+  .bar-val {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    white-space: nowrap;
+  }
+
+  .chart-total {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    width: 80px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .chart-unit {
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ===== MEDIA ===== */
+  .media { background: #fff; }
+
+  .media-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 24px;
+  }
+
+  .media-card {
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s;
+    border: 1px solid var(--sk-border);
+  }
+
+  .media-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+
+  .media-thumb {
+    aspect-ratio: 16/9;
+    background: var(--sk-dark);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .media-thumb-bg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.5s;
+  }
+
+  .media-card:hover .media-thumb-bg { transform: scale(1.05); }
+
+  .media-card:nth-child(1) .media-thumb-bg { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+  .media-card:nth-child(2) .media-thumb-bg { background: linear-gradient(135deg, #0f3460, #533483); }
+  .media-card:nth-child(3) .media-thumb-bg { background: linear-gradient(135deg, #1b4332, #081c15); }
+
+  .play-btn {
+    width: 52px;
+    height: 52px;
+    background: rgba(232,25,44,0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .media-card:hover .play-btn {
+    transform: scale(1.1);
+    background: var(--sk-red);
+  }
+
+  .play-icon {
+    width: 0;
+    height: 0;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-left: 16px solid #fff;
+    margin-left: 3px;
+  }
+
+  .media-body {
+    padding: 24px;
+  }
+
+  .media-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--sk-red);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .media-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--sk-dark);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .media-card:nth-child(1) .media-title { font-size: 18px; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #0a0a0a;
+    color: rgba(255,255,255,0.5);
+    padding: 60px 0 32px;
+  }
+
+  .footer-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 280px 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 32px;
+  }
+
+  .footer-brand { }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .footer-logo-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--sk-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-logo-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+  }
+
+  .footer-tagline {
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer-col-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: rgba(255,255,255,0.9); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+  }
+
+  .footer-copy-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer-copy-links a {
+    color: rgba(255,255,255,0.25);
+    text-decoration: none;
+    font-size: 11px;
+    transition: color 0.2s;
+  }
+
+  .footer-copy-links a:hover { color: rgba(255,255,255,0.6); }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 28 28" fill="none">
+          <text x="3" y="22" font-size="18" font-weight="900" fill="white" font-family="Montserrat,sans-serif">SK</text>
+        </svg>
+      </div>
+      <span class="logo-text">SK Inc.</span>
+    </a>
+
+    <nav>
+      <a href="#about">About Us</a>
+      <a href="#business">Business</a>
+      <a href="#ir">Investor Relations</a>
+      <a href="#esg">ESG</a>
+      <a href="#media">Media Center</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="#" class="lang-btn">KOR</a>
+      <button class="search-btn" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Shaping Tomorrow Today</p>
+    <h1 class="hero-title">
+      We Seek to<br>
+      Build the<br>
+      <span class="accent">Future.</span>
+    </h1>
+    <p class="hero-subtitle">
+      SK Inc. is a sophisticated value investor creating sustainable growth across Advanced Materials, Green, Bio, and Digital sectors.
+    </p>
+    <div class="hero-cta">
+      <a href="#business" class="btn-primary">
+        Explore Business
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <a href="#ir" class="btn-ghost">
+        Investor Relations
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">1953</div>
+      <div class="stat-label">Founded</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Business Areas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">AAA</div>
+      <div class="stat-label">MSCI Rating</div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- BUSINESS AREAS -->
+<section class="business" id="business">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Core Portfolio</p>
+      <h2 class="section-title">4 Business<br>Areas</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="biz-tabs reveal">
+      <div class="biz-tab active" onclick="showPanel('advanced')">Advanced Materials</div>
+      <div class="biz-tab" onclick="showPanel('green')">Green</div>
+      <div class="biz-tab" onclick="showPanel('bio')">Bio</div>
+      <div class="biz-tab" onclick="showPanel('digital')">Digital</div>
+    </div>
+
+    <div class="biz-panels">
+      <!-- Advanced Materials -->
+      <div class="biz-panel active" id="panel-advanced">
+        <div class="biz-card reveal">
+          <div class="biz-icon">⚛️</div>
+          <h3 class="biz-card-title">Semiconductor Materials</h3>
+          <p class="biz-card-desc">CIS Color material, EUV Photo material, Advanced Packaging material for next-gen chip manufacturing.</p>
+        </div>
+        <div class="biz-card reveal reveal-delay-1">
+          <div class="biz-icon">🔋</div>
+          <h3 class="biz-card-title">Battery Materials</h3>
+          <p class="biz-card-desc">Next-Gen cathode · Si anode material, Next-Gen Li-Metal battery, Carbon nanotube material.</p>
+        </div>
+        <div class="biz-card reveal reveal-delay-2">
+          <div class="biz-icon">⚡</div>
+          <h3 class="biz-card-title">EV SCM</h3>
+          <p class="biz-card-desc">20mm SiC Wafer, EV SiC power semiconductor, Compound semiconductor including GaN on SiC.</p>
+        </div>
+      </div>
+
+      <!-- Green -->
+      <div class="biz-panel" id="panel-green">
+        <div class="biz-card">
+          <div class="biz-icon">🌊</div>
+          <h3 class="biz-card-title">Energy Transition</h3>
+          <p class="biz-card-desc">Hydrogen fuel cells, SMRs, biofuel, and comprehensive energy solutions for a sustainable future.</p>
+        </div>
+        <div class="biz-card">
+          <div class="biz-icon">♻️</div>
+          <h3 class="biz-card-title">Clean Solutions</h3>
+          <p class="biz-card-desc">Contaminant and waste disposal, waste-to-X, recycling technologies for circular economy.</p>
+        </div>
+        <div class="biz-card">
+          <div class="biz-icon">🌱</div>
+          <h3 class="biz-card-title">Carbon Management</h3>
+          <p class="biz-card-desc">Carbon capture, storage and utilization, emissions management, and carbon credits systems.</p>
+        </div>
+      </div>
+
+      <!-- Bio -->
+      <div class="biz-panel" id="panel-bio">
+        <div class="biz-card">
+          <div class="biz-icon">🧬</div>
+          <h3 class="biz-card-title">CDMO</h3>
+          <p class="biz-card-desc">Global top-tier CDMO — Small-molecule API and Cell & Gene Therapy through SK Pharmteco.</p>
+        </div>
+        <div class="biz-card">
+          <div class="biz-icon">💊</div>
+          <h3 class="biz-card-title">Biopharmaceuticals</h3>
+          <p class="biz-card-desc">Investment in next-generation technologies and new drug development via SK Biopharmaceuticals.</p>
+        </div>
+        <div class="biz-card">
+          <div class="biz-icon">🥗</div>
+          <h3 class="biz-card-title">Sustainable Food</h3>
+          <p class="biz-card-desc">Alternative proteins and vertical farming solutions for a sustainable food supply chain.</p>
+        </div>
+      </div>
+
+      <!-- Digital -->
+      <div class="biz-panel" id="panel-digital">
+        <div class="biz-card">
+          <div class="biz-icon">🤖</div>
+          <h3 class="biz-card-title">New Platforms</h3>
+          <p class="biz-card-desc">Mobility, EV charging infrastructure for the next generation of connected transportation.</p>
+        </div>
+        <div class="biz-card">
+          <div class="biz-icon">🧠</div>
+          <h3 class="biz-card-title">Key Digital Technologies</h3>
+          <p class="biz-card-desc">Artificial Intelligence, Machine Learning, and blockchain for enterprise digital transformation.</p>
+        </div>
+        <div class="biz-card">
+          <div class="biz-icon">🏢</div>
+          <h3 class="biz-card-title">Digital Infrastructure</h3>
+          <p class="biz-card-desc">State-of-the-art data centers and e-commerce infrastructure for the digital economy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHAREHOLDER RETURN -->
+<section class="shareholder" id="ir">
+  <div class="section-inner">
+    <div class="shareholder-inner">
+      <div class="reveal">
+        <p class="section-eyebrow">Investor Relations</p>
+        <h2 class="section-title">Shareholder<br>Return</h2>
+        <div class="section-divider"></div>
+        <p class="sr-desc">
+          Enhancing shareholder value through improved dividend predictability and gradual expansion of shareholder returns.
+        </p>
+        <div class="sr-highlight">
+          <p class="sr-hl-label">Medium-Term Plan (FY24~FY26)</p>
+          <p class="sr-hl-text">Stable and predictable basic dividends of KRW 5,000 per common share annually, plus additional returns from asset sales.</p>
+        </div>
+      </div>
+
+      <div class="sr-chart reveal">
+        <div class="chart-row">
+          <div class="chart-year">FY22</div>
+          <div class="chart-bars">
+            <div class="bar-wrap">
+              <div class="bar bar-div" style="width:70%"></div>
+              <span class="bar-val">Dividend 280.1bn</span>
+            </div>
+            <div class="bar-wrap">
+              <div class="bar bar-rep" style="width:50%"></div>
+              <span class="bar-val">Repurchase 199.8bn</span>
+            </div>
+          </div>
+          <div class="chart-total">479.9<div class="chart-unit">bn KRW</div></div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-year">FY23</div>
+          <div class="chart-bars">
+            <div class="bar-wrap">
+              <div class="bar bar-div" style="width:69%"></div>
+              <span class="bar-val">Dividend 276.5bn</span>
+            </div>
+            <div class="bar-wrap">
+              <div class="bar bar-rep" style="width:30%"></div>
+              <span class="bar-val">Repurchase 119.8bn</span>
+            </div>
+          </div>
+          <div class="chart-total">396.2<div class="chart-unit">bn KRW</div></div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-year">FY24</div>
+          <div class="chart-bars">
+            <div class="bar-wrap">
+              <div class="bar bar-div" style="width:68%"></div>
+              <span class="bar-val">Dividend 275.5bn</span>
+            </div>
+            <div class="bar-wrap">
+              <div class="bar bar-rep" style="width:27%"></div>
+              <span class="bar-val">Extra Dividend 110.1bn</span>
+            </div>
+          </div>
+          <div class="chart-total">385.6<div class="chart-unit">bn KRW</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESG -->
+<section class="esg" id="esg">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Sustainability</p>
+      <h2 class="section-title">ESG Management</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="esg-grid">
+      <div class="esg-card reveal">
+        <div class="esg-letter">E</div>
+        <div class="esg-card-icon">🌍</div>
+        <h3 class="esg-card-title">Environment</h3>
+        <p class="esg-card-desc">Paving a new path toward a brighter future by advancing sustainable growth through carbon neutrality.</p>
+        <ul class="esg-list">
+          <li>Eco-friendly investments and business expansion</li>
+          <li>Efforts to achieve net zero emissions</li>
+          <li>Climate risk management framework</li>
+        </ul>
+      </div>
+
+      <div class="esg-card reveal reveal-delay-1">
+        <div class="esg-letter">S</div>
+        <div class="esg-card-icon">🤝</div>
+        <h3 class="esg-card-title">Social</h3>
+        <p class="esg-card-desc">Pursuing the sustainable happiness of all our stakeholders through inclusive growth.</p>
+        <ul class="esg-list">
+          <li>Creating a happy working environment</li>
+          <li>Building sustainable supply chains</li>
+          <li>Reinforcing the social safety net</li>
+        </ul>
+      </div>
+
+      <div class="esg-card reveal reveal-delay-2">
+        <div class="esg-letter">G</div>
+        <div class="esg-card-icon">⚖️</div>
+        <h3 class="esg-card-title">Governance</h3>
+        <p class="esg-card-desc">Setting up our Governance Story to reinforce ESG performance and transparency.</p>
+        <ul class="esg-list">
+          <li>Governance Charter fully revised</li>
+          <li>Independent Nomination Committee</li>
+          <li>Shareholder communication specialists</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="awards">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Recognition</p>
+      <h2 class="section-title">Major Awards &amp; Ratings</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="awards-grid">
+      <div class="award-item reveal">
+        <div class="award-logo">MSCI</div>
+        <div class="award-name">AAA Rating</div>
+        <div class="award-detail">Highest ESG rating from Morgan Stanley Capital International</div>
+      </div>
+      <div class="award-item reveal reveal-delay-1">
+        <div class="award-logo">DJSI</div>
+        <div class="award-name">Best-in-Class World Index</div>
+        <div class="award-detail">Dow Jones Sustainability Index — Listed for 14 consecutive years</div>
+      </div>
+      <div class="award-item reveal reveal-delay-2">
+        <div class="award-logo">KCGS</div>
+        <div class="award-name">Integrated A Rating</div>
+        <div class="award-detail">Environment A / Social A+ / Governance A from Korea Institute</div>
+      </div>
+      <div class="award-item reveal reveal-delay-3">
+        <div class="award-logo">KSA</div>
+        <div class="award-name">Award for Excellent Sustainability Report</div>
+        <div class="award-detail">Korean Standards Association Sustainability Competition Winner</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA CENTER -->
+<section class="media" id="media">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Latest from SK</p>
+      <h2 class="section-title">Media Center</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="media-grid">
+      <div class="media-card reveal">
+        <div class="media-thumb">
+          <div class="media-thumb-bg"></div>
+          <div class="play-btn"><div class="play-icon"></div></div>
+        </div>
+        <div class="media-body">
+          <div class="media-tag">Featured Video</div>
+          <h3 class="media-title">From a team of 35 to just 3 — When AI does everything, what is the ultimate way to survive?</h3>
+        </div>
+      </div>
+
+      <div class="media-card reveal reveal-delay-1">
+        <div class="media-thumb">
+          <div class="media-thumb-bg"></div>
+          <div class="play-btn"><div class="play-icon"></div></div>
+        </div>
+        <div class="media-body">
+          <div class="media-tag">What's in my AI?</div>
+          <h3 class="media-title">Secret AI Lives of K-Conglomerate Employees</h3>
+        </div>
+      </div>
+
+      <div class="media-card reveal reveal-delay-2">
+        <div class="media-thumb">
+          <div class="media-thumb-bg"></div>
+          <div class="play-btn"><div class="play-icon"></div></div>
+        </div>
+        <div class="media-body">
+          <div class="media-tag">SECRET 2</div>
+          <h3 class="media-title">Bold Investment vs. Technological Innovation — What Determines Corporate Value?</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-mark">
+            <svg viewBox="0 0 28 24" width="28" height="24">
+              <text x="2" y="19" font-size="16" font-weight="900" fill="white" font-family="Montserrat,sans-serif">SK</text>
+            </svg>
+          </div>
+          <span class="footer-logo-text">SK Inc.</span>
+        </div>
+        <p class="footer-tagline">
+          We seek to build the future as a Sophisticated Value Investor, creating sustainable growth for all stakeholders.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Company</h4>
+        <ul class="footer-links">
+          <li><a href="#">Company Overview</a></li>
+          <li><a href="#">Our History</a></li>
+          <li><a href="#">Leadership</a></li>
+          <li><a href="#">Global Network</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Investor Relations</h4>
+        <ul class="footer-links">
+          <li><a href="#">Shareholder Information</a></li>
+          <li><a href="#">Financial Information</a></li>
+          <li><a href="#">IR Archives</a></li>
+          <li><a href="#">Investor FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">ESG</h4>
+        <ul class="footer-links">
+          <li><a href="#">Sustainability Report</a></li>
+          <li><a href="#">Governance</a></li>
+          <li><a href="#">Ethical Management</a></li>
+          <li><a href="#">ESG Data</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 SK Inc. All Rights Reserved. Seoul, Korea</span>
+      <div class="footer-copy-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Sitemap</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header scroll effect
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // Business area tabs
+  function showPanel(name) {
+    document.querySelectorAll('.biz-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.biz-panel').forEach(p => p.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('panel-' + name).classList.add('active');
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
