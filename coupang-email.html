@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배송 조회 안내</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+    "
+  >
+    <table
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      border="0"
+      bgcolor="#f4f4f4"
+    >
+      <tr>
+        <td align="center" style="padding: 40px 10px">
+          <!-- 메인 컨테이너 -->
+          <table
+            width="600"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+            bgcolor="#ffffff"
+            style="border-radius: 8px; overflow: hidden"
+          >
+            <!-- 헤더 -->
+            <tr>
+              <td align="left" bgcolor="white" style="padding: 24px">
+                <h1 style="margin: 0; color: #ffffff; font-size: 35px; letter-spacing: -5px">
+                  <span style="color: rgb(147, 83, 83)">c</span>
+                  <span style="color: rgb(147, 83, 83)">o</span>
+                  <span style="color: rgb(147, 83, 83)">u</span>
+                  <span style="color: rgb(240, 102, 102)">p</span>
+                  <span style="color: rgb(246, 201, 112)">a</span>
+                  <span style="color: #7ec989">n</span>
+                  <span style="color: #47b4df">g</span>
+                </h1>
+              </td>
+            </tr>
+
+            <!-- 본문 -->
+            <tr>
+              <td
+                style="
+                  padding: 40px 32px;
+                  color: #333333;
+                  font-size: 16px;
+                  line-height: 1.6;
+                "
+              >
+                <p style="margin-top: 0">안녕하세요 {{.FirstName}}님,</p>
+
+                <p>주문하신 상품의 배송이 시작되었습니다.</p>
+
+                <!-- 배송 정보 -->
+                <table
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                  style="
+                    background: #f9fafb;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 6px;
+                    margin: 24px 0;
+                  "
+                >
+                  <tr>
+                    <td style="padding: 16px">
+                      <p style="margin: 0 0 10px 0">
+                        <strong>주문번호:</strong> #20260518-1024
+                      </p>
+
+                      <p style="margin: 0 0 10px 0">
+                        <strong>배송상태:</strong> 배송중
+                      </p>
+
+                      <p style="margin: 0">
+                        <strong>예상 도착일:</strong> 2026-05-20
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- 버튼 -->
+                <table
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                  align="center"
+                  style="margin: 30px auto"
+                >
+                  <tr>
+                    <td
+                      align="center"
+                      bgcolor="#2563eb"
+                      style="border-radius: 6px"
+                    >
+                      <a
+                        href="{{.URL}}"
+                        style="
+                          display: inline-block;
+                          padding: 14px 32px;
+                          font-size: 16px;
+                          color: #ffffff;
+                          text-decoration: none;
+                          font-weight: bold;
+                        "
+                      >
+                        배송 조회하기
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+
+                <p style="color: #666666; font-size: 14px">
+                  배송 조회 버튼이 동작하지 않는 경우 아래 링크를 복사하여
+                  브라우저에 입력해주세요.
+                </p>
+
+                <p
+                  style="word-break: break-all; font-size: 13px; color: #2c69bd"
+                >
+                  {{.URL}}
+                </p>
+              </td>
+            </tr>
+
+            <!-- 푸터 -->
+            <tr>
+              <td
+                align="center"
+                bgcolor="#f3f4f6"
+                style="padding: 20px; color: #888888; font-size: 12px"
+              >
+                © 2026 Delivery Service. All rights reserved.
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
