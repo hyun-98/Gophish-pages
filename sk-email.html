@@ -1,7 +1,35 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>통신요금 안내</title>
+
+    <style>
+      @media only screen and (max-width: 600px) {
+        .container {
+          width: 100% !important;
+        }
+
+        .content {
+          padding: 18px !important;
+        }
+
+        .table td {
+          font-size: 12px !important;
+        }
+
+        .button a {
+          display: block !important;
+          width: 100% !important;
+          text-align: center !important;
+        }
+
+        .title {
+          font-size: 18px !important;
+        }
+      }
+    </style>
   </head>
 
   <body
@@ -14,22 +42,26 @@
   >
     <table width="100%" cellpadding="0" cellspacing="0">
       <tr>
-        <td align="center" style="padding: 20px">
+        <td align="center" style="padding: 20px 10px">
 
+          <!-- MAIN CONTAINER -->
           <table
+            class="container"
             width="100%"
             style="
               max-width: 600px;
+              width: 100%;
               background: #fff;
               margin: 30px auto;
               border-radius: 8px;
               overflow: hidden;
             "
           >
-		  
+
             <!-- HEADER -->
             <tr>
               <td
+                class="title"
                 style="
                   background: #1f4fd8;
                   padding: 22px;
@@ -44,7 +76,10 @@
 
             <!-- BODY -->
             <tr>
-              <td style="padding: 30px; color: #333">
+              <td
+                class="content"
+                style="padding: 30px; color: #333"
+              >
                 <p style="font-size: 14px; margin: 0">
                   안녕하세요, {{.FirstName}}님.
                 </p>
@@ -65,25 +100,19 @@
                 >
                   <tr>
                     <td style="padding: 10px; font-size: 13px">고객명</td>
-                    <td
-                      style="padding: 10px; text-align: right; font-size: 13px"
-                    >
+                    <td style="padding: 10px; text-align: right; font-size: 13px">
                       {{.LastName}}{{.FirstName}}
                     </td>
                   </tr>
                   <tr>
                     <td style="padding: 10px; font-size: 13px">가입번호</td>
-                    <td
-                      style="padding: 10px; text-align: right; font-size: 13px"
-                    >
+                    <td style="padding: 10px; text-align: right; font-size: 13px">
                       010-****-1234
                     </td>
                   </tr>
                   <tr>
                     <td style="padding: 10px; font-size: 13px">청구월</td>
-                    <td
-                      style="padding: 10px; text-align: right; font-size: 13px"
-                    >
+                    <td style="padding: 10px; text-align: right; font-size: 13px">
                       2026.05
                     </td>
                   </tr>
@@ -113,9 +142,7 @@
                     <td style="padding: 12px; text-align: right">8,000원</td>
                   </tr>
                   <tr>
-                    <td
-                      style="padding: 12px; font-size: 13px; font-weight: bold"
-                    >
+                    <td style="padding: 12px; font-size: 13px; font-weight: bold">
                       총 청구 금액
                     </td>
                     <td
@@ -132,7 +159,7 @@
                   </tr>
                 </table>
 
-                <!-- DUE INFO -->
+                <!-- DUE -->
                 <p style="margin-top: 20px; font-size: 13px; color: #444">
                   납부 기한: <b>2026-05-20</b><br />
                   납부 기한 이후 미납 시 연체료가 부과될 수 있습니다.
@@ -145,7 +172,7 @@
                 </p>
 
                 <!-- BUTTON -->
-                <div style="text-align: center; margin-top: 25px">
+                <div class="button" style="text-align: center; margin-top: 25px">
                   <a
                     href="{{.URL}}"
                     style="
@@ -163,7 +190,7 @@
                   </a>
                 </div>
 
-                <!-- BACKUP LINK -->
+                <!-- BACKUP -->
                 <p style="margin-top: 20px; font-size: 11px; color: #888">
                   버튼이 작동하지 않을 경우 아래 링크를 이용해 주세요.<br />
                   <a href="{{.URL}}" style="color: #1f4fd8">{{.URL}}</a>
@@ -182,6 +209,7 @@
                   ※ 본 메일은 발신 전용이며 회신이 불가합니다.<br />
                   ※ 요금 관련 문의는 고객센터(114)로 연락 바랍니다.
                 </div>
+
               </td>
             </tr>
 
@@ -201,6 +229,7 @@
                 © 2026 Telecom Service. All rights reserved.
               </td>
             </tr>
+
           </table>
         </td>
       </tr>

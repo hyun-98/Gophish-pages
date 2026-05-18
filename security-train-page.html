@@ -143,7 +143,7 @@
   <div class="wrap">
     <main class="card" role="main" aria-labelledby="title">
       <section class="head">
-        <span class="badge">공식 보안 인식 훈련</span>
+        <span class="badge">사내 피싱 메일 보안 훈련</span>
         <h1 id="title">이 페이지는 모의 피싱 훈련 페이지입니다</h1>
         <p class="sub">
           실제 공격이 아닌 사내 보안 교육 목적으로 운영됩니다. 개인정보/비밀번호는 수집하지 않습니다.
@@ -171,10 +171,12 @@
         </article>
 
         <article class="box">
-          <h2>다음 행동 가이드</h2>
+          <h2>피싱 메일 대응 방안</h2>
           <ul class="list">
             <li>의심 메일은 링크 클릭 대신 보안팀에 신고</li>
             <li>발신자 주소, 링크 URL, 첨부파일 확장자 먼저 확인</li>
+            <li>긴급성을 강조하면 신중하게 대응</li>
+            <li>다른 경로로 확인</li>
             <li>동일 비밀번호 재사용 금지 및 MFA 사용</li>
           </ul>
         </article>
@@ -194,12 +196,12 @@
   <script>
     // 교육 완료 버튼: 단순 완료 메시지 (자격증명 수집 없음)
     document.getElementById("completeBtn").addEventListener("click", function () {
-      alert("교육 확인이 완료되었습니다. 감사합니다.");
+      alert("교육 확인이 완료되었습니다. 수고하셨습니다.");
     });
 
     // 신고 방법 버튼: 안내 팝업 (환경에 맞는 연락처로 수정)
     document.getElementById("reportBtn").addEventListener("click", function () {
-      alert("의심 메일은 security@example.com 또는 사내 헬프데스크로 신고하세요.");
+      alert("의심 메일은 security@example.com 또는 Pantech C&I 인프라보안실 보안팀으로 신고하세요.");
     });
   </script>
 </body>
