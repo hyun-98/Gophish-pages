@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>로그인</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:      #e52222;
+      --red-dark: #c41a1a;
+      --gray-bg:  #f6f6f6;
+      --border:   #e0e0e0;
+      --text:     #111;
+      --sub:      #767676;
+      --white:    #fff;
+    }
+
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+      background: var(--gray-bg);
+      color: var(--text);
+      font-size: 14px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      height: 56px;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    /* 로고: 브랜드 없이 쇼핑몰 느낌 아이콘 + 텍스트 */
+    .header-logo svg { width: 36px; height: 36px; }
+    .header-logo-text {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--red);
+      letter-spacing: -1px;
+    }
+
+    /* ── MAIN WRAP ── */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 16px 60px;
+    }
+
+    /* ── LOGIN CARD ── */
+    .login {
+      background: var(--white);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    /* 타이틀 */
+    .login-title {
+      font-size: 22px;
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: 28px;
+      color: var(--text);
+      letter-spacing: -0.5px;
+    }
+
+    /* 입력 필드 */
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 8px;
+      border: 1px solid var(--border);
+    }
+    .input-group input {
+      width: 100%;
+      height: 50px;
+      padding: 0 14px;
+      font-size: 14px;
+      font-family: inherit;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      outline: none;
+      color: var(--text);
+      background: var(--white);
+      transition: background 0.15s;
+    }
+    .input-group input:last-child { border-bottom: none; }
+    .input-group input:focus { background: #fffbf0; }
+    .input-group input::placeholder { color: #bbb; }
+
+    /* 자동로그인 */
+    .auto-login-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+      margin-top: 6px;
+    }
+    .auto-login-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--red);
+      cursor: pointer;
+    }
+    .auto-login-row label {
+      font-size: 13px;
+      color: var(--sub);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* 로그인 버튼 */
+    .btn-login {
+      width: 100%;
+      height: 50px;
+      background: rgb(34, 111, 246);
+      color: #fff;
+      border: none;
+      border-radius: 0.1cm;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: -0.3px;
+      transition: background 0.15s;
+      margin-bottom: 12px;
+    }
+    .btn-login:active { transform: scale(0.99); }
+
+    /* 회원가입 버튼 */
+    .btn-register {
+      width: 100%;
+      height: 50px;
+      background: var(--white);
+      color: #2c2c2c;
+      border-radius: 0.1cm;
+      border: 1px solid #706c6c;
+      font-size: 16px;
+      font-weight: 350;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: -0.3px;
+      transition: background 0.15s;
+      margin-bottom: 12px;
+    }
+    .btn-register:active { transform: scale(0.99); }   
+
+    /* ── FOOTER ── */
+    footer {
+      background: #f0f0f0;
+      border-top: 1px solid var(--border);
+      padding: 20px 24px;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: var(--sub);
+      padding: 0 10px;
+      border-right: 1px solid #ccc;
+      line-height: 1;
+    }
+    .footer-links a:last-child { border-right: none; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy {
+      font-size: 11px;
+      color: #aaa;
+    }
+
+    /* ── 비밀번호 보기 토글 ── */
+    .pw-wrap {
+      position: relative;
+    }
+    .pw-wrap input { padding-right: 44px; }
+    .pw-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: #bbb;
+    }
+    .pw-toggle:hover { color: #888; }
+    .pw-toggle svg { width: 18px; height: 18px; display: block; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-logo">
+    <!-- 브랜드 없는 쇼핑카트 아이콘 -->
+    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="36" height="36" rx="6" fill="#e52222"/>
+      <path d="M8 10h2l2.6 10.4a2 2 0 001.9 1.6h8.2a2 2 0 001.9-1.5L26.5 14H12" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="15" cy="27" r="1.5" fill="white"/>
+      <circle cx="23" cy="27" r="1.5" fill="white"/>
+    </svg>
+    <span class="header-logo-text">ShopMall</span>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="login">
+    <h1 class="login-title">이메일 로그인</h1>
+
+    <!-- 아이디 / 비밀번호 입력 -->
+    <div class="input-group">
+      <input
+        type="text"
+        id="userId"
+        placeholder="아이디(이메일)"
+        autocomplete="username"
+      />
+      <div class="pw-wrap" style="position:relative;">
+        <input
+          type="password"
+          id="userPw"
+          placeholder="비밀번호"
+          autocomplete="current-password"
+          style="border:none;width:100%;height:50px;padding:0 44px 0 14px;font-size:14px;font-family:inherit;outline:none;color:#111;"
+        />
+        <button class="pw-toggle" onclick="togglePw()" title="비밀번호 보기" type="button">
+          <svg id="eyeIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 자동 로그인 -->
+    <div class="auto-login-row">
+      <input type="checkbox" id="autoLogin" />
+      <label for="autoLogin">자동 로그인</label>
+    </div>
+
+    <!-- 로그인 버튼 -->
+    <button class="btn-login" onclick="handleLogin()">로그인</button>
+
+    <!-- 회원가입 버튼 -->
+    <button class="btn-register" onclick="handleRegister()">회원가입</button>
+
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-copy">© Coupang Corp. All rights reserved.</p>
+</footer>
+
+<script>
+  // 비밀번호 보기/숨기기
+  function togglePw() {
+    const pw = document.getElementById('userPw');
+    const icon = document.getElementById('eyeIcon');
+    if (pw.type === 'password') {
+      pw.type = 'text';
+      icon.innerHTML = `
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+          d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>`;
+    } else {
+      pw.type = 'password';
+      icon.innerHTML = `
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>`;
+    }
+  }
+
+  // 엔터키 로그인
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleLogin();
+  });
+
+  function handleLogin() {
+    const id = document.getElementById('userId').value.trim();
+    const pw = document.getElementById('userPw').value;
+    if (!id) {
+      alert('아이디를 입력해 주세요.');
+      document.getElementById('userId').focus();
+      return;
+    }
+    if (!pw) {
+      alert('비밀번호를 입력해 주세요.');
+      document.getElementById('userPw').focus();
+      return;
+    }
+    alert('로그인 처리: 실제 서버 연동이 필요합니다.');
+  }
+</script>
+</body>
+</html>

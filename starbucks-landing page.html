@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Starbucks Korea</title>
+    <title>Starbucks Korea</title> 
+    <link rel="icon" href="data:,">
+
     <style>
       body {
         margin: 0;
@@ -12,18 +14,70 @@
       }
 
       header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 30px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
         border-bottom: 1px solid #ddd;
         background: white;
       }
 
+      .header-top {
+        background: #fff; /* 스타벅스 짙은 초록 */
+        color: #fff;
+
+        /* 내부 콘텐츠 배치 */
+        display: flex;
+        align-items: center; /* 세로 중앙 정렬 */
+        justify-content: flex-end; /* 오른쪽 정렬 */
+        gap: 8px;
+
+        /* 안쪽 여백 (높이 결정) */
+        padding: 10px 500px;
+      }
+
+      /* 검색 아이콘 버튼 */
+      .header-top .search-btn {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.8);
+        cursor: pointer;
+        padding: 4px 8px;
+        font-size: 16px;
+        transition: color 0.2s;
+      }
+      .header-top .search-btn:hover {
+        color: #fff;
+      }
+
+      .header-bottom {
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end; /* 메뉴만 오른쪽에 */
+        height: 60px;
+        /* 왼쪽 160px, 오른쪽 400px 패딩 적용 */
+        padding: 0 400px 0 160px;
+        margin-bottom: 10px;
+        gap: 10px;
+        box-sizing: border-box;
+      }
+
       .logo {
-        font-size: 24px;
-        font-weight: bold;
-        color: #006241;
+        position: absolute; /* ✅ header 기준으로 배치 */
+        top: 50%; /* ✅ header 세로 중앙 */
+        left: 40px;
+        transform: translateY(-50%); /* ✅ 로고 높이 절반만큼 올려서 정중앙 */
+
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0;
+        z-index: 10; /* 두 줄 위로 튀어나오게 */
+      }
+
+      .pipe {
+        color: grey;
+        margin: 0 2px;
       }
 
       nav a {
@@ -162,25 +216,181 @@
         height: 16px;
         accent-color: #006241; /* 체크 색 (스타벅스 초록) */
       }
+
+      .footer {
+        background: #2c2a29;
+        color: #999;
+        font-family: "Noto Sans KR", sans-serif;
+      }
+
+      .footer-top {
+        max-width: 1200px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+        padding-bottom: 100px;
+        border-bottom: 1px solid #444;
+        text-align: left;
+
+        position: relative;
+        background: #2c2a29;
+        overflow: hidden;
+      }
+
+      .footer-column h4 {
+        color: #ccc;
+        font-size: 13px;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .footer-column a {
+        display: block;
+        color: #ccc;
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        transition: 0.3s;
+      }
+
+      .footer-column a:hover {
+        color: white;
+      }
+
+      .vertical-text {
+        position: absolute;
+
+        right: 20px;
+        top: 25%;
+
+        transform: translateY(-50%) rotate(270deg);
+
+        font-size: 20px;
+        font-weight: 1000;
+
+        letter-spacing: 1px;
+
+        color: rgba(255, 255, 255, 0.5);
+
+        white-space: nowrap;
+
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .footer-menu {
+        margin-top: 30px;
+        text-align: center;
+      }
+      .footer-menu .pipe {
+        color: grey;
+        margin: 0 2px;
+      }
+
+      .footer-menu a {
+        color: #ccc;
+        text-decoration: none;
+        font-size: 13px;
+        margin: 0 10px;
+      }
+
+      .footer-menu .highlight {
+        color: #00b050;
+        font-weight: bold;
+      }
+
+      .footer-social {
+        margin: 30px 0;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .footer-social button {
+        background: #2c2a29;
+        color: #ccc;
+        border-color: #ccc;
+        padding: 10px 26px;
+        font-size: 12px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .footer-social button:hover {
+        transform: translateY(-2px);
+      }
+
+      .footer-info {
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.8;
+        color: #777;
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+      }
+
+      .footer-copy {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #666;
+      }
+
+      @media (max-width: 768px) {
+        .footer-top {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .footer-top {
+          grid-template-columns: 1fr;
+        }
+
+        .footer {
+          padding: 40px 20px;
+        }
+      }
     </style>
   </head>
   <body>
     <header>
-      <img
-        height="75"
-        width="75"
-        src="https://cdn.simpleicons.org/starbucks/00704A"
-        style="margin-left:350px;"
-      />
-      <nav>
-        <a href="#">COFFEE</a>
-        <a href="#">MENU</a>
-        <a href="#">STORE</a>
-        <a href="#">ESG</a>
-        <a href="#">STARBUCKS REWARDS</a>
-        <a href="#">CORPORATE SALES</a>
-        <a href="#">WHAT'S NEW</a>
-      </nav>
+      <div class="header-top">
+        <nav>
+          <a href="#">Sign In</a><span class="pipe">|</span>
+          <a href="#">My Starbucks</a><span class="pipe">|</span>
+          <a href="#">Customer Service & Ideas</a><span class="pipe">|</span>
+          <a href="#">Find a Store</a>
+          <button class="search-btn" title="검색">🔍</button>
+        </nav>
+      </div>
+
+      <div class="header-bottom">
+        <!-- 메인 메뉴 -->
+        <nav class="main-nav">
+          <a href="#">COFFEE</a>
+          <a href="#">MENU</a>
+          <a href="#">STORE</a>
+          <a href="#">ESG</a>
+          <a href="#">STARBUCKS REWARDS</a>
+          <a href="#">CORPORATE SALES</a>
+          <a href="#">WHAT'S NEW</a>
+        </nav>
+      </div>
+
+      <!-- 로고 -->
+      <a href="#" class="logo">
+        <img
+          height="75"
+          width="75"
+          src="https://cdn.simpleicons.org/starbucks/00704A"
+          style="margin-left: 350px"
+        />
+      </a>
     </header>
 
     <div class="hero">Welcome to Starbucks ☕</div>
@@ -212,7 +422,81 @@
       </div>
     </div>
 
-    <footer>© 2026 Starbucks Clone Practice</footer>
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-column">
+          <h4>COMPANY</h4>
+          <a href="#">한눈에 보기</a>
+          <a href="#">스타벅스 사명</a>
+          <a href="#">스타벅스 소개</a>
+          <a href="#">컴플라이언스</a>
+          <a href="#">국내 뉴스룸</a>
+          <a href="#">세계의 스타벅스</a>
+          <a href="#">글로벌 뉴스룸</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>CORPORATE SALES</h4>
+          <a href="#">단체 및 기업 구매 안내</a>
+          <a href="#">단체 주문 배달 안내</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>PARTNERSHIP</h4>
+          <a href="#">신규 입점 제의</a>
+          <a href="#">협력 고객사 등록신청</a>
+          <a href="#">중개업체 확인</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>ONLINE COMMUNITY</h4>
+          <a href="#">페이스북</a>
+          <a href="#">트위터</a>
+          <a href="#">유튜브</a>
+          <a href="#">인스타그램</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>Recruit</h4>
+          <a href="#">채용 소개</a>
+          <a href="#">채용 지원하기</a>
+        </div>
+
+        <div class="vertical-text">STARBUCKS.</div>
+      </div>
+
+      <div class="footer-menu">
+        <a href="#" class="highlight">개인정보처리방침</a
+        ><span class="pipe">|</span>
+        <a href="#">영상정보처리기기 운영관리 방침</a
+        ><span class="pipe">|</span> <a href="#">홈페이지 이용약관</a
+        ><span class="pipe">|</span>
+        <a href="#" class="highlight">위치정보 이용약관</a
+        ><span class="pipe">|</span> <a href="#">스타벅스 카드 이용약관</a
+        ><span class="pipe">|</span>
+        <a href="#">신세계 유니버스 클럽 이용약관</a><span class="pipe">|</span>
+        <a href="#">비회원 이용약관</a><span class="pipe">|</span>
+        <a href="#">My DT Pass 서비스 이용약관</a><span class="pipe">|</span>
+        <a href="#">윤리경영 핫라인</a>
+      </div>
+
+      <div class="footer-social">
+        <button type="button" aria-label="검색">찾아오시는 길</button>
+        <button type="button" aria-label="검색">신규입점제의</button>
+        <button type="button" aria-label="검색">사이트 맵</button>
+      </div>
+
+      <div class="footer-info">
+        <p>사업자등록번호 : 201-81-21515</p>
+        <p>주식회사 에스씨케이컴퍼니 대표이사 : 손정현</p>
+        <p>TEL : 1522-3232</p>
+        <p>개인정보 보호책임자 : 이찬우</p>
+      </div>
+
+      <div class="footer-copy">
+        © 2026 Starbucks Coffee Company. All Rights Reserved.
+      </div>
+    </footer>
 
     <!-- 로그인 모달 -->
     <div class="modal">

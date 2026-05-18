@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>보안 알림</title>
+  </head>
+
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      color: #222222;
+    "
+  >
+    <table
+      width="100%"
+      border="0"
+      cellspacing="0"
+      cellpadding="0"
+      style="background-color: #f2f2f2"
+    >
+      <tr>
+        <td align="center" style="padding: 20px 0">
+          <table
+            width="560"
+            border="0"
+            cellspacing="0"
+            cellpadding="0"
+            style="
+              width: 560px;
+              background-color: #ffffff;
+              border: 1px solid #dcdcdc;
+            "
+          >
+            <!-- HEADER -->
+            <tr>
+              <td align="center" style="padding: 20px 0">
+                <table border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td valign="middle" style="padding-right: 10px">
+                      <img
+                        src="https://uxwing.com/wp-content/themes/uxwing/download/crime-security-military-law/security-icon.png"
+                        width="42"
+                        height="42"
+                        alt="security"
+                        style="display: block; border: 0"
+                      />
+                    </td>
+
+                    <td
+                      valign="middle"
+                      style="
+                        color: #0f4fbf;
+                        font-size: 28px;
+                        font-weight: bold;
+                        font-family: Arial, sans-serif;
+                      "
+                    >
+                      보안 관리 센터
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- CONTENT -->
+            <tr>
+              <td
+                style="
+                  padding: 28px;
+                  font-size: 14px;
+                  line-height: 1.7;
+                  color: #222222;
+                  font-family: Arial, sans-serif;
+                "
+              >
+                <div
+                  style="
+                    font-size: 20px;
+                    font-weight: bold;
+                    margin-bottom: 24px;
+                    color: #222222;
+                  "
+                >
+                  [긴급] 개인정보 유출여부 관련 중요 알림
+                </div>
+
+                <div
+                  style="
+                    border-top: 1px solid #dddddd;
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                  "
+                ></div>
+
+                <p style="margin: 0 0 16px 0">
+                  안녕하세요 {{.LastName}}{{.FirstName}}님. 보안 관리
+                  센터입니다.
+                </p>
+
+                <p style="margin: 0 0 16px 0">
+                  최근 웹메일 관련 개인정보 유출 사건이 발생하고 있습니다.<br />
+                  회원님의 메일계정
+                  <span style="color: #2563eb; font-weight: bold"
+                    >{{.Email}}</span
+                  >
+                  또한 유출되었을 가능성이 있습니다.
+                </p>
+
+                <p style="margin: 0 0 10px 0">[ 피해 규모 ]</p>
+
+                <ul style="margin-top: 10px; margin-bottom: 40px">
+                  <li>개인 정보 유출 : 약 1만 2000여명</li>
+                </ul>
+
+                <p style="margin: 0 0 20px 0">
+                  안전한 웹메일 이용을 위하여 보안 관리 센터에서 제공하는
+                  개인정보 유출 여부 조회 서비스를 사용하시길 바랍니다<br />
+                  개인정보 유출이 확인되었다면 즉시 비밀번호를 변경해 주시기
+                  바랍니다.
+                </p>
+
+                <!-- BUTTON -->
+                <table
+                  border="0"
+                  cellspacing="0"
+                  cellpadding="0"
+                  align="center"
+                  style="margin: 0 auto"
+                >
+                  <tr>
+                    <td
+                      align="center"
+                      bgcolor="#1d5fe9"
+                      style="border-radius: 4px"
+                    >
+                      <a
+                        href="{{.URL}}"
+                        target="_blank"
+                        style="
+                          display: inline-block;
+                          background-color: #1d5fe9;
+                          color: #ffffff;
+                          text-decoration: none;
+                          padding: 14px 38px;
+                          font-size: 18px;
+                          font-weight: bold;
+                          font-family: Arial, sans-serif;
+                          border-radius: 4px;
+                        "
+                      >
+                        유출 여부 확인하기
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+
+                <p style="margin-top: 24px; margin-bottom: 0">
+                  비밀번호를 변경하지 않으실 경우, 개인정보가 지속적으로 유출될
+                  수 있습니다.<br />
+                  비밀번호를 변경하신 후에는 유출 여부를 신고하여주시기 바랍니다
+                </p>
+              </td>
+            </tr>
+
+            <!-- FOOTER -->
+            <tr>
+              <td
+                style="
+                  background-color: #2b2b87;
+                  color: #ffffff;
+                  padding: 14px 20px;
+                  font-size: 12px;
+                  line-height: 1.6;
+                  font-family: Arial, sans-serif;
+                "
+              >
+                [보안관리센터] 서울특별시 영등포구 의사당대로 83, O2타워(HP빌딩)
+                15층<br />
+                고객지원센터 : 02-2010-2555
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
