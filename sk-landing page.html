@@ -3,83 +3,538 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NAVER</title>
-    <style type="text/css">
-      body {
+    <title>로그인 | N world</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
         margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f5f6f7;
+        padding: 0;
+      }
+
+      :root {
+        --primary: #4f46e5;
+        --primary-hover: #4338ca;
+        --text: #111827;
+        --text-mid: #374151;
+        --text-light: #9ca3af;
+        --border: #e5e7eb;
+        --border-focus: #4f46e5;
+        --bg: #f9fafb;
+        --white: #fff;
+      }
+
+      html,
+      body {
+        height: 100%;
+        font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+        color: var(--text);
+        background: var(--white);
+      }
+
+      body {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        min-height: 100vh;
+      }
+
+      /* ── MAIN ── */
+      main {
+        flex: 1;
+        display: flex;
         align-items: center;
-        height: 100vh;
+        justify-content: center;
+        padding: 60px 24px 40px;
       }
 
       .login-box {
-        width: 380px;
-        background: white;
-        padding: 40px 30px;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
-      }
-
-      .logo {
-        font-size: 32px;
-        font-weight: bold;
-        color: #0000ff;
-        margin-bottom: 30px;
-      }
-
-      input {
         width: 100%;
-        padding: 12px;
-        margin-bottom: 10px;
-        border: 1px solid #dadada;
-        border-radius: 4px;
-        font-size: 14px;
+        max-width: 420px;
       }
 
+      /* ── TITLE ── */
+      .login-title {
+        font-size: clamp(22px, 5vw, 32px);
+        font-weight: 900;
+        line-height: 1.3;
+        margin-bottom: 36px;
+        color: var(--text);
+        word-break: keep-all;
+      }
+      .login-title em {
+        color: var(--primary);
+        font-style: normal;
+      }
+
+      /* ── TABS ── */
+      .tabs {
+        display: flex;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 32px;
+      }
+      .tab {
+        flex: 1;
+        text-align: center;
+        padding: 12px 0;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--text-light);
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+        transition: all 0.2s;
+        background: none;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        font-family: inherit;
+      }
+      .tab.active {
+        color: var(--text);
+        font-weight: 700;
+        border-bottom: 2px solid var(--text);
+      }
+
+      /* ── FORM ── */
+      .form-group {
+        position: relative;
+        margin-bottom: 0;
+      }
+      .form-group + .form-group {
+        margin-top: 16px;
+      }
+
+      .form-input {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid var(--border);
+        padding: 14px 40px 14px 0;
+        font-size: 15px;
+        font-family: inherit;
+        color: var(--text);
+        background: transparent;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .form-input::placeholder {
+        color: var(--text-light);
+      }
+      .form-input:focus {
+        border-bottom-color: var(--border-focus);
+      }
+
+      .pw-toggle {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--text-light);
+        font-size: 18px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        transition: color 0.2s;
+      }
+      .pw-toggle:hover {
+        color: var(--text-mid);
+      }
+
+      /* ── EMPTY SPACE (between pw and button, like original) ── */
+      .spacer {
+        height: 48px;
+      }
+
+      /* ── LOGIN BUTTON ── */
       .login-btn {
         width: 100%;
-        padding: 12px;
-        background-color: #0000ff;
-        color: white;
-        border: none;
-        border-radius: 4px;
+        padding: 17px;
+        background: var(--primary);
+        color: #fff;
         font-size: 16px;
+        font-weight: 700;
+        font-family: inherit;
+        border: none;
+        border-radius: 8px;
         cursor: pointer;
-        margin-top: 10px;
+        transition:
+          background 0.2s,
+          transform 0.1s;
+        margin-bottom: 28px;
       }
-
       .login-btn:hover {
-        background-color: #0000ff;
+        background: var(--primary-hover);
+      }
+      .login-btn:active {
+        transform: scale(0.99);
       }
 
-      .footer {
-        margin-top: 20px;
+      /* ── PHONE AUTH ── */
+      .phone-auth {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+      .phone-auth-label {
+        font-size: 13px;
+        color: var(--text-mid);
+        margin-bottom: 12px;
+      }
+      .phone-auth-btn {
+        display: inline-block;
+        padding: 9px 22px;
+        border: 1.5px solid var(--border);
+        border-radius: 22px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--primary);
+        background: var(--white);
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.2s;
+      }
+      .phone-auth-btn:hover {
+        border-color: var(--primary);
+        background: #f0f0ff;
+      }
+
+      /* ── BOTTOM LINKS ── */
+      .bottom-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        font-size: 13px;
+        color: var(--text-mid);
+      }
+      .bottom-links a {
+        color: var(--text-mid);
+        text-decoration: none;
+        padding: 0 12px;
+        transition: color 0.2s;
+      }
+      .bottom-links a:hover {
+        color: var(--primary);
+      }
+      .bottom-links .divider {
+        color: var(--border);
+        user-select: none;
+      }
+
+      /* ── QR PANE ── */
+      .qr-pane {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding: 20px 0 40px;
+      }
+      .qr-pane.active {
+        display: flex;
+      }
+      .qr-box {
+        width: 180px;
+        height: 180px;
+        border: 2px solid var(--border);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        padding: 10px;
+      }
+      .qr-box canvas,
+      .qr-box img {
+        border-radius: 4px;
+      }
+      .qr-timer {
         font-size: 12px;
-        color: #888;
+        color: var(--text-light);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .qr-timer span {
+        color: var(--primary);
+        font-weight: 700;
+      }
+      .qr-desc {
+        font-size: 13px;
+        color: var(--text-light);
+        text-align: center;
+        line-height: 1.6;
+      }
+      .qr-refresh {
+        font-size: 12px;
+        color: var(--primary);
+        cursor: pointer;
+        text-decoration: underline;
+        background: none;
+        border: none;
+        font-family: inherit;
+      }
+      .qr-refresh:hover {
+        color: var(--primary-hover);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+        padding: 20px 24px;
+        text-align: center;
+      }
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .footer-links a {
+        font-size: 12px;
+        color: var(--text-mid);
+        text-decoration: none;
+        padding: 0 10px;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--primary);
+      }
+      .footer-links .divider {
+        color: var(--border);
+        font-size: 12px;
+      }
+      .footer-copy {
+        font-size: 11px;
+        color: var(--text-light);
+        margin-bottom: 6px;
+      }
+      .footer-recaptcha {
+        font-size: 11px;
+        color: var(--text-light);
+        line-height: 1.6;
+      }
+      .footer-recaptcha a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+      .footer-recaptcha a:hover {
+        text-decoration: underline;
       }
     </style>
   </head>
   <body>
-    <div class="login-box">
-      <div class="logo">T world</div>
+    <main>
+      <div class="login-box">
+        <!-- 제목 -->
+        <h1 class="login-title">
+          T ID로 <em>T world</em>에<br />로그인해 보세요
+        </h1>
 
-      <form action="" method="POST" onsubmit="return fakeLogin();">
-        <input placeholder="아이디" required="" type="text" />
-        <input
-          name="password"
-          placeholder="비밀번호"
-          required=""
-          type="password"
-        /><button class="login-btn" type="submit">로그인</button>
-      </form>
+        <!-- 탭 -->
+        <div class="tabs">
+          <button class="tab active" id="tabIdpw" onclick="switchTab('idpw')">
+            ID/PW
+          </button>
+          <button class="tab" id="tabQr" onclick="switchTab('qr')">
+            QR코드
+          </button>
+        </div>
 
-      <br />
-      <div class="footer">※ 본 페이지는 보안 교육용 테스트입니다.</div>
-    </div>
+        <!-- ID/PW 폼 -->
+        <form method="POST" action="">
+          <div id="paneIdpw">
+            <div class="form-group">
+              <input
+                class="form-input"
+                type="text"
+                name="username"
+                id="inputId"
+                placeholder="이메일 주소 혹은 휴대폰 번호 형식의 ID"
+                autocomplete="username"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                class="form-input"
+                type="password"
+                name="password"
+                id="inputPw"
+                placeholder="비밀번호"
+                autocomplete="current-password"
+                required
+              />
+
+              <button
+                type="button"
+                class="pw-toggle"
+                onclick="togglePw()"
+                id="pwToggle"
+              >
+                👁
+              </button>
+            </div>
+
+            <div class="spacer"></div>
+
+            <!-- submit 버튼으로 변경 -->
+            <button type="submit" class="login-btn">로그인</button>
+
+            <div class="phone-auth">
+              <p class="phone-auth-label">ID/PW가 생각나지 않으면</p>
+              <button type="button" class="phone-auth-btn">
+                휴대폰 인증 로그인
+              </button>
+            </div>
+
+            <div class="bottom-links">
+              <a href="#">회원가입</a>
+              <span class="divider">|</span>
+              <a href="#">아이디 찾기</a>
+              <span class="divider">|</span>
+              <a href="#">비밀번호 찾기</a>
+            </div>
+          </div>
+        </form>
+
+        <!-- QR 탭 -->
+        <div id="paneQr" class="qr-pane">
+          <div class="qr-box">
+            <div id="qrcode"></div>
+          </div>
+          <div class="qr-timer">
+            ⏱ 유효시간 <span id="qrTimerVal">3:00</span>
+          </div>
+          <p class="qr-desc">T world 앱을 열고<br />QR코드를 스캔해 주세요</p>
+          <button class="qr-refresh" onclick="refreshQR()">
+            ↻ QR코드 새로고침
+          </button>
+          <div class="bottom-links">
+            <a href="#">회원가입</a>
+            <span class="divider">|</span>
+            <a href="#">아이디 찾기</a>
+            <span class="divider">|</span>
+            <a href="#">비밀번호 찾기</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-links">
+        <a href="#">개인정보처리방침</a>
+        <span class="divider">|</span>
+        <a href="#">이용약관</a>
+        <span class="divider">|</span>
+        <span class="footer-copy">© T TELECOM</span>
+      </div>
+      <p class="footer-recaptcha">
+        This site is protected by reCAPTCHA and the<br />
+        <a href="#">Google Privacy Policy</a> and
+        <a href="#">Terms of Service</a> apply
+      </p>
+    </footer>
+
+    <script>
+      // QR 코드 생성
+      let qrInstance = null;
+      let qrTimer = null;
+      let qrSeconds = 180;
+
+      function generateQR() {
+        const el = document.getElementById("qrcode");
+        el.innerHTML = "";
+        const token =
+          "nworld-login-" +
+          Date.now() +
+          "-" +
+          Math.random().toString(36).slice(2, 9);
+        qrInstance = new QRCode(el, {
+          text: token,
+          width: 156,
+          height: 156,
+          colorDark: "#111827",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.M,
+        });
+        startTimer();
+      }
+
+      function startTimer() {
+        clearInterval(qrTimer);
+        qrSeconds = 180;
+        updateTimerDisplay();
+        qrTimer = setInterval(() => {
+          qrSeconds--;
+          updateTimerDisplay();
+          if (qrSeconds <= 0) {
+            clearInterval(qrTimer);
+            document.getElementById("qrTimerVal").textContent = "만료됨";
+            document.getElementById("qrTimerVal").style.color = "#ef4444";
+          }
+        }, 1000);
+      }
+
+      function updateTimerDisplay() {
+        const m = Math.floor(qrSeconds / 60);
+        const s = String(qrSeconds % 60).padStart(2, "0");
+        const el = document.getElementById("qrTimerVal");
+        el.textContent = m + ":" + s;
+        el.style.color = qrSeconds <= 30 ? "#ef4444" : "var(--primary)";
+      }
+
+      function refreshQR() {
+        generateQR();
+      }
+
+      // 탭 전환
+      function switchTab(tab) {
+        const isIdpw = tab === "idpw";
+        document.getElementById("tabIdpw").classList.toggle("active", isIdpw);
+        document.getElementById("tabQr").classList.toggle("active", !isIdpw);
+        document.getElementById("paneIdpw").style.display = isIdpw
+          ? "block"
+          : "none";
+        document.getElementById("paneQr").classList.toggle("active", !isIdpw);
+        if (!isIdpw && !qrInstance) generateQR();
+      }
+
+      // 비밀번호 토글
+      let pwVisible = false;
+      function togglePw() {
+        pwVisible = !pwVisible;
+        const input = document.getElementById("inputPw");
+        const line = document.getElementById("eyeLine");
+        input.type = pwVisible ? "text" : "password";
+        line.style.display = pwVisible ? "inline" : "none";
+      }
+
+      // 엔터 키 로그인
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") handleLogin();
+      });
+
+      // 로그인 처리 (데모)
+      function handleLogin() {
+        const id = document.getElementById("inputId").value.trim();
+        const pw = document.getElementById("inputPw").value;
+        if (!id) {
+          document.getElementById("inputId").focus();
+          return;
+        }
+        if (!pw) {
+          document.getElementById("inputPw").focus();
+          return;
+        }
+        alert("로그인 시도: " + id);
+      }
+    </script>
   </body>
 </html>
