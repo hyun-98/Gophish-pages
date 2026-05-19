@@ -3,93 +3,145 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Starbucks Korea</title> 
-    <link rel="icon" href="data:,">
+    <title>Starbucks Korea</title>
+    <link rel="icon" href="data:," />
 
     <style>
+      :root {
+        --sb-green: #00704a;
+        --sb-dark-green: #1e3932;
+        --sb-light-green: #d4e9e2;
+        --sb-gold: #cba258;
+        --sb-black: #1e1e1e;
+        --sb-gray: #6b6b6b;
+        --sb-light-gray: #f2f0eb;
+        --sb-white: #ffffff;
+        --sb-yellow: #e8b84b;
+        --sb-dark-yellow: #c4973a;
+      }
+
       body {
         margin: 0;
         font-family: Arial, sans-serif;
         background: #f5f5f5;
       }
 
+      /* ─── HEADER ─── */
       header {
         position: sticky;
         top: 0;
         z-index: 100;
+
         border-bottom: 1px solid #ddd;
-        background: white;
+        background: rgb(252, 250, 239);
       }
 
-      .header-top {
-        background: #fff; /* 스타벅스 짙은 초록 */
-        color: #fff;
-
-        /* 내부 콘텐츠 배치 */
+      /* 전체 구조 */
+      .header-container {
         display: flex;
-        align-items: center; /* 세로 중앙 정렬 */
-        justify-content: flex-end; /* 오른쪽 정렬 */
-        gap: 8px;
-
-        /* 안쪽 여백 (높이 결정) */
-        padding: 10px 500px;
+        align-items: stretch;
       }
 
-      /* 검색 아이콘 버튼 */
-      .header-top .search-btn {
-        background: none;
-        border: none;
-        color: rgba(255, 255, 255, 0.8);
-        cursor: pointer;
-        padding: 4px 8px;
-        font-size: 16px;
-        transition: color 0.2s;
-      }
-      .header-top .search-btn:hover {
-        color: #fff;
-      }
-
-      .header-bottom {
-        background: #fff;
+      /* 왼쪽 로고 */
+      .logo-area {
+        width: 220px;
         display: flex;
         align-items: center;
-        justify-content: flex-end; /* 메뉴만 오른쪽에 */
-        height: 60px;
-        /* 왼쪽 160px, 오른쪽 400px 패딩 적용 */
-        padding: 0 400px 0 160px;
-        margin-bottom: 10px;
-        gap: 10px;
-        box-sizing: border-box;
+        justify-content: center;
+        padding: 10px 20px;
+        border-right: 1px solid #eee;
+
+        margin-left: 15%;
       }
 
-      .logo {
-        position: absolute; /* ✅ header 기준으로 배치 */
-        top: 50%; /* ✅ header 세로 중앙 */
-        left: 40px;
-        transform: translateY(-50%); /* ✅ 로고 높이 절반만큼 올려서 정중앙 */
+      .logo-area img {
+        max-width: 150px;
+        height: auto;
+      }
+
+      /* 오른쪽 전체 */
+      .header-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ═══════════ HEADER TOP ═══════════ */
+      .header-top {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 8px 180px;
+        color: var(--sb-black);
+        gap: 9px;
+        margin-right: 20%;
+      }
+      .header-top a {
+        font-size: 12px;
+        color: var(--sb-black);
+        transition: color 0.2s;
 
         text-decoration: none;
+      }
+      .header-top a:hover {
+        color: var(--sb-green);
+      }
+      .header-top .search-icon {
+        width: 30px;
+        height: 30px;
         display: flex;
         align-items: center;
-        gap: 0;
-        z-index: 10; /* 두 줄 위로 튀어나오게 */
+        justify-content: center;
+        color: black;
+
+        border: #1e1e1e solid 1px;
+        background-color: white;
+        border-radius: 5px;
+
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.2s;
       }
 
+      /* ═══════════ PIPE ═══════════ */
       .pipe {
-        color: grey;
+        color: rgb(213, 213, 213);
         margin: 0 2px;
       }
 
-      nav a {
-        font-size: 13px;
-        margin: 0 15px;
-        text-decoration: none;
-        color: black;
-        font-weight: lighter;
+      /* ═══════════ HEADER MAIN NAV ═══════════ */
+      .header-main {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0px;
       }
 
+      .nav-main {
+        display: flex;
+        gap: 0px;
+        width: 100%;
+
+        margin-left: 8%;
+        margin-bottom: 30px;
+      }
+      .nav-item {
+        padding: 8px 15px;
+        font-size: 13px;
+        color: var(--sb-black);
+        text-transform: uppercase;
+        transition: color 0.2s;
+        white-space: nowrap;
+        cursor: pointer;
+
+        text-decoration: none;
+      }
+      .nav-item:hover {
+        color: var(--sb-green);
+      }
+
+      /* ─── HERO ─── */
       .hero {
-        height: 400px;
+        height: 500px;
         background: url("https://images.unsplash.com/photo-1509042239860-f550ce710b93")
           center/cover;
         display: flex;
@@ -100,47 +152,214 @@
         font-weight: bold;
       }
 
-      .section {
-        padding: 50px;
-        text-align: center;
-      }
-
-      .cards {
+      /* ═══════════ NOTICE BAR ═══════════ */
+      .notice-bar {
         display: flex;
-        gap: 20px;
+        background: #222;
+      }
+      .notice-left {
+        flex: 1;
+        background: #2a2a2a;
+        display: flex;
+        align-items: center;
+        padding: 16px 40px;
+        gap: 16px;
+        color: white;
+        font-size: 13px;
+      }
+      .notice-label {
+        font-weight: 700;
+        font-size: 12px;
+        color: #aaa;
+        flex-shrink: 0;
+      }
+      .notice-text {
+        color: #eee;
+      }
+      .notice-plus {
+        width: 28px;
+        height: 28px;
+        border: 1px solid #555;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
         justify-content: center;
-        flex-wrap: wrap;
+        color: white;
+        font-size: 18px;
+        flex-shrink: 0;
+        cursor: pointer;
+        transition: border-color 0.2s;
+      }
+      .notice-plus:hover {
+        border-color: var(--sb-green);
+        color: var(--sb-green);
       }
 
-      .card {
-        width: 250px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        background: white;
+      .notice-right {
+        width: 50%;
+        background: #f0efea;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 40px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--sb-black);
+        cursor: pointer;
       }
-
-      .card img {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-      }
-
-      .card h3 {
-        margin: 10px 0;
-      }
-
-      .card p {
-        padding: 0 10px 10px;
+      .notice-chevron {
+        width: 32px;
+        height: 32px;
+        background: #555;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
         font-size: 14px;
       }
 
-      footer {
-        background: #006241;
+      /* ═══════════ REWARDS BANNER ═══════════ */
+      .rewards-banner {
+        background: var(--sb-dark-green);
+        padding: 28px 40px;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      .rewards-logo {
+        background: var(--sb-white);
+        width: 80px;
+        height: 80px;
+
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .rewards-text {
+        flex: 1;
+      }
+      .rewards-title {
+        font-size: 20px;
+        font-weight: 700;
         color: white;
-        text-align: center;
-        padding: 20px;
+        margin-bottom: 6px;
+      }
+      .rewards-title strong {
+        font-weight: 900;
+      }
+      .rewards-sub {
+        font-size: 13px;
+        color: #adc9c0;
+        line-height: 1.7;
+      }
+      .rewards-sub strong {
+        color: white;
+      }
+      .rewards-actions {
+        display: flex;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+      .btn-signup {
+        padding: 12px 28px;
+        background: var(--sb-green);
+        color: white;
+        font-size: 14px;
+        font-weight: 700;
+        border-radius: 2px;
+        transition: background 0.2s;
+      }
+      .btn-signup:hover {
+        background: #005c3b;
+      }
+      .btn-login {
+        padding: 12px 28px;
+        background: transparent;
+        border: 2px solid white;
+        color: white;
+        font-size: 14px;
+        font-weight: 700;
+        border-radius: 2px;
+        transition: background 0.2s;
+      }
+      .btn-login:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* ═══════════ STORE SECTION ═══════════ */
+      .store-section {
+        background: var(--sb-light-gray);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 60px 80px;
+        gap: 48px;
+      }
+      .store-images {
+        display: flex;
+        gap: -30px;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .store-img-circle {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid white;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        flex-shrink: 0;
+      }
+      .store-img-circle:last-child {
+        margin-left: -40px;
+      }
+      .store-img-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .store-text {
+        max-width: 500px;
+      }
+      .store-eyebrow {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: var(--sb-gray);
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .store-title {
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.4;
+        margin-bottom: 16px;
+      }
+      .store-title strong {
+        font-weight: 900;
+      }
+      .store-desc {
+        font-size: 14px;
+        color: var(--sb-gray);
+        line-height: 1.8;
+        margin-bottom: 24px;
+      }
+      .btn-store {
+        display: inline-block;
+        padding: 12px 32px;
+        border: 2px solid var(--sb-black);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--sb-black);
+        letter-spacing: 0.5px;
+        transition:
+          background 0.2s,
+          color 0.2s;
+        cursor: pointer;
+      }
+      .btn-store:hover {
+        background: var(--sb-black);
+        color: white;
       }
 
       /* 로그인 모달 */
@@ -359,69 +578,136 @@
   </head>
   <body>
     <header>
-      <div class="header-top">
-        <nav>
-          <a href="#">Sign In</a><span class="pipe">|</span>
-          <a href="#">My Starbucks</a><span class="pipe">|</span>
-          <a href="#">Customer Service & Ideas</a><span class="pipe">|</span>
-          <a href="#">Find a Store</a>
-          <button class="search-btn" title="검색">🔍</button>
-        </nav>
-      </div>
+      <div class="header-container">
+        <!-- 왼쪽 로고 -->
+        <div class="logo-area">
+          <a href="#" class="logo">
+            <img
+              height="65"
+              width="65"
+              src="https://cdn.simpleicons.org/starbucks/00704A"
+            />
+          </a>
+        </div>
 
-      <div class="header-bottom">
-        <!-- 메인 메뉴 -->
-        <nav class="main-nav">
-          <a href="#">COFFEE</a>
-          <a href="#">MENU</a>
-          <a href="#">STORE</a>
-          <a href="#">ESG</a>
-          <a href="#">STARBUCKS REWARDS</a>
-          <a href="#">CORPORATE SALES</a>
-          <a href="#">WHAT'S NEW</a>
-        </nav>
-      </div>
+        <!-- 오른쪽 헤더 -->
+        <div class="header-right">
+          <!-- Top utility bar -->
+          <div class="header-top">
+            <a href="#">Sign In</a><span class="pipe">|</span>
+            <a href="#">My Starbucks</a><span class="pipe">|</span>
+            <a href="#">Customer Service &amp; Ideas</a
+            ><span class="pipe">|</span> <a href="#">Find a Store</a
+            ><span class="pipe">|</span>
+            <div class="search-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icon-tabler-search"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                <path d="M21 21l-6 -6" />
+              </svg>
+            </div>
+          </div>
 
-      <!-- 로고 -->
-      <a href="#" class="logo">
-        <img
-          height="75"
-          width="75"
-          src="https://cdn.simpleicons.org/starbucks/00704A"
-          style="margin-left: 350px"
-        />
-      </a>
+          <div class="header-main">
+            <!-- 메인 메뉴 -->
+            <nav class="nav-main">
+              <a href="#" class="nav-item">Coffee</a>
+              <a href="#" class="nav-item">Menu</a>
+              <a href="#" class="nav-item">Store</a>
+              <a href="#" class="nav-item">ESG</a>
+              <a href="#" class="nav-item">Starbucks Rewards</a>
+              <a href="#" class="nav-item">Corporate Sales</a>
+              <a href="#" class="nav-item">What's New</a>
+            </nav>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <div class="hero">Welcome to Starbucks ☕</div>
+    <div class="hero">Welcome to Starbucks</div>
 
-    <div class="section">
-      <h2>추천 메뉴</h2>
-      <div class="cards">
-        <div class="card">
-          <img
-            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085"
-          />
-          <h3>아메리카노</h3>
-          <p>진한 에스프레소와 물의 조화</p>
-        </div>
-        <div class="card">
-          <img
-            src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735"
-          />
-          <h3>카페 라떼</h3>
-          <p>부드러운 우유와 커피의 만남</p>
-        </div>
-        <div class="card">
-          <img
-            src="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
-          />
-          <h3>카푸치노</h3>
-          <p>풍부한 거품이 매력적인 커피</p>
-        </div>
+    <!-- ═══════════════ NOTICE BAR ═══════════════ -->
+    <div class="notice-bar">
+      <div class="notice-left">
+        <span class="notice-label">공지사항</span>
+        <span class="notice-text">시스템 개선 및 서비스 점검 안내</span>
+        <div class="notice-plus">+</div>
+      </div>
+      <div class="notice-right">
+        <span>스타벅스 프로모션</span>
+        <div class="notice-chevron">∨</div>
       </div>
     </div>
 
+    <!-- ═══════════════ REWARDS BANNER ═══════════════ -->
+    <div class="rewards-banner">
+      <!-- Starbucks logo white -->
+      <a href="#" class="rewards-logo">
+        <img
+          height="80"
+          width="80"
+          src="https://cdn.simpleicons.org/starbucks/00704A"
+        />
+      </a>
+
+      <div class="rewards-text">
+        <div class="rewards-title">
+          스타벅스만의 특별한 혜택, <strong>스타벅스 리워드</strong>
+        </div>
+        <div class="rewards-sub">
+          <strong>스타벅스 회원이세요?</strong> 로그인을 통해 나만의 리워드를
+          확인해보세요.<br />
+          <strong>스타벅스 회원이 아니세요?</strong> 가입을 통해 리워드 혜택을
+          즐기세요.
+        </div>
+      </div>
+
+      <div class="rewards-actions">
+        <button class="btn-signup">회원가입</button>
+        <button class="btn-login">로그인</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════ STORE SECTION ═══════════════ -->
+    <div class="store-section">
+      <div class="store-images">
+        <div class="store-img-circle">
+          <img
+            src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=440&auto=format&fit=crop"
+            alt="스타벅스 인테리어"
+          />
+        </div>
+        <div class="store-img-circle">
+          <img
+            src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=440&auto=format&fit=crop"
+            alt="스타벅스 외관"
+          />
+        </div>
+      </div>
+
+      <div class="store-text">
+        <div class="store-eyebrow">Store</div>
+        <div class="store-title">
+          함께해서 더 따뜻한 지역사회 소통 공간,
+          <strong>커뮤니티 스토어</strong>까지.<br />다양한 스타벅스 매장이
+          여러분을 기다립니다.
+        </div>
+        <button class="btn-store">매장 찾기</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
     <footer class="footer">
       <div class="footer-top">
         <div class="footer-column">
