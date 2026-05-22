@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
@@ -55,9 +57,9 @@
         justify-content: center;
       }
       .header-logo-text {
-        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 50px;
-        font-weight: 600;
+        font-weight: 500;
         letter-spacing: -8px;
       }
 
@@ -231,8 +233,8 @@
       }
 
       .modal-title {
-        font-size: 22px;
-        font-weight: 700;
+        font-size: 18px;
+        font-weight: 500;
         margin-bottom: 20px;
       }
 
@@ -245,11 +247,11 @@
 
       .modal-input-group input {
         width: 100%;
-        height: 48px;
+        height: 38px;
         border: 1px solid #ddd;
         padding: 0 14px;
         border-radius: 6px;
-        font-size: 14px;
+        font-size: 12px;
         outline: none;
       }
 
@@ -266,19 +268,14 @@
         flex: 1;
         height: 46px;
         border: none;
-        border-radius: 6px;
+        border-radius: 2px;
         cursor: pointer;
         font-size: 15px;
         font-weight: 600;
       }
 
-      .modal-btn.cancel {
-        background: #f1f1f1;
-        color: #333;
-      }
-
       .modal-btn.submit {
-        background: rgb(34, 111, 246);
+        background: rgb(50, 125, 255);
         color: white;
       }
     </style>
@@ -290,12 +287,14 @@
       <form method="POST" onsubmit="return submitRegister();">
         <input type="hidden" name="form_type" value="register" />
 
-        <div class="modal-title">회원가입</div>
+        <div class="modal-title">회원정보를 입력해주세요</div>
 
         <div class="modal-input-group">
-          <input type="text" name="register_name" placeholder="이름" />
-
-          <input type="email" name="register_email" placeholder="이메일" />
+          <input
+            type="email"
+            name="register_email"
+            placeholder="아이디(이메일)"
+          />
 
           <input
             type="password"
@@ -310,18 +309,15 @@
             name="register_password_confirm"
             placeholder="비밀번호 확인"
           />
+          <input type="text" name="register_name" placeholder="이름" />
+
+          <input type="tel" name="register_phone" placeholder="휴대폰번호" />
         </div>
 
         <div class="modal-btn-row">
-          <button
-            class="modal-btn cancel"
-            type="button"
-            onclick="closeRegisterModal()"
-          >
-            취소
+          <button class="modal-btn submit" type="submit">
+            동의하고 가입하기
           </button>
-
-          <button class="modal-btn submit" type="submit">가입하기</button>
         </div>
       </form>
     </div>
@@ -331,12 +327,12 @@
     <!-- HEADER -->
     <header>
       <div class="header-logo-text">
-        <span style="color: #582e2e">c</span>
-        <span style="color: #582e2e">o</span>
-        <span style="color: #582e2e">u</span>
-        <span style="color: rgb(235, 52, 52)">p</span>
-        <span style="color: rgb(246, 201, 112)">a</span>
-        <span style="color: #7ec989">n</span>
+        <span style="color: #9a6666">c</span>
+        <span style="color: #9a6666">o</span>
+        <span style="color: #9a6666">u</span>
+        <span style="color: rgb(236, 86, 86)">p</span>
+        <span style="color: rgb(247, 196, 95)">a</span>
+        <span style="color: #77c883">n</span>
         <span style="color: #47b4df">g</span>
       </div>
     </header>
