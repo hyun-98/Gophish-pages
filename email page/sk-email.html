@@ -43,7 +43,6 @@
     <table width="100%" cellpadding="0" cellspacing="0">
       <tr>
         <td align="center" style="padding: 20px 10px">
-
           <!-- MAIN CONTAINER -->
           <table
             class="container"
@@ -57,7 +56,6 @@
               overflow: hidden;
             "
           >
-
             <!-- HEADER -->
             <tr>
               <td
@@ -76,10 +74,9 @@
 
             <!-- BODY -->
             <tr>
-              <td
-                class="content"
-                style="padding: 30px; color: #333"
-              >
+              <td class="content" style="padding: 30px; color: #333">
+                
+                <!-- 수정 필요 {FirstName} -->
                 <p style="font-size: 14px; margin: 0">
                   안녕하세요, {{.FirstName}}님.
                 </p>
@@ -91,7 +88,7 @@
 
                 <!-- CUSTOMER INFO -->
                 <table
-                  width="100%"
+                  width="100%"  
                   style="
                     margin-top: 20px;
                     border: 1px solid #e5e7eb;
@@ -100,19 +97,25 @@
                 >
                   <tr>
                     <td style="padding: 10px; font-size: 13px">고객명</td>
-                    <td style="padding: 10px; text-align: right; font-size: 13px">
+                    <td
+                      style="padding: 10px; text-align: right; font-size: 13px"
+                    >
                       {{.LastName}}{{.FirstName}}
                     </td>
                   </tr>
                   <tr>
                     <td style="padding: 10px; font-size: 13px">가입번호</td>
-                    <td style="padding: 10px; text-align: right; font-size: 13px">
+                    <td
+                      style="padding: 10px; text-align: right; font-size: 13px"
+                    >
                       010-****-8150
                     </td>
                   </tr>
                   <tr>
                     <td style="padding: 10px; font-size: 13px">청구월</td>
-                    <td style="padding: 10px; text-align: right; font-size: 13px">
+                    <td
+                      style="padding: 10px; text-align: right; font-size: 13px"
+                    >
                       2026.05
                     </td>
                   </tr>
@@ -142,7 +145,9 @@
                     <td style="padding: 12px; text-align: right">8,000원</td>
                   </tr>
                   <tr>
-                    <td style="padding: 12px; font-size: 13px; font-weight: bold">
+                    <td
+                      style="padding: 12px; font-size: 13px; font-weight: bold"
+                    >
                       총 청구 금액
                     </td>
                     <td
@@ -172,7 +177,10 @@
                 </p>
 
                 <!-- BUTTON -->
-                <div class="button" style="text-align: center; margin-top: 25px">
+                <div
+                  class="button"
+                  style="text-align: center; margin-top: 25px"
+                >
                   <a
                     href="{{.URL}}"
                     style="
@@ -209,7 +217,6 @@
                   ※ 본 메일은 발신 전용이며 회신이 불가합니다.<br />
                   ※ 요금 관련 문의는 고객센터(114)로 연락 바랍니다.
                 </div>
-
               </td>
             </tr>
 
@@ -229,7 +236,6 @@
                 © 2026 Telecom Service. All rights reserved.
               </td>
             </tr>
-
           </table>
         </td>
       </tr>
