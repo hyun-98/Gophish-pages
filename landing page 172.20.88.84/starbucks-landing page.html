@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starbucks Korea</title>
+    <link rel="icon" href="data:," />
+
+    <style>
+      :root {
+        --sb-green: #00704a;
+        --sb-dark-green: #1e3932;
+        --sb-light-green: #d4e9e2;
+        --sb-gold: #cba258;
+        --sb-black: #1e1e1e;
+        --sb-gray: #6b6b6b;
+        --sb-light-gray: #f2f0eb;
+        --sb-white: #ffffff;
+        --sb-yellow: #e8b84b;
+        --sb-dark-yellow: #c4973a;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+      }
+
+      /* ─── HEADER ─── */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+
+        border-bottom: 1px solid #ddd;
+        background: rgb(252, 250, 239);
+      }
+
+      /* 전체 구조 */
+      .header-container {
+        display: flex;
+        align-items: stretch;
+      }
+
+      /* 왼쪽 로고 */
+      .logo-area {
+        width: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px;
+        border-right: 1px solid #eee;
+
+        margin-left: 15%;
+      }
+
+      .logo-area img {
+        max-width: 150px;
+        height: auto;
+      }
+
+      /* 오른쪽 전체 */
+      .header-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ═══════════ HEADER TOP ═══════════ */
+      .header-top {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 8px 180px;
+        color: var(--sb-black);
+        gap: 9px;
+        margin-right: 20%;
+      }
+      .header-top a {
+        font-size: 12px;
+        color: var(--sb-black);
+        transition: color 0.2s;
+
+        text-decoration: none;
+      }
+      .header-top a:hover {
+        color: var(--sb-green);
+      }
+      .header-top .search-icon {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+
+        border: #1e1e1e solid 1px;
+        background-color: white;
+        border-radius: 5px;
+
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      /* ═══════════ PIPE ═══════════ */
+      .pipe {
+        color: rgb(213, 213, 213);
+        margin: 0 2px;
+      }
+
+      /* ═══════════ HEADER MAIN NAV ═══════════ */
+      .header-main {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0px;
+      }
+
+      .nav-main {
+        display: flex;
+        gap: 0px;
+        width: 100%;
+
+        margin-left: 8%;
+        margin-bottom: 30px;
+      }
+      .nav-item {
+        padding: 8px 15px;
+        font-size: 13px;
+        color: var(--sb-black);
+        text-transform: uppercase;
+        transition: color 0.2s;
+        white-space: nowrap;
+        cursor: pointer;
+
+        text-decoration: none;
+      }
+      .nav-item:hover {
+        color: var(--sb-green);
+      }
+
+      /* ─── HERO ─── */
+      .hero {
+        height: 500px;
+        background: url("https://images.unsplash.com/photo-1509042239860-f550ce710b93")
+          center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 36px;
+        font-weight: bold;
+      }
+
+      /* ═══════════ NOTICE BAR ═══════════ */
+      .notice-bar {
+        display: flex;
+        background: #222;
+      }
+      .notice-left {
+        flex: 1;
+        background: #2a2a2a;
+        display: flex;
+        align-items: center;
+        padding: 16px 40px;
+        gap: 16px;
+        color: white;
+        font-size: 13px;
+      }
+      .notice-label {
+        font-weight: 700;
+        font-size: 12px;
+        color: #aaa;
+        flex-shrink: 0;
+      }
+      .notice-text {
+        color: #eee;
+      }
+      .notice-plus {
+        width: 28px;
+        height: 28px;
+        border: 1px solid #555;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+        flex-shrink: 0;
+        cursor: pointer;
+        transition: border-color 0.2s;
+      }
+      .notice-plus:hover {
+        border-color: var(--sb-green);
+        color: var(--sb-green);
+      }
+
+      .notice-right {
+        width: 50%;
+        background: #f0efea;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 40px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--sb-black);
+        cursor: pointer;
+      }
+      .notice-chevron {
+        width: 32px;
+        height: 32px;
+        background: #555;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 14px;
+      }
+
+      /* ═══════════ REWARDS BANNER ═══════════ */
+      .rewards-banner {
+        background: var(--sb-dark-green);
+        padding: 28px 40px;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      .rewards-logo {
+        background: var(--sb-white);
+        width: 80px;
+        height: 80px;
+
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .rewards-text {
+        flex: 1;
+      }
+      .rewards-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 6px;
+      }
+      .rewards-title strong {
+        font-weight: 900;
+      }
+      .rewards-sub {
+        font-size: 13px;
+        color: #adc9c0;
+        line-height: 1.7;
+      }
+      .rewards-sub strong {
+        color: white;
+      }
+      .rewards-actions {
+        display: flex;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+      .btn-signup {
+        padding: 12px 28px;
+        background: var(--sb-green);
+        color: white;
+        font-size: 14px;
+        font-weight: 700;
+        border-radius: 2px;
+        transition: background 0.2s;
+      }
+      .btn-signup:hover {
+        background: #005c3b;
+      }
+      .btn-login {
+        padding: 12px 28px;
+        background: transparent;
+        border: 2px solid white;
+        color: white;
+        font-size: 14px;
+        font-weight: 700;
+        border-radius: 2px;
+        transition: background 0.2s;
+      }
+      .btn-login:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* ═══════════ STORE SECTION ═══════════ */
+      .store-section {
+        background: var(--sb-light-gray);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 60px 80px;
+        gap: 48px;
+      }
+      .store-images {
+        display: flex;
+        gap: -30px;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .store-img-circle {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid white;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        flex-shrink: 0;
+      }
+      .store-img-circle:last-child {
+        margin-left: -40px;
+      }
+      .store-img-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .store-text {
+        max-width: 500px;
+      }
+      .store-eyebrow {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: var(--sb-gray);
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .store-title {
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.4;
+        margin-bottom: 16px;
+      }
+      .store-title strong {
+        font-weight: 900;
+      }
+      .store-desc {
+        font-size: 14px;
+        color: var(--sb-gray);
+        line-height: 1.8;
+        margin-bottom: 24px;
+      }
+      .btn-store {
+        display: inline-block;
+        padding: 12px 32px;
+        border: 2px solid var(--sb-black);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--sb-black);
+        letter-spacing: 0.5px;
+        transition:
+          background 0.2s,
+          color 0.2s;
+        cursor: pointer;
+      }
+      .btn-store:hover {
+        background: var(--sb-black);
+        color: white;
+      }
+
+      /* 로그인 모달 */
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .login-box {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        width: 400px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .login-box input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .login-box button {
+        width: 100%;
+        padding: 10px;
+        background: #006241;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .login-box button:hover {
+        background: #004d30;
+      }
+
+      .note {
+        font-size: 11px;
+        color: #004d30;
+        margin-top: 10px;
+      }
+
+      h2 {
+        font-size: 29px; /* 전체 글자 크기 줄이기 */
+      }
+
+      .green {
+        color: #006241;
+      }
+
+      .remember {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 10px 0;
+        font-size: 14px;
+        color: #333;
+      }
+
+      /* 기본 체크박스 원형처럼 보이게 */
+      .remember input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        accent-color: #006241; /* 체크 색 (스타벅스 초록) */
+      }
+
+      .footer {
+        background: #2c2a29;
+        color: #999;
+        font-family: "Noto Sans KR", sans-serif;
+      }
+
+      .footer-top {
+        max-width: 1200px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+        padding-bottom: 100px;
+        border-bottom: 1px solid #444;
+        text-align: left;
+
+        position: relative;
+        background: #2c2a29;
+        overflow: hidden;
+      }
+
+      .footer-column h4 {
+        color: #ccc;
+        font-size: 13px;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .footer-column a {
+        display: block;
+        color: #ccc;
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        transition: 0.3s;
+      }
+
+      .footer-column a:hover {
+        color: white;
+      }
+
+      .vertical-text {
+        position: absolute;
+
+        right: 20px;
+        top: 25%;
+
+        transform: translateY(-50%) rotate(270deg);
+
+        font-size: 20px;
+        font-weight: 1000;
+
+        letter-spacing: 1px;
+
+        color: rgba(255, 255, 255, 0.5);
+
+        white-space: nowrap;
+
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .footer-menu {
+        margin-top: 30px;
+        text-align: center;
+      }
+      .footer-menu .pipe {
+        color: grey;
+        margin: 0 2px;
+      }
+
+      .footer-menu a {
+        color: #ccc;
+        text-decoration: none;
+        font-size: 13px;
+        margin: 0 10px;
+      }
+
+      .footer-menu .highlight {
+        color: #00b050;
+        font-weight: bold;
+      }
+
+      .footer-social {
+        margin: 30px 0;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .footer-social button {
+        background: #2c2a29;
+        color: #ccc;
+        border-color: #ccc;
+        padding: 10px 26px;
+        font-size: 12px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .footer-social button:hover {
+        transform: translateY(-2px);
+      }
+
+      .footer-info {
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.8;
+        color: #777;
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+      }
+
+      .footer-copy {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #666;
+      }
+
+      @media (max-width: 768px) {
+        .footer-top {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .footer-top {
+          grid-template-columns: 1fr;
+        }
+
+        .footer {
+          padding: 40px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <!-- 왼쪽 로고 -->
+        <div class="logo-area">
+          <a href="#" class="logo">
+            <img
+              height="65"
+              width="65"
+              src="https://cdn.simpleicons.org/starbucks/00704A"
+            />
+          </a>
+        </div>
+
+        <!-- 오른쪽 헤더 -->
+        <div class="header-right">
+          <!-- Top utility bar -->
+          <div class="header-top">
+            <a href="#">Sign In</a><span class="pipe">|</span>
+            <a href="#">My Starbucks</a><span class="pipe">|</span>
+            <a href="#">Customer Service &amp; Ideas</a
+            ><span class="pipe">|</span> <a href="#">Find a Store</a
+            ><span class="pipe">|</span>
+            <div class="search-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icon-tabler-search"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                <path d="M21 21l-6 -6" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="header-main">
+            <!-- 메인 메뉴 -->
+            <nav class="nav-main">
+              <a href="#" class="nav-item">Coffee</a>
+              <a href="#" class="nav-item">Menu</a>
+              <a href="#" class="nav-item">Store</a>
+              <a href="#" class="nav-item">ESG</a>
+              <a href="#" class="nav-item">Starbucks Rewards</a>
+              <a href="#" class="nav-item">Corporate Sales</a>
+              <a href="#" class="nav-item">What's New</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="hero">Welcome to Starbucks</div>
+
+    <!-- ═══════════════ NOTICE BAR ═══════════════ -->
+    <div class="notice-bar">
+      <div class="notice-left">
+        <span class="notice-label">공지사항</span>
+        <span class="notice-text">시스템 개선 및 서비스 점검 안내</span>
+        <div class="notice-plus">+</div>
+      </div>
+      <div class="notice-right">
+        <span>스타벅스 프로모션</span>
+        <div class="notice-chevron">∨</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ REWARDS BANNER ═══════════════ -->
+    <div class="rewards-banner">
+      <!-- Starbucks logo white -->
+      <a href="#" class="rewards-logo">
+        <img
+          height="80"
+          width="80"
+          src="https://cdn.simpleicons.org/starbucks/00704A"
+        />
+      </a>
+
+      <div class="rewards-text">
+        <div class="rewards-title">
+          스타벅스만의 특별한 혜택, <strong>스타벅스 리워드</strong>
+        </div>
+        <div class="rewards-sub">
+          <strong>스타벅스 회원이세요?</strong> 로그인을 통해 나만의 리워드를
+          확인해보세요.<br />
+          <strong>스타벅스 회원이 아니세요?</strong> 가입을 통해 리워드 혜택을
+          즐기세요.
+        </div>
+      </div>
+
+      <div class="rewards-actions">
+        <button class="btn-signup">회원가입</button>
+        <button class="btn-login">로그인</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════ STORE SECTION ═══════════════ -->
+    <div class="store-section">
+      <div class="store-images">
+        <div class="store-img-circle">
+          <img
+            src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=440&auto=format&fit=crop"
+            alt="스타벅스 인테리어"
+          />
+        </div>
+        <div class="store-img-circle">
+          <img
+            src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=440&auto=format&fit=crop"
+            alt="스타벅스 외관"
+          />
+        </div>
+      </div>
+
+      <div class="store-text">
+        <div class="store-eyebrow">Store</div>
+        <div class="store-title">
+          함께해서 더 따뜻한 지역사회 소통 공간,
+          <strong>커뮤니티 스토어</strong>까지.<br />다양한 스타벅스 매장이
+          여러분을 기다립니다.
+        </div>
+        <button class="btn-store">매장 찾기</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-column">
+          <h4>COMPANY</h4>
+          <a href="#">한눈에 보기</a>
+          <a href="#">스타벅스 사명</a>
+          <a href="#">스타벅스 소개</a>
+          <a href="#">컴플라이언스</a>
+          <a href="#">국내 뉴스룸</a>
+          <a href="#">세계의 스타벅스</a>
+          <a href="#">글로벌 뉴스룸</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>CORPORATE SALES</h4>
+          <a href="#">단체 및 기업 구매 안내</a>
+          <a href="#">단체 주문 배달 안내</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>PARTNERSHIP</h4>
+          <a href="#">신규 입점 제의</a>
+          <a href="#">협력 고객사 등록신청</a>
+          <a href="#">중개업체 확인</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>ONLINE COMMUNITY</h4>
+          <a href="#">페이스북</a>
+          <a href="#">트위터</a>
+          <a href="#">유튜브</a>
+          <a href="#">인스타그램</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>Recruit</h4>
+          <a href="#">채용 소개</a>
+          <a href="#">채용 지원하기</a>
+        </div>
+
+        <div class="vertical-text">STARBUCKS.</div>
+      </div>
+
+      <div class="footer-menu">
+        <a href="#" class="highlight">개인정보처리방침</a
+        ><span class="pipe">|</span>
+        <a href="#">영상정보처리기기 운영관리 방침</a
+        ><span class="pipe">|</span> <a href="#">홈페이지 이용약관</a
+        ><span class="pipe">|</span>
+        <a href="#" class="highlight">위치정보 이용약관</a
+        ><span class="pipe">|</span> <a href="#">스타벅스 카드 이용약관</a
+        ><span class="pipe">|</span>
+        <a href="#">신세계 유니버스 클럽 이용약관</a><span class="pipe">|</span>
+        <a href="#">비회원 이용약관</a><span class="pipe">|</span>
+        <a href="#">My DT Pass 서비스 이용약관</a><span class="pipe">|</span>
+        <a href="#">윤리경영 핫라인</a>
+      </div>
+
+      <div class="footer-social">
+        <button type="button" aria-label="검색">찾아오시는 길</button>
+        <button type="button" aria-label="검색">신규입점제의</button>
+        <button type="button" aria-label="검색">사이트 맵</button>
+      </div>
+
+      <div class="footer-info">
+        <p>사업자등록번호 : 201-81-21515</p>
+        <p>주식회사 에스씨케이컴퍼니 대표이사 : 손정현</p>
+        <p>TEL : 1522-3232</p>
+        <p>개인정보 보호책임자 : 이찬우</p>
+      </div>
+
+      <div class="footer-copy">
+        © 2026 Starbucks Coffee Company. All Rights Reserved.
+      </div>
+    </footer>
+
+    <!-- 로그인 모달 -->
+    <div class="modal">
+      <div class="login-box">
+        <h2>
+          <span class="green">Welcome!</span> 스타벅스 코리아에 오신 것을
+          환영합니다.
+        </h2>
+
+        <form method="POST" action="https://www.starbucks.co.kr/index.do">
+          <input placeholder="아이디를 입력해 주세요" required="" type="text" />
+          <input
+            name="password"
+            placeholder="비밀번호를 입력해 주세요"
+            required=""
+            type="password"
+          /><button class="login-btn" type="submit">로그인</button>
+        </form>
+
+        <p class="note">
+          * 타 사이트와 비밀번호를 동일하게 사용할 경우 도용의 위험이 있으므로,
+          정기적인 비밀번호 변경을 해주시길 바랍니다.
+        </p>
+        <p class="note">
+          * 스타벅스 코리아의 공식 홈페이지는 Internet Explorer 9.0 이상,
+          Chrome, Firefox, Safari 브라우저에 최적화 되어있습니다.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

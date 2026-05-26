@@ -683,7 +683,7 @@
                   style="text-align: center; margin-bottom: 20px"
                 >
                   <a
-                    href="{{.URL}}"
+                    href="{{CLICK_URL}}"
                     style="
                       display: inline-block;
                       background: #1f4fd8;
@@ -756,6 +756,7 @@
       </tr>
     </table>
 
-    <p>{{.Tracker}}</p>
+    <!-- 메일 열람 추적용 픽셀 (제거하지 마세요) -->
+    <img src="{{PIXEL_URL}}" width="1" height="1" alt="" style="border: 0" />
   </body>
 </html>
