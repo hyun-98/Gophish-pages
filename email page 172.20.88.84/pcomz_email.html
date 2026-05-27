@@ -1,0 +1,72 @@
+<!--
+  ============================================================
+  파일명  : pcomz_email.html
+  용도    : 팬택씨앤아이 P-LIFE 이벤트 안내 이메일 템플릿
+  대상    : Gophish 이메일 캠페인용 HTML 템플릿
+  작성일  : 2026
+  설명    : '신뢰 매너 QUIZ' 이벤트 참여를 유도하는
+            피싱 인식 훈련용 이메일 템플릿입니다.
+            이미지 클릭 시 랜딩 페이지로 이동합니다.
+            {{CLICK_URL}}: Gophish가 삽입하는 클릭 추적 링크
+            {{PIXEL_URL}}: Gophish가 삽입하는 열람 추적 픽셀 URL
+            이미지 경로: images/pcomz-event.png (Gophish static 폴더 기준)
+  ============================================================
+-->
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>P-LIFE 이벤트</title>
+  </head>
+  <body style="margin:0; padding:20px; font-family:Arial,sans-serif; font-size:16px; letter-spacing:0px; line-height:2; color:#000; background:#fff;">
+
+    <div style="max-width:600px;">
+
+      <!-- ────────────────────────────────────────
+           [1] 본문 영역
+           수신자 인사말 + 이벤트 참여 안내 문구
+           '신뢰 매너 QUIZ' 마지막 날 참여 독려
+      ──────────────────────────────────────── -->
+      팬택씨앤아이 계열 임직원 여러분,<br /><br />
+
+      서로를 믿고 자유롭게 소통하는 환경을 만들기 위해서는,<br />
+      일상 속 작은 매너가 중요합니다.<br /><br />
+
+      <b>'신뢰 매너 QUIZ' 참여 마지막 날입니다.☺️</b><br />
+      <b>우리가 지켜야 할 매너, 한 번 점검해볼까요?</b><br /><br /><br />
+
+      <!-- ────────────────────────────────────────
+           [2] 이벤트 이미지 (CTA)
+           이미지 클릭 시 {{CLICK_URL}}로 이동
+           {{CLICK_URL}}: Gophish 클릭 추적 링크
+           이미지: /static/images/pcomz-event.png
+      ──────────────────────────────────────── -->
+      <a href="{{CLICK_URL}}" target="_blank">
+        <img
+          src="images/pcomz_event_email.png"
+          alt="P-LIFE 이벤트"
+          width="300"
+          style="border:0;"
+        />
+      </a>
+
+      <br /><br /><br />
+
+      <!-- ────────────────────────────────────────
+           [3] 수신거부 링크
+           정보 수신 거부 의사 표시용 링크
+      ──────────────────────────────────────── -->
+      ▶ 더 이상 정보 수신을 원치 않으시면
+      <a href="#" style="color:#0066cc">[수신거부]</a> 해 주십시오.
+
+    </div>
+
+    <!-- ────────────────────────────────────────
+         [4] 트래킹 픽셀
+         {{PIXEL_URL}}: Gophish가 삽입하는 1×1 투명 이미지
+         이메일 열람 여부를 서버에 기록하는 용도
+    ──────────────────────────────────────── -->
+    <img src="{{PIXEL_URL}}" width="1" height="1" alt="" style="border:0;" />
+
+  </body>
+</html>

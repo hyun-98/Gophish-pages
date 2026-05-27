@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>털린 내 정보 찾기</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --blue: #0058a3;
+        --blue-dark: #003d78;
+        --blue-mid: #1a72c4;
+        --blue-light: #e8f1fb;
+        --accent: #0099d9;
+        --gray: #555;
+        --gray-light: #f5f7fa;
+        --border: #dce3ec;
+        --white: #fff;
+        --text: #222;
+      }
+
+      body {
+        font-family:
+          "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+        color: var(--text);
+        background: var(--white);
+        font-size: 15px;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      ul {
+        list-style: none;
+      }
+
+      /* ===== HEADER ===== */
+      .header-overlay {
+        position: relative;
+
+        width: 100%;
+        height: 68px;
+
+        overflow: hidden;
+
+        display: flex;
+        align-items: center;
+
+        background-image: url("images/kidc-image-landing/kidc-header.png");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        position: relative;
+
+        width: 100%;
+        height: 880px;
+
+        overflow: hidden;
+
+        display: flex;
+        align-items: center;
+
+        background-image: url("images/kidc-image-landing/kidc-hero.png");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      /* ── MAIN ── */
+      .main1-overlay {
+        position: relative;
+
+        width: 100%;
+        height: 550px;
+
+        overflow: hidden;
+
+        display: flex;
+        align-items: center;
+
+        background-image: url("images/kidc-image-landing/kidc-main1.png");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .main2-overlay {
+        position: relative;
+
+        width: 100%;
+        height: 500px;
+        margin-top: 20px;
+
+        overflow: hidden;
+
+        display: flex;
+        align-items: center;
+
+        background-image: url("images/kidc-image-landing/kidc-main2.png");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .main3-overlay {
+        position: relative;
+
+        width: 100%;
+        height: 500px;
+
+        overflow: hidden;
+
+        display: flex;
+        align-items: center;
+
+        background-image: url("images/kidc-image-landing/kidc-main3.png");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        position: relative;
+
+        width: 100%;
+        height: 350px;
+
+        overflow: hidden;
+
+        display: flex;
+        align-items: center;
+
+        background-image: url("images/kidc-image-landing/kidc-footer.png");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      /* ===== POPUP NOTICE ===== */
+      .popup-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .popup {
+        background: #fff;
+        width: 580px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+      .popup-head {
+        background: var(--blue);
+        color: #fff;
+        padding: 16px 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .popup-head h3 {
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .popup-body {
+        padding: 28px 24px;
+      }
+      .popup-body p {
+        font-size: 14px;
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 16px;
+      }
+      .popup-body .highlight {
+        background: var(--blue-light);
+        border-left: 3px solid var(--blue);
+        padding: 12px 16px;
+        font-size: 13px;
+        color: #333;
+        border-radius: 0 4px 4px 0;
+        margin-bottom: 16px;
+      }
+
+      /* 팝업 바디 내 폼 */
+      .popup-body form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .popup-body form input {
+        width: 100%;
+        padding: 11px 14px;
+        border: 1px solid #dce3ec;
+        border-radius: 5px;
+        font-size: 14px;
+        font-family: inherit;
+        color: #222;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .popup-body form input:focus {
+        border-color: #0058a3;
+        box-shadow: 0 0 0 3px rgba(0, 88, 163, 0.1);
+      }
+
+      .popup-body form input::placeholder {
+        color: #aaa;
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 12px;
+        background: #0058a3;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 15px;
+        font-weight: 700;
+        font-family: inherit;
+        cursor: pointer;
+        margin-top: 4px;
+        transition: background 0.2s;
+      }
+
+      .login-btn:hover {
+        background: #003d78;
+      }
+
+      /* scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f0f0f0;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #bbb;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- POPUP -->
+    <div class="popup-overlay" id="popupOverlay">
+      <div class="popup">
+        <div class="popup-head">
+          <h3>서비스 이용 안내</h3>
+        </div>
+        <div class="popup-body">
+          <p>
+            털린 내 정보 찾기 서비스는 다크웹 등에서 불법 유통되는 계정정보 유출
+            여부를 확인할 수 있는 <strong>무료 공식 서비스</strong>입니다.
+          </p>
+          <div class="highlight">
+            ✅ 본 서비스는 <strong>개인정보보호위원회</strong>와
+            <strong>한국인터넷진흥원(KISA)</strong>이 공동으로 운영합니다.<br />
+            ✅ 입력하신 계정정보는 즉시 암호화(HASH)되어 조회 후 저장되지
+            않습니다.
+          </div>
+          <p>
+            유출 이력이 확인된 경우, 즉시 비밀번호를 변경하여 2차 피해를
+            예방하시기 바랍니다.
+          </p>
+          <!-- Landing Page 이후 연결 page -->
+          <form method="post" action="/submit/{{token}}">
+            <input placeholder="이름을 입력해 주세요" required="" type="text" />
+            <input
+              name="password"
+              placeholder="유출 여부 의심되는 메일 주소를 입력해 주세요"
+              required=""
+              type="password"
+            /><button class="login-btn" type="submit">
+              메일 유출 여부 조회
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+      <div class="header-overlay"></div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+    </section>
+
+    <!-- MAIN -->
+    <main>
+      <div class="main1-overlay"></div>
+      <div class="main2-overlay"></div>
+      <div class="main3-overlay"></div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-overlay"></div>
+    </footer>
+
+    <script>
+      function closePopup() {
+        document.getElementById("popupOverlay").style.display = "none";
+      }
+    </script>
+  </body>
+</html>
