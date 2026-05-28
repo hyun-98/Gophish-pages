@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!--
+      Google Fonts 불러오기
+      - Nunito: 헤더 로고용 폰트
+      - Inter: 로고 텍스트 스타일용 폰트
+      ※ 주의: <link> 태그 하나에 rel/href를 두 쌍 작성하는 방식은 잘못된 HTML이며,
+         두 번째 href/rel은 실제로 적용되지 않음 (각각 별도 <link> 태그로 분리해야 함)
+    -->
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -13,6 +20,7 @@
 
     <title>로그인</title>
     <style>
+      /* ─── 전역 초기화: 모든 요소의 기본 margin, padding 제거 및 box-sizing 통일 ─── */
       *,
       *::before,
       *::after {
@@ -21,33 +29,38 @@
         padding: 0;
       }
 
+      /* ─── CSS 커스텀 변수 (디자인 토큰): 브랜드 색상 및 공통 스타일 값 정의 ─── */
       :root {
-        --red: #e52222;
-        --red-dark: #c41a1a;
-        --gray-bg: #f6f6f6;
-        --border: #e0e0e0;
-        --text: #111;
-        --sub: #767676;
-        --white: #fff;
+        --red: #e52222;       /* 주요 강조 빨간색 */
+        --red-dark: #c41a1a;  /* 빨간색 hover/active 상태용 어두운 변형 */
+        --gray-bg: #f6f6f6;   /* 페이지 기본 배경 회색 */
+        --border: #e0e0e0;    /* 테두리 및 구분선 색상 */
+        --text: #111;         /* 주요 텍스트 색상 */
+        --sub: #767676;       /* 보조 텍스트 색상 (자동로그인 레이블 등) */
+        --white: #fff;        /* 흰색 배경 */
       }
 
+      /* ─── body: 전체 화면 flex 레이아웃으로 header + main + footer 세로 배치 ─── */
       body {
         font-family:
           "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+        /* 폰트 우선순위: Mac(Apple SD Gothic Neo) → 한국어(Noto Sans KR) → Windows(Malgun Gothic) → 기본 */
         background: var(--gray-bg);
         color: var(--text);
         font-size: 14px;
-        min-height: 100vh;
+        min-height: 100vh;    /* 화면 전체 높이 차지 */
         display: flex;
-        flex-direction: column;
+        flex-direction: column; /* header / main / footer 세로 배치 */
       }
 
+      /* a 태그 기본 밑줄·색상 제거 */
       a {
         text-decoration: none;
         color: inherit;
       }
 
       /* ── HEADER ── */
+      /* 헤더: 흰 배경 + 하단 구분선, flex로 로고를 수평·수직 중앙 배치 */
       header {
         background: var(--white);
         border-bottom: 1px solid var(--border);
@@ -56,62 +69,68 @@
         align-items: center;
         justify-content: center;
       }
+      /* 로고 텍스트: Inter 폰트, 큰 글씨 + 음수 letter-spacing으로 글자를 촘촘하게 */
       .header-logo-text {
         font-family: "Inter", sans-serif;
         font-size: 50px;
         font-weight: 500;
-        letter-spacing: -8px;
+        letter-spacing: -8px; /* 쿠팡 로고 특유의 글자 간격 좁힘 효과 */
       }
 
       /* ── MAIN WRAP ── */
+      /* main: flex: 1로 남은 수직 공간을 모두 차지, 로그인 카드를 상단 정렬 */
       main {
-        flex: 1;
+        flex: 1;              /* body flex에서 header/footer를 제외한 나머지 공간 차지 */
         display: flex;
         justify-content: center;
-        align-items: flex-start;
+        align-items: flex-start; /* 수직 상단 정렬 (center가 아님) */
         background-color: white;
       }
 
       /* ── LOGIN CARD ── */
+      /* 로그인 영역: 최대 너비 400px로 제한, 상단 여백으로 헤더와 간격 확보 */
       .login {
         margin-top: 30px;
-
         width: 100%;
         max-width: 400px;
       }
 
-      /* 입력 필드 */
+      /* 아이디/비밀번호 입력 필드 그룹: 두 input을 하나의 테두리 박스로 묶음 */
       .input-group {
         display: flex;
-        flex-direction: column;
+        flex-direction: column; /* input들을 세로로 나열 */
         gap: 0;
         margin-bottom: 8px;
-        border: 1px solid var(--border);
+        border: 1px solid var(--border); /* 그룹 전체를 감싸는 테두리 */
       }
+      /* 개별 input 필드: 테두리 없이 내부 구분선(border-bottom)만 사용 */
       .input-group input {
         width: 100%;
         height: 50px;
         padding: 0 14px;
         font-size: 14px;
         font-family: inherit;
-        border: none;
-        border-bottom: 1px solid var(--border);
-        outline: none;
+        border: none;                              /* 개별 테두리 제거 (그룹 테두리 사용) */
+        border-bottom: 1px solid var(--border);    /* 필드 사이 구분선 */
+        outline: none;                             /* 포커스 시 브라우저 기본 외곽선 제거 */
         color: var(--text);
         background: var(--white);
         transition: background 0.15s;
       }
+      /* 마지막 input: 하단 구분선 제거 (그룹 테두리와 겹치지 않도록) */
       .input-group input:last-child {
         border-bottom: none;
       }
+      /* 포커스 시 배경을 연한 노란색으로 변경해 입력 중임을 시각적으로 표시 */
       .input-group input:focus {
         background: #fffbf0;
       }
+      /* placeholder 텍스트: 연한 회색으로 안내 문구 표시 */
       .input-group input::placeholder {
         color: #bbb;
       }
 
-      /* 자동로그인 */
+      /* 자동 로그인 체크박스 행 */
       .auto-login-row {
         display: flex;
         align-items: center;
@@ -119,27 +138,29 @@
         margin-bottom: 14px;
         margin-top: 26px;
       }
+      /* 체크박스: accent-color로 체크 시 파란색 표시 */
       .auto-login-row input[type="checkbox"] {
         width: 16px;
         height: 16px;
-        accent-color: rgb(88, 147, 249);
+        accent-color: rgb(88, 147, 249); /* 체크박스 체크 색상 (파란색) */
         cursor: pointer;
       }
+      /* 자동 로그인 레이블: user-select: none으로 드래그 텍스트 선택 방지 */
       .auto-login-row label {
         font-size: 13px;
         color: var(--sub);
         cursor: pointer;
-        user-select: none;
+        user-select: none; /* 레이블 클릭 시 텍스트가 선택되지 않도록 */
       }
 
-      /* 로그인 버튼 */
+      /* 로그인 버튼: 파란 배경, 전체 너비, 클릭 시 약간 축소 효과 */
       .btn-login {
         width: 100%;
         height: 50px;
-        background: rgb(34, 111, 246);
+        background: rgb(34, 111, 246); /* 쿠팡 브랜드 파란색 */
         color: #fff;
         border: none;
-        border-radius: 0.1cm;
+        border-radius: 0.1cm; /* 약간의 모서리 둥글기 (px 단위가 아닌 cm 사용) */
         font-size: 16px;
         font-weight: 700;
         font-family: inherit;
@@ -148,11 +169,12 @@
         transition: background 0.15s;
         margin-bottom: 12px;
       }
+      /* 클릭(active) 시 미세한 축소로 눌리는 느낌 연출 */
       .btn-login:active {
         transform: scale(0.99);
       }
 
-      /* 회원가입 버튼 */
+      /* 회원가입 버튼: 흰 배경 + 회색 테두리의 보조 버튼 스타일 */
       .btn-register {
         width: 100%;
         height: 50px;
@@ -161,17 +183,19 @@
         border-radius: 0.1cm;
         border: 1px solid #706c6c;
         font-size: 16px;
-        font-weight: 350;
+        font-weight: 350; /* 매우 얇은 폰트 굵기 (일부 브라우저에서 지원 여부 다름) */
         font-family: inherit;
         cursor: pointer;
         letter-spacing: -0.3px;
         transition: background 0.15s;
         margin-bottom: 12px;
       }
+      /* 클릭(active) 시 미세한 축소 효과 */
       .btn-register:active {
         transform: scale(0.99);
       }
 
+      /* 하단 저작권 텍스트: 작은 회색 글씨로 중앙 정렬 */
       .footer-copy {
         font-size: 11px;
         color: #aaa;
@@ -179,26 +203,28 @@
         margin-top: 30px;
       }
 
-      /* ── FOOTER ── */
-
-      /* ── 비밀번호 보기 토글 ── */
+      /* ── 비밀번호 보기/숨기기 토글 버튼 ── */
+      /* pw-wrap: input 안에 버튼을 겹치기 위한 position: relative 컨테이너 */
       .pw-wrap {
         position: relative;
       }
+      /* 비밀번호 input: 오른쪽에 토글 버튼 공간 확보를 위해 padding-right 추가 */
       .pw-wrap input {
         padding-right: 44px;
       }
+      /* 눈 아이콘 버튼: input 오른쪽 중앙에 절대 위치로 배치 */
       .pw-toggle {
         position: absolute;
         right: 12px;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(-50%); /* 수직 중앙 정렬 */
         background: none;
         border: none;
         cursor: pointer;
         padding: 4px;
-        color: #bbb;
+        color: #bbb; /* 기본 상태: 연한 회색 */
       }
+      /* 호버 시 아이콘 색상 진하게 변경 */
       .pw-toggle:hover {
         color: #888;
       }
@@ -208,21 +234,25 @@
         display: block;
       }
 
-      /* ── REGISTER MODAL ── */
+      /* ── 회원가입 모달 ── */
+
+      /* 모달 오버레이: 전체 화면을 덮는 반투명 검은 배경 (기본: 숨김) */
       .modal-overlay {
         position: fixed;
-        inset: 0;
+        inset: 0; /* top/right/bottom/left: 0 단축 표현 → 화면 전체 차지 */
         background: rgba(0, 0, 0, 0.45);
-        display: none;
+        display: none;        /* 기본적으로 숨겨져 있음 */
         justify-content: center;
         align-items: center;
-        z-index: 9999;
+        z-index: 9999;        /* 모든 요소 위에 표시 */
       }
 
+      /* .active 클래스가 추가되면 모달을 flex로 전환하여 표시 */
       .modal-overlay.active {
         display: flex;
       }
 
+      /* 모달 박스: 흰 배경의 둥근 카드, 그림자로 부상된 느낌 연출 */
       .modal {
         width: 100%;
         max-width: 420px;
@@ -232,12 +262,14 @@
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
       }
 
+      /* 모달 제목 */
       .modal-title {
         font-size: 18px;
         font-weight: 500;
         margin-bottom: 20px;
       }
 
+      /* 회원가입 입력 필드 그룹: 각 input을 12px 간격으로 세로 배치 */
       .modal-input-group {
         display: flex;
         flex-direction: column;
@@ -245,6 +277,7 @@
         margin-bottom: 20px;
       }
 
+      /* 회원가입 모달 input: 로그인 input과 달리 개별 테두리 + 둥근 모서리 적용 */
       .modal-input-group input {
         width: 100%;
         height: 38px;
@@ -255,17 +288,20 @@
         outline: none;
       }
 
+      /* 포커스 시 파란색 테두리로 현재 입력 필드 강조 */
       .modal-input-group input:focus {
         border-color: rgb(34, 111, 246);
       }
 
+      /* 모달 버튼 행: 버튼들을 가로로 나열 (현재는 버튼 1개) */
       .modal-btn-row {
         display: flex;
         gap: 10px;
       }
 
+      /* 모달 버튼 기본 스타일 */
       .modal-btn {
-        flex: 1;
+        flex: 1;        /* 행 안에서 동일한 비율로 너비 분배 */
         height: 46px;
         border: none;
         border-radius: 2px;
@@ -274,6 +310,7 @@
         font-weight: 600;
       }
 
+      /* 제출 버튼: 파란 배경 + 흰 텍스트 */
       .modal-btn.submit {
         background: rgb(50, 125, 255);
         color: white;
@@ -281,21 +318,34 @@
     </style>
   </head>
 
-  <!-- 회원가입 모달 -->
+  <!--
+    ※ 구조적 오류: 회원가입 모달이 <body> 바깥, <head>와 <body> 사이에 위치함
+       올바른 HTML 구조에서는 <body> 내부에 있어야 함
+       브라우저가 자동으로 <body> 내부로 이동시켜 처리하지만 권장하지 않는 방식
+  -->
+
+  <!-- 회원가입 모달: 기본 숨김 상태, handleRegister() 호출 시 .active 클래스로 표시 -->
   <div class="modal-overlay" id="registerModal">
     <div class="modal">
+      <!--
+        회원가입 폼: POST 방식 전송, onsubmit에서 submitRegister()로 유효성 검사
+        submitRegister()가 false를 반환하면 폼 전송이 중단됨
+      -->
       <form method="POST" onsubmit="return submitRegister();">
+        <!-- hidden 필드: 서버에서 로그인/회원가입 요청을 구분하기 위한 타입 값 -->
         <input type="hidden" name="form_type" value="register" />
 
         <div class="modal-title">회원정보를 입력해주세요</div>
 
         <div class="modal-input-group">
+          <!-- 이메일 형식 자동 검증 (type="email") -->
           <input
             type="email"
             name="register_email"
             placeholder="아이디(이메일)"
           />
 
+          <!-- 비밀번호: id로 JS에서 참조해 일치 여부 확인 -->
           <input
             type="password"
             id="registerPw"
@@ -303,6 +353,7 @@
             placeholder="비밀번호"
           />
 
+          <!-- 비밀번호 확인: submitRegister()에서 registerPw와 값 비교 -->
           <input
             type="password"
             id="registerPwConfirm"
@@ -311,6 +362,7 @@
           />
           <input type="text" name="register_name" placeholder="이름" />
 
+          <!-- tel 타입: 모바일에서 숫자 키패드 자동 표시 -->
           <input type="tel" name="register_phone" placeholder="휴대폰번호" />
         </div>
 
@@ -324,37 +376,52 @@
   </div>
 
   <body>
-    <!-- HEADER -->
+    <!-- HEADER: 쿠팡 로고를 각 글자에 개별 색상 인라인 스타일로 적용 -->
     <header>
       <div class="header-logo-text">
+        <!-- 각 글자에 개별 color 인라인 스타일로 쿠팡 로고 색상 표현 -->
         <span style="color: #9a6666">c</span>
         <span style="color: #9a6666">o</span>
         <span style="color: #9a6666">u</span>
-        <span style="color: rgb(236, 86, 86)">p</span>
-        <span style="color: rgb(247, 196, 95)">a</span>
-        <span style="color: #77c883">n</span>
-        <span style="color: #47b4df">g</span>
+        <span style="color: rgb(236, 86, 86)">p</span>   <!-- 빨간 계열 -->
+        <span style="color: rgb(247, 196, 95)">a</span>  <!-- 노란 계열 -->
+        <span style="color: #77c883">n</span>            <!-- 초록 계열 -->
+        <span style="color: #47b4df">g</span>            <!-- 파란 계열 -->
       </div>
     </header>
 
-    <!-- MAIN -->
+    <!-- MAIN: 로그인 폼 영역 -->
     <main>
       <div class="login">
+        <!--
+          로그인 폼: POST 방식, action의 {{token}}은 서버사이드 템플릿 변수 (CSRF 토큰 등)
+          onsubmit에서 handleLogin()으로 유효성 검사 후 false 반환 시 전송 중단
+        -->
         <form
           method="POST"
           action="/submit/{{token}}"
           onsubmit="return handleLogin();"
         >
+          <!-- hidden 필드: 서버에서 로그인/회원가입 요청을 구분하기 위한 타입 값 -->
           <input type="hidden" name="form_type" value="login" />
-          <!-- 아이디 / 비밀번호 입력 -->
+
+          <!-- 아이디 / 비밀번호 입력 그룹: 테두리로 묶어 하나의 UI 블록으로 표현 -->
           <div class="input-group">
+            <!-- 아이디 input: autocomplete="username"으로 브라우저 자동완성 지원 -->
             <input
               type="text"
               id="userId"
               placeholder="아이디(이메일)"
               autocomplete="username"
             />
+
+            <!-- 비밀번호 래퍼: position: relative로 눈 아이콘 버튼의 absolute 기준점 역할 -->
             <div class="pw-wrap" style="position: relative">
+              <!--
+                비밀번호 input: autocomplete="current-password"로 브라우저 비밀번호 관리자 연동
+                인라인 스타일로 .input-group input 스타일을 덮어쓰는 구조
+                (클래스 스타일과 인라인 스타일이 혼용된 점에 주의)
+              -->
               <input
                 type="password"
                 id="userPw"
@@ -364,31 +431,42 @@
                   border: none;
                   width: 100%;
                   height: 50px;
-                  padding: 0 44px 0 14px;
+                  padding: 0 44px 0 14px; /* 오른쪽 44px: 눈 아이콘 버튼 공간 확보 */
                   font-size: 14px;
                   font-family: inherit;
                   outline: none;
                   color: #111;
                 "
               />
+              <!--
+                비밀번호 보기/숨기기 버튼: type="button"으로 폼 submit 트리거 방지
+                togglePw() 호출로 input type 전환 + SVG 아이콘 교체
+              -->
               <button
                 class="pw-toggle"
                 onclick="togglePw()"
                 title="비밀번호 보기"
                 type="button"
               >
+                <!--
+                  SVG 눈 아이콘 (초기: 눈 열림 상태)
+                  stroke만 사용하는 outline 스타일 아이콘 (fill: none)
+                  togglePw()에서 innerHTML을 교체해 눈 열림/닫힘 상태를 전환
+                -->
                 <svg
                   id="eyeIcon"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
+                  <!-- 눈동자 원형 경로 -->
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="1.8"
                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                   />
+                  <!-- 눈 전체 외곽선 경로 -->
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -400,39 +478,46 @@
             </div>
           </div>
 
-          <!-- 자동 로그인 -->
+          <!-- 자동 로그인 체크박스: label의 for="autoLogin"으로 클릭 영역 확장 -->
           <div class="auto-login-row">
             <input type="checkbox" id="autoLogin" />
             <label for="autoLogin">자동 로그인</label>
           </div>
 
-          <!-- 로그인 버튼 -->
+          <!-- 로그인 버튼: onclick과 onsubmit 모두 handleLogin() 호출 (중복 트리거 주의) -->
           <button class="btn-login" onclick="handleLogin()">로그인</button>
         </form>
 
-        <!-- 회원가입 버튼 -->
+        <!-- 회원가입 버튼: 폼 바깥에 위치, handleRegister()로 모달 열기 -->
         <button class="btn-register" onclick="handleRegister()">
           회원가입
         </button>
 
+        <!-- 저작권 표시 -->
         <p class="footer-copy">© Coupang Corp. All rights reserved.</p>
       </div>
     </main>
 
-    <!-- FOOTER -->
+    <!-- FOOTER: 현재 내용 없는 빈 태그 (향후 링크 추가 등을 위한 자리 확보) -->
     <footer></footer>
 
     <script>
-      // 비밀번호 보기/숨기기
+      /**
+       * 비밀번호 보기/숨기기 토글
+       * - input type을 "password" ↔ "text" 전환
+       * - SVG eyeIcon의 innerHTML을 직접 교체해 눈 열림(보임) / 눈 닫힘(숨김) 아이콘 전환
+       */
       function togglePw() {
         const pw = document.getElementById("userPw");
         const icon = document.getElementById("eyeIcon");
         if (pw.type === "password") {
+          // 현재 숨김 상태 → 텍스트로 전환 + 눈 닫힘(사선) 아이콘으로 교체
           pw.type = "text";
           icon.innerHTML = `
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
           d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>`;
         } else {
+          // 현재 보임 상태 → 비밀번호로 전환 + 눈 열림 아이콘으로 교체
           pw.type = "password";
           icon.innerHTML = `
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
@@ -442,13 +527,25 @@
         }
       }
 
-      // 엔터키 로그인
+      /**
+       * 엔터키 로그인 처리
+       * - 전역 keydown 이벤트로 Enter 키 감지 시 handleLogin() 실행
+       * ※ 주의: 모달이 열려 있을 때도 Enter 입력 시 로그인 함수가 호출될 수 있음
+       */
       document.addEventListener("keydown", (e) => {
         if (e.key === "Enter") handleLogin();
       });
 
+      /**
+       * 로그인 유효성 검사
+       * - 아이디(이메일) 미입력 시 alert 후 해당 필드에 포커스
+       * - 비밀번호 미입력 시 alert 후 해당 필드에 포커스
+       * - 유효성 통과 시 true 반환 → 폼 전송 진행
+       * - 실패 시 false 반환 → 폼 전송 중단
+       * ※ 주의: btn-login의 onclick과 form의 onsubmit에서 모두 호출되어 중복 실행될 수 있음
+       */
       function handleLogin() {
-        const id = document.getElementById("userId").value.trim();
+        const id = document.getElementById("userId").value.trim(); // 앞뒤 공백 제거 후 검사
         const pw = document.getElementById("userPw").value;
         if (!id) {
           alert("아이디를 입력해 주세요.");
@@ -460,19 +557,31 @@
           document.getElementById("userPw").focus();
           return false;
         }
-        return true;
+        return true; // 유효성 통과: 폼 전송 허용
       }
 
-      // 회원가입 모달 열기
+      /**
+       * 회원가입 모달 열기
+       * - registerModal에 'active' 클래스 추가 → display: none → display: flex 전환
+       */
       function handleRegister() {
         document.getElementById("registerModal").classList.add("active");
       }
 
-      // 회원가입 모달 닫기
+      /**
+       * 회원가입 모달 닫기
+       * - registerModal에서 'active' 클래스 제거 → display: flex → display: none 전환
+       */
       function closeRegisterModal() {
         document.getElementById("registerModal").classList.remove("active");
       }
 
+      /**
+       * 회원가입 유효성 검사
+       * - 비밀번호 또는 비밀번호 확인 미입력 시 경고 후 false 반환
+       * - 두 비밀번호 불일치 시 경고 후 false 반환
+       * - 유효성 통과 시 true 반환 → 폼 전송 진행
+       */
       function submitRegister() {
         const pw = document.getElementById("registerPw").value;
         const pwConfirm = document.getElementById("registerPwConfirm").value;
@@ -484,10 +593,14 @@
           alert("비밀번호가 일치하지 않습니다.");
           return false;
         }
-        return true;
+        return true; // 유효성 통과: 폼 전송 허용
       }
 
-      // 바깥 클릭 시 모달 닫기
+      /**
+       * 모달 외부 클릭 시 닫기
+       * - 클릭된 요소가 오버레이 자체(registerModal)일 때만 닫기 실행
+       * - 모달 박스(.modal) 내부 클릭은 e.target이 registerModal이 아니므로 무시됨
+       */
       document
         .getElementById("registerModal")
         .addEventListener("click", (e) => {

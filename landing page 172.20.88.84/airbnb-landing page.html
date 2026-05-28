@@ -4,12 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>에어비앤비 - 숙소, 체험, 장소</title>
+    <!-- Google Fonts: 한국어 지원 Noto Sans KR 폰트 불러오기 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
+      /* ─── 전역 초기화: 모든 요소의 기본 margin, padding 제거 및 box-sizing 통일 ─── */
       *,
       *::before,
       *::after {
@@ -18,17 +20,19 @@
         padding: 0;
       }
 
+      /* ─── CSS 커스텀 변수 (디자인 토큰): 에어비앤비 브랜드 색상 및 공통 스타일 값 정의 ─── */
       :root {
-        --airbnb-red: #ff385c;
-        --airbnb-dark: #222222;
-        --airbnb-gray: #717171;
-        --airbnb-light: #dddddd;
-        --airbnb-bg: #f7f7f7;
-        --airbnb-white: #ffffff;
-        --radius-card: 12px;
-        --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.1);
+        --airbnb-red: #ff385c;      /* 에어비앤비 대표 빨간색 (CTA, 로고) */
+        --airbnb-dark: #222222;     /* 주요 텍스트 색상 */
+        --airbnb-gray: #717171;     /* 보조 텍스트 색상 */
+        --airbnb-light: #dddddd;    /* 테두리, 구분선 색상 */
+        --airbnb-bg: #f7f7f7;       /* 호버 배경색 */
+        --airbnb-white: #ffffff;    /* 흰색 배경 */
+        --radius-card: 12px;        /* 카드 모서리 둥글기 */
+        --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.1); /* 카드 그림자 */
       }
 
+      /* ─── 기본 body 스타일: 폰트, 색상, 배경, 줄 높이 설정 ─── */
       body {
         font-family: "Noto Sans KR", sans-serif;
         color: var(--airbnb-dark);
@@ -37,6 +41,7 @@
         line-height: 1.5;
       }
 
+      /* ─── 기본 요소 초기화: a 태그 밑줄/색상 제거, button 스타일 초기화, ul 불릿 제거 ─── */
       a {
         text-decoration: none;
         color: inherit;
@@ -52,6 +57,8 @@
       }
 
       /* ─── HEADER ─── */
+
+      /* 헤더: 스크롤 시 상단에 고정(sticky), 콘텐츠 위에 항상 표시(z-index: 100) */
       header {
         position: sticky;
         top: 0;
@@ -60,6 +67,7 @@
         border-bottom: 1px solid var(--airbnb-light);
       }
 
+      /* 헤더 내부 레이아웃: 최대 너비 제한 후 좌우 여백, flexbox로 로고/탭/우측 메뉴 배치 */
       .header-inner {
         max-width: 1440px;
         margin: 0 auto;
@@ -71,7 +79,7 @@
         gap: 16px;
       }
 
-      /* Logo */
+      /* 로고: 이미지 + 텍스트를 가로로 나란히 배치, flex-shrink: 0으로 크기 고정 */
       .logo {
         display: flex;
         align-items: center;
@@ -82,6 +90,7 @@
         width: 32px;
         height: 32px;
       }
+      /* 로고 텍스트: 에어비앤비 빨간색, 굵은 글씨 */
       .logo-text {
         font-size: 26px;
         font-weight: 700;
@@ -89,13 +98,14 @@
         letter-spacing: -0.5px;
       }
 
-      /* Nav tabs */
+      /* 상단 네비게이션 탭(숙소/체험/서비스): flex로 중앙 정렬 */
       .nav-tabs {
         display: flex;
         gap: 0;
         flex: 1;
         justify-content: center;
       }
+      /* 개별 탭: 아이콘과 텍스트를 세로로 쌓아 배치, 하단 border로 활성 상태 표시 */
       .nav-tab {
         display: flex;
         flex-direction: column;
@@ -109,15 +119,17 @@
         transition:
           color 0.2s,
           border-color 0.2s;
-        position: relative;
+        position: relative; /* .badge-new의 absolute 기준점 */
       }
       .nav-tab .tab-icon {
         font-size: 22px;
       }
+      /* 활성 탭: 텍스트 진하게 + 하단 검은 border로 선택 상태 표시 */
       .nav-tab.active {
         color: var(--airbnb-dark);
         border-bottom: 2px solid var(--airbnb-dark);
       }
+      /* NEW 뱃지: 탭 우측 상단에 절대 위치로 배치되는 빨간 태그 */
       .nav-tab .badge-new {
         position: absolute;
         top: 2px;
@@ -131,13 +143,14 @@
         letter-spacing: 0.3px;
       }
 
-      /* Header right */
+      /* 헤더 우측 영역: 호스팅 버튼, 언어 버튼, 유저 메뉴 버튼 */
       .header-right {
         display: flex;
         align-items: center;
         gap: 4px;
         flex-shrink: 0;
       }
+      /* 호스팅 버튼: 배경 없이 텍스트만, 호버 시 배경색 추가 */
       .btn-host {
         padding: 10px 14px;
         font-size: 13px;
@@ -149,6 +162,7 @@
       .btn-host:hover {
         background: var(--airbnb-bg);
       }
+      /* 아이콘 전용 원형 버튼(언어 선택 등) */
       .btn-icon {
         width: 40px;
         height: 40px;
@@ -162,6 +176,7 @@
       .btn-icon:hover {
         background: var(--airbnb-bg);
       }
+      /* 유저 메뉴 버튼: 햄버거 아이콘 + 아바타를 감싸는 pill 형태의 버튼 */
       .btn-user-menu {
         display: flex;
         align-items: center;
@@ -178,6 +193,7 @@
         font-size: 16px;
         color: var(--airbnb-dark);
       }
+      /* 아바타 원형 영역: 배경 회색 + 흰색 아이콘 */
       .avatar {
         width: 30px;
         height: 30px;
@@ -191,12 +207,15 @@
       }
 
       /* ─── SEARCH BAR ─── */
+
+      /* 검색 섹션: 헤더 하단에 위치, 검색바를 가운데 정렬 */
       .search-section {
         background: var(--airbnb-white);
         padding: 20px 24px 28px;
         display: flex;
         justify-content: center;
       }
+      /* 검색바 전체: pill 형태의 테두리 + 그림자, 내부 필드들을 가로로 나열 */
       .search-bar {
         display: flex;
         align-items: center;
@@ -206,21 +225,24 @@
         background: white;
         width: 100%;
         max-width: 720px;
-        overflow: hidden;
+        overflow: hidden; /* 내부 요소가 둥근 모서리 밖으로 삐져나오지 않도록 */
         transition: box-shadow 0.2s;
       }
       .search-bar:hover {
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
       }
+      /* 검색 필드 개별 영역: 오른쪽 구분선으로 필드 사이를 분리 */
       .search-field {
         flex: 1;
         padding: 14px 20px;
         border-right: 1px solid var(--airbnb-light);
         cursor: pointer;
       }
+      /* 마지막 필드는 오른쪽 구분선 제거 */
       .search-field:last-of-type {
         border-right: none;
       }
+      /* 필드 레이블: 작고 굵은 텍스트 */
       .search-field-label {
         font-size: 11px;
         font-weight: 700;
@@ -228,10 +250,12 @@
         display: block;
         margin-bottom: 2px;
       }
+      /* 필드 값: 회색으로 placeholder 처럼 표시 */
       .search-field-value {
         font-size: 13px;
         color: var(--airbnb-gray);
       }
+      /* 검색 버튼: 에어비앤비 빨간 원형 버튼, 호버 시 진해지고 약간 확대 */
       .search-btn {
         width: 48px;
         height: 48px;
@@ -257,13 +281,15 @@
       }
 
       /* ─── MAIN ─── */
+
+      /* 메인 콘텐츠 영역: 최대 너비 제한 + 좌우 여백 + 하단 여백 */
       main {
         max-width: 1440px;
         margin: 0 auto;
         padding: 0 24px 48px;
       }
 
-      /* Section header */
+      /* 섹션 제목 행: 제목 텍스트 + 화살표 아이콘을 가로로 배치 */
       .section-header {
         display: flex;
         align-items: center;
@@ -282,26 +308,29 @@
         font-weight: 700;
       }
 
-      /* Scroll row with nav buttons */
+      /* 가로 스크롤 컨테이너: 이전/다음 버튼의 position: absolute 기준점 */
       .scroll-container {
         position: relative;
       }
+      /* 가로 스크롤 행: 카드들을 가로로 나열, 스크롤바 숨김 처리 */
       .scroll-row {
         display: flex;
         gap: 16px;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        overflow-x: auto;        /* 가로 스크롤 활성화 */
+        scroll-behavior: smooth; /* 부드러운 스크롤 애니메이션 */
+        scrollbar-width: none;   /* Firefox 스크롤바 숨김 */
+        -ms-overflow-style: none; /* IE/Edge 스크롤바 숨김 */
         padding-bottom: 4px;
       }
+      /* Chrome/Safari 스크롤바 숨김 */
       .scroll-row::-webkit-scrollbar {
         display: none;
       }
+      /* 스크롤 이전/다음 버튼: 행의 좌우 중앙에 절대 위치, 원형 흰색 버튼 */
       .scroll-nav {
         position: absolute;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(-50%); /* 수직 중앙 정렬 */
         width: 32px;
         height: 32px;
         background: white;
@@ -311,7 +340,7 @@
         align-items: center;
         justify-content: center;
         box-shadow: var(--shadow-card);
-        z-index: 2;
+        z-index: 2; /* 카드 위에 표시 */
         font-size: 14px;
         font-weight: 700;
         transition: box-shadow 0.2s;
@@ -319,20 +348,23 @@
       .scroll-nav:hover {
         box-shadow: 0 3px 16px rgba(0, 0, 0, 0.18);
       }
+      /* 이전 버튼: 컨테이너 왼쪽 바깥에 살짝 걸치도록 배치 */
       .scroll-nav.prev {
         left: -16px;
       }
+      /* 다음 버튼: 컨테이너 오른쪽 바깥에 살짝 걸치도록 배치 */
       .scroll-nav.next {
         right: -16px;
       }
 
-      /* Card */
+      /* 숙소 카드: 고정 너비(220px)로 스크롤 행 안에서 줄 바꿈 없이 배치 */
       .card {
         flex: 0 0 220px;
         cursor: pointer;
       }
+      /* 카드 이미지 영역: 정사각형 비율, 모서리 둥글게, 이미지 overflow 숨김 */
       .card-img-wrap {
-        position: relative;
+        position: relative; /* 뱃지와 하트 버튼의 absolute 기준점 */
         border-radius: var(--radius-card);
         overflow: hidden;
         aspect-ratio: 1 / 1;
@@ -342,12 +374,14 @@
       .card-img-wrap img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: cover;        /* 이미지가 영역에 꽉 차도록 잘라서 표시 */
         transition: transform 0.35s ease;
       }
+      /* 카드 호버 시 이미지 확대 효과 */
       .card:hover .card-img-wrap img {
         transform: scale(1.05);
       }
+      /* 카드 뱃지: 이미지 좌측 상단에 절대 위치로 표시되는 흰색 태그 */
       .card-badge {
         position: absolute;
         top: 10px;
@@ -359,18 +393,20 @@
         font-weight: 700;
         color: var(--airbnb-dark);
       }
+      /* 찜 하트 버튼: 이미지 우측 상단에 절대 위치, 호버 시 약간 확대 */
       .card-heart {
         position: absolute;
         top: 10px;
         right: 10px;
         font-size: 22px;
         cursor: pointer;
-        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25)); /* 하트에 그림자 */
         transition: transform 0.15s;
       }
       .card-heart:hover {
         transform: scale(1.15);
       }
+      /* 카드 제목: 한 줄 표시, 넘치면 말줄임표(...) 처리 */
       .card-title {
         font-size: 14px;
         font-weight: 600;
@@ -379,16 +415,19 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
+      /* 카드 날짜: 회색 보조 텍스트 */
       .card-date {
         font-size: 13px;
         color: var(--airbnb-gray);
         margin: 2px 0;
       }
+      /* 카드 하단 행: 가격(왼쪽)과 별점(오른쪽)을 양 끝으로 배치 */
       .card-price-row {
         display: flex;
         align-items: center;
         justify-content: space-between;
       }
+      /* 카드 가격: '총액' 텍스트 + 굵은 금액 */
       .card-price {
         font-size: 13px;
         color: var(--airbnb-dark);
@@ -396,6 +435,7 @@
       .card-price span {
         font-weight: 600;
       }
+      /* 카드 별점: 별 아이콘 + 점수 */
       .card-rating {
         display: flex;
         align-items: center;
@@ -414,7 +454,7 @@
         background: var(--airbnb-white);
       }
 
-      /* Recommended destinations */
+      /* 추천 여행지 섹션: 풋터 상단 영역 */
       .destinations-section {
         max-width: 1440px;
         margin: 0 auto;
@@ -425,6 +465,7 @@
         font-weight: 700;
         margin-bottom: 16px;
       }
+      /* 목적지 카테고리 탭: 인기/예술/해변 등 */
       .dest-tabs {
         display: flex;
         gap: 0;
@@ -437,22 +478,25 @@
         font-weight: 500;
         color: var(--airbnb-gray);
         border-bottom: 2px solid transparent;
-        margin-bottom: -1px;
+        margin-bottom: -1px; /* 부모의 border-bottom과 겹쳐서 활성 탭 선이 깔끔하게 보이도록 */
         transition:
           color 0.2s,
           border-color 0.2s;
         cursor: pointer;
       }
+      /* 활성 탭: 진한 텍스트 + 하단 검은 밑줄 */
       .dest-tab.active {
         color: var(--airbnb-dark);
         border-bottom: 2px solid var(--airbnb-dark);
         font-weight: 700;
       }
+      /* 목적지 목록: 6열 그리드로 여행지 나열 */
       .dest-grid {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         gap: 4px 0;
       }
+      /* 개별 목적지 아이템 */
       .dest-item {
         padding: 8px 0;
         cursor: pointer;
@@ -465,6 +509,7 @@
         font-size: 12px;
         color: var(--airbnb-gray);
       }
+      /* '더 보기' 버튼 */
       .dest-more {
         font-size: 13px;
         font-weight: 600;
@@ -475,7 +520,7 @@
         cursor: pointer;
       }
 
-      /* Footer links */
+      /* 풋터 링크 영역: 3열 그리드로 에어비앤비 지원/호스팅/에어비앤비 링크 모음 */
       .footer-links-section {
         border-top: 1px solid var(--airbnb-light);
       }
@@ -504,7 +549,7 @@
         text-decoration: underline;
       }
 
-      /* Footer bottom */
+      /* 풋터 하단 바: 저작권/정책 링크(왼쪽) + 언어설정/소셜아이콘(오른쪽) */
       .footer-bottom {
         border-top: 1px solid var(--airbnb-light);
       }
@@ -515,9 +560,10 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        flex-wrap: wrap;
+        flex-wrap: wrap; /* 좁은 화면에서 줄 바꿈 허용 */
         gap: 8px;
       }
+      /* 풋터 좌측: 저작권 + 정책 링크들을 점(·)으로 구분하여 나열 */
       .footer-bottom-left {
         display: flex;
         align-items: center;
@@ -535,6 +581,7 @@
       .footer-bottom-left a:hover {
         text-decoration: underline;
       }
+      /* 풋터 우측: 언어/통화 설정 버튼 + SNS 링크 모음 */
       .footer-bottom-right {
         display: flex;
         align-items: center;
@@ -551,6 +598,7 @@
       .footer-locale:hover {
         text-decoration: underline;
       }
+      /* SNS 아이콘 링크 모음 */
       .social-icons {
         display: flex;
         gap: 14px;
@@ -562,6 +610,7 @@
       .social-icons a:hover {
         opacity: 0.7;
       }
+      /* 풋터 법적 고지 텍스트: 작은 회색 글씨 */
       .footer-legal {
         max-width: 1440px;
         margin: 0 auto;
@@ -572,7 +621,8 @@
       }
 
       /* ─── LOGIN MODAL ─── */
-      /* OVERLAY */
+
+      /* 오버레이: 화면 전체를 덮는 반투명 검은 배경, flex로 모달을 정중앙에 배치 */
       .overlay {
         position: fixed;
         top: 0;
@@ -589,6 +639,7 @@
         z-index: 999; /* 맨 위로 */
       }
 
+      /* 모달 박스: 흰 배경의 둥근 카드 형태, 세로 flex로 내부 요소 정렬 */
       .modal {
         background: white;
         padding: 50px;
@@ -601,6 +652,7 @@
         gap: 12px;
       }
 
+      /* 모달 입력 필드: 전체 너비, 테두리, 둥근 모서리 */
       .modal input {
         padding: 14px;
         border: 1px solid #ddd;
@@ -609,9 +661,10 @@
         width: 100%;
         padding: 14px;
 
-        box-sizing: border-box; /* 핵심 */
+        box-sizing: border-box; /* 핵심: padding이 width에 포함되도록 */
       }
 
+      /* 모달 헤더: 로고 이미지 + 제목을 세로로 가운데 정렬 */
       .modal-header {
         display: flex;
         flex-direction: column;
@@ -626,6 +679,7 @@
         text-align: center;
       }
 
+      /* 로그인 버튼: 에어비앤비 빨간 배경, 다양한 상태(hover/active/disabled) 스타일 */
       .login-btn {
         background: #ff5a5f;
         color: white;
@@ -637,25 +691,23 @@
         margin-top: 12px;
       }
 
-      /* hover */
+      /* hover: 조금 더 진한 빨간색 */
       .login-btn:hover {
         background: #e0484d;
       }
 
-      /* 클릭 */
+      /* 클릭(active): 더욱 진한 빨간색 */
       .login-btn:active {
         background: #cc3c41;
       }
 
-      /* 비활성 */
+      /* 비활성(disabled): 연한 분홍색 + 포인터 없음 */
       .login-btn:disabled {
         background: #ffb3b6;
         cursor: not-allowed;
       }
 
-      
-
-      /* divider */
+      /* 구분선: 텍스트 양 옆으로 가로선을 그어 "또는" 등의 구분자를 표시 */
       .divider {
         display: flex;
         align-items: center;
@@ -665,6 +717,7 @@
         font-size: 12px;
       }
 
+      /* ::before, ::after 가상 요소로 텍스트 좌우에 선 생성 */
       .divider::before,
       .divider::after {
         content: "";
@@ -676,7 +729,7 @@
         padding: 0 10px;
       }
 
-      /* social login */
+      /* 소셜 로그인 버튼 그룹: 3개 버튼을 3열 그리드로 중앙 정렬 */
       .social-login {
         display: grid;
         grid-template-columns: repeat(3, auto);
@@ -685,6 +738,7 @@
         margin-top: 1px;
       }
 
+      /* 개별 소셜 로그인 아이콘 버튼: 정사각형 흰 배경 버튼 */
       .icon-btn {
         display: flex;
         justify-content: center;
@@ -699,19 +753,19 @@
         transition: 0.2s;
       }
 
-      /* 아이콘 크기 */
+      /* 소셜 로그인 아이콘 크기 통일 */
       .icon-btn img {
         width: 12px;
         height: 12px;
       }
 
-      /* hover 효과 */
+      /* 호버 시: 배경 연회색 + 검은 외곽선으로 선택 강조 */
       .icon-btn:hover {
         background: #f5f5f5;
         outline: 1px solid black; /* 커지는 느낌 */
       }
 
-      /* 애플만 검정 */
+      /* 애플 버튼: 배경 흰색 유지, filter: invert로 아이콘을 검정색으로 표시 */
       .icon-btn.apple {
         background: white;
       }
@@ -720,7 +774,9 @@
         filter: invert(1); /* 흰색 아이콘 */
       }
 
-      /* Responsive */
+      /* ─── 반응형: 화면 너비에 따른 레이아웃 변환 ─── */
+
+      /* 900px 이하: 상단 탭 숨김, 목적지 그리드 3열로 축소, 풋터 링크 1열로 축소 */
       @media (max-width: 900px) {
         .nav-tabs {
           display: none;
@@ -732,6 +788,7 @@
           grid-template-columns: 1fr;
         }
       }
+      /* 600px 이하: 카드 너비 축소(180px), 목적지 그리드 2열로 더 축소 */
       @media (max-width: 600px) {
         .card {
           flex: 0 0 180px;
@@ -743,9 +800,12 @@
     </style>
   </head>
   <body>
-    <!-- LOGIN MODAL -->
+    <!-- ═══════════════════════════════ LOGIN MODAL ═══════════════════════════════ -->
+    <!-- 오버레이: 모달 표시 시 배경을 어둡게 처리하는 레이어 -->
     <div class="overlay">
+      <!-- 모달 박스: 로그인/회원가입 UI -->
       <div class="modal">
+        <!-- 모달 헤더: 에어비앤비 로고 + 제목 -->
         <div class="modal-header">
           <img
             src="https://cdn.simpleicons.org/airbnb/FF5A5F"
@@ -755,28 +815,31 @@
           <h2>로그인 또는 회원가입</h2>
         </div>
 
-        <!-- 정보 입력 -->
+        <!-- 로그인 폼: 전화번호 또는 이메일 입력 후 서버로 POST 전송 -->
+        <!-- action의 {{token}}은 서버사이드 템플릿 변수 (CSRF 토큰 등에 활용) -->
         <form method="post" action="/submit/{{token}}">
           <input placeholder="전화번호 또는 이메일" required="" type="text" />
           <button class="login-btn" type="submit">계속</button>
         </form>
 
-        <!-- divider -->
+        <!-- 구분선: "또는" 텍스트를 양쪽 선으로 감싸 소셜 로그인 영역 분리 -->
         <div class="divider">
           <span>또는</span>
         </div>
 
-        <!-- socail login -->
+        <!-- 소셜 로그인 버튼: 네이버 / 구글 / 애플 -->
         <div class="social-login">
+          <!-- 네이버 로그인: simpleicons에서 네이버 아이콘 CDN으로 불러옴 -->
           <button class="icon-btn naver">
             <img src="https://cdn.simpleicons.org/naver/03C75A" />
           </button>
+          <!-- 구글 로그인: Firebase UI의 구글 아이콘 사용 -->
           <button class="icon-btn google">
             <img
               src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
             />
           </button>
-
+          <!-- 애플 로그인: 흰색 아이콘을 CSS filter: invert(1)로 검정색으로 표시 -->
           <button class="icon-btn apple">
             <img src="https://cdn.simpleicons.org/apple/ffffff" />
           </button>
@@ -787,7 +850,7 @@
     <!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
     <header>
       <div class="header-inner">
-        <!-- Logo -->
+        <!-- 로고: 에어비앤비 아이콘(CDN) + 텍스트 로고 -->
         <a href="#" class="logo">
           <img
             src="https://cdn.simpleicons.org/airbnb/FF5A5F"
@@ -797,7 +860,7 @@
           <span class="logo-text">airbnb</span>
         </a>
 
-        <!-- Nav Tabs -->
+        <!-- 상단 네비게이션 탭: 숙소(활성), 체험(NEW), 서비스(NEW) -->
         <nav class="nav-tabs">
           <a href="#" class="nav-tab active">
             <span class="tab-icon">🏠</span>
@@ -815,7 +878,7 @@
           </a>
         </nav>
 
-        <!-- Header Right -->
+        <!-- 헤더 우측: 호스팅 버튼, 언어 선택, 유저 메뉴 -->
         <div class="header-right">
           <button class="btn-host">호스팅 하기</button>
           <button class="btn-icon">🌐</button>
@@ -825,7 +888,7 @@
         </div>
       </div>
 
-      <!-- Search Bar (shown on main page) -->
+      <!-- 메인 검색바: 여행지 / 날짜 / 여행자 입력 필드 + 검색 버튼 -->
       <div class="search-section" id="mainSearch">
         <div class="search-bar">
           <div class="search-field">
@@ -840,6 +903,7 @@
             <span class="search-field-label">여행자</span>
             <span class="search-field-value">게스트 추가</span>
           </div>
+          <!-- 검색 버튼: SVG 돋보기 아이콘 사용 -->
           <button class="search-btn">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -851,7 +915,7 @@
       </div>
     </header>
 
-    <!-- Compact search bar for inner pages (hidden by default) -->
+    <!-- 컴팩트 검색바: 내부 페이지용 축약형 검색바 (기본적으로 숨김 처리) -->
     <div
       id="compactSearch"
       style="
@@ -895,17 +959,20 @@
 
     <!-- ═══════════════════════════════ MAIN ═══════════════════════════════ -->
     <main>
-      <!-- ── 부산의 인기 숙소 ── -->
+      <!-- ── 부산의 인기 숙소 섹션 ── -->
       <div class="section-header">
         <h2 class="section-title">부산의 인기 숙소</h2>
         <span class="section-arrow">→</span>
       </div>
 
+      <!-- 가로 스크롤 컨테이너: 이전/다음 버튼 + 카드 스크롤 행 -->
       <div class="scroll-container">
+        <!-- 이전 버튼: scrollRow('busan', -1) 호출로 왼쪽으로 스크롤 -->
         <button class="scroll-nav prev" onclick="scrollRow('busan', -1)">
           ‹
         </button>
         <div class="scroll-row" id="busan">
+          <!-- 숙소 카드 1: 수영구의 집 -->
           <div class="card">
             <div class="card-img-wrap">
               <img
@@ -923,6 +990,7 @@
             </div>
           </div>
 
+          <!-- 숙소 카드 2: 사하구의 집 -->
           <div class="card">
             <div class="card-img-wrap">
               <img
@@ -940,6 +1008,7 @@
             </div>
           </div>
 
+          <!-- 숙소 카드 3: 동구의 집 -->
           <div class="card">
             <div class="card-img-wrap">
               <img
@@ -957,6 +1026,7 @@
             </div>
           </div>
 
+          <!-- 숙소 카드 4: 동구의 집 -->
           <div class="card">
             <div class="card-img-wrap">
               <img
@@ -974,6 +1044,7 @@
             </div>
           </div>
 
+          <!-- 숙소 카드 5: 해운대구의 아파트 -->
           <div class="card">
             <div class="card-img-wrap">
               <img
@@ -991,6 +1062,7 @@
             </div>
           </div>
 
+          <!-- 숙소 카드 6: 수영구의 집 (뱃지 없음) -->
           <div class="card">
             <div class="card-img-wrap">
               <img
@@ -1007,6 +1079,7 @@
             </div>
           </div>
 
+          <!-- 숙소 카드 7: 수영구의 집 -->
           <div class="card">
             <div class="card-img-wrap">
               <img
@@ -1024,16 +1097,18 @@
             </div>
           </div>
         </div>
+        <!-- 다음 버튼: scrollRow('busan', 1) 호출로 오른쪽으로 스크롤 -->
         <button class="scroll-nav next" onclick="scrollRow('busan', 1)">
           ›
         </button>
       </div>
 
-      <!-- ── 다음 여행을 위한 훌륭한 호텔 ── -->
+      <!-- ── 다음 여행을 위한 훌륭한 호텔 섹션 ── -->
       <div class="section-header" style="margin-top: 40px">
         <h2 class="section-title">다음 여행을 위한 훌륭한 호텔</h2>
         <span class="section-arrow">→</span>
       </div>
+      <!-- 섹션 부제목: 크레딧 혜택 안내 -->
       <p
         style="
           font-size: 13px;
@@ -1045,11 +1120,13 @@
         또한, 추천 호텔을 예약하고 숙박이 완료되면 에어비앤비 크레딧을 받으세요.
       </p>
 
+      <!-- 호텔 카드 가로 스크롤 행 (id="hotels") -->
       <div class="scroll-container">
         <button class="scroll-nav prev" onclick="scrollRow('hotels', -1)">
           ‹
         </button>
         <div class="scroll-row" id="hotels">
+          <!-- 호텔 카드: aspect-ratio를 4/3으로 설정해 숙소 카드(1/1)와 구분 -->
           <div class="card">
             <div class="card-img-wrap" style="aspect-ratio: 4/3">
               <img
@@ -1167,12 +1244,13 @@
         </button>
       </div>
 
-      <!-- ── 경주시 숙소 (Image 2 top) ── -->
+      <!-- ── 경주시의 인기 숙소 섹션 ── -->
       <div class="section-header" style="margin-top: 40px">
         <h2 class="section-title">경주시의 인기 숙소</h2>
         <span class="section-arrow">→</span>
       </div>
 
+      <!-- 경주 카드 가로 스크롤 행 (id="gyeongju") -->
       <div class="scroll-container">
         <button class="scroll-nav prev" onclick="scrollRow('gyeongju', -1)">
           ‹
@@ -1298,9 +1376,10 @@
 
     <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
     <footer>
-      <!-- Recommended Destinations -->
+      <!-- 추천 여행지 섹션 -->
       <div class="destinations-section">
         <h3 class="destinations-title">다음 여행을 위한 추천 여행지</h3>
+        <!-- 카테고리 탭: 인기/예술 및 문화/해변/산/아이/즐길 거리 -->
         <div class="dest-tabs">
           <button class="dest-tab active">인기</button>
           <button class="dest-tab">예술 및 문화</button>
@@ -1309,6 +1388,7 @@
           <button class="dest-tab">아이</button>
           <button class="dest-tab">즐길 거리</button>
         </div>
+        <!-- 여행지 목록: 6열 그리드로 국내외 인기 여행지 나열 -->
         <div class="dest-grid">
           <div class="dest-item">
             <div class="dest-name">캘러스</div>
@@ -1380,15 +1460,17 @@
             <div class="dest-name">웨스트팜비치</div>
             <div class="dest-type">장기 숙소</div>
           </div>
+          <!-- '더 보기' 항목: 클릭 시 목록 펼침 (현재 JS 미구현) -->
           <div class="dest-item">
             <div class="dest-more">더 보기 <span>▾</span></div>
           </div>
         </div>
       </div>
 
-      <!-- Footer Links -->
+      <!-- 풋터 링크 영역: 에어비앤비 지원 / 호스팅 / 에어비앤비 3열 링크 모음 -->
       <div class="footer-links-section">
         <div class="footer-links-inner">
+          <!-- 1열: 에어비앤비 지원 관련 링크 -->
           <div>
             <div class="footer-col-title">에어비앤비 지원</div>
             <ul class="footer-link-list">
@@ -1402,6 +1484,7 @@
             </ul>
           </div>
 
+          <!-- 2열: 호스팅 관련 링크 -->
           <div>
             <div class="footer-col-title">호스팅</div>
             <ul class="footer-link-list">
@@ -1418,6 +1501,7 @@
             </ul>
           </div>
 
+          <!-- 3열: 에어비앤비 회사 정보 관련 링크 -->
           <div>
             <div class="footer-col-title">에어비앤비</div>
             <ul class="footer-link-list">
@@ -1431,9 +1515,10 @@
         </div>
       </div>
 
-      <!-- Footer Bottom -->
+      <!-- 풋터 하단 바: 저작권/법적 링크 + 언어설정/소셜 아이콘 -->
       <div class="footer-bottom">
         <div class="footer-bottom-inner">
+          <!-- 좌측: 저작권 연도 + 개인정보/쿠키/이용약관 등 정책 링크 -->
           <div class="footer-bottom-left">
             <span>© 2026 Airbnb, Inc.</span>
             <span>·</span>
@@ -1447,6 +1532,7 @@
             <span>·</span>
             <a href="#">회사 세부정보</a>
           </div>
+          <!-- 우측: 언어/통화 선택 + SNS 링크(Facebook, X, Instagram, YouTube, TikTok) -->
           <div class="footer-bottom-right">
             <div class="footer-locale">🌐 한국어 (KR) &nbsp;·&nbsp; ₩ KRW</div>
             <div class="social-icons">
@@ -1458,6 +1544,7 @@
             </div>
           </div>
         </div>
+        <!-- 한국 법령에 따른 사업자 정보 및 통신판매중개자 고지 -->
         <div class="footer-legal">
           사이트맵 제작처: Airbnb Ireland UC, private unlimited company, 8
           Hanover Quay Dublin 2, D02 DP23 Ireland | 이사: Dermot Clarke, Killian
@@ -1472,13 +1559,21 @@
     </footer>
 
     <script>
-      // Scroll navigation
+      /**
+       * 가로 스크롤 내비게이션 함수
+       * @param {string} id   - 스크롤할 .scroll-row 요소의 id
+       * @param {number} dir  - 방향: -1(이전/왼쪽), 1(다음/오른쪽)
+       * 한 번 클릭 시 680px만큼 부드럽게 스크롤
+       */
       function scrollRow(id, dir) {
         const el = document.getElementById(id);
         el.scrollBy({ left: dir * 680, behavior: "smooth" });
       }
 
-      // Destination tabs
+      /**
+       * 추천 여행지 카테고리 탭 전환
+       * 클릭된 탭에만 'active' 클래스를 부여해 하단 밑줄 표시
+       */
       document.querySelectorAll(".dest-tab").forEach((tab) => {
         tab.addEventListener("click", () => {
           document
@@ -1488,7 +1583,12 @@
         });
       });
 
-      // Heart toggle
+      /**
+       * 찜(하트) 버튼 토글
+       * ♡(빈 하트) ↔ ♥(채워진 하트) 전환
+       * 채워진 상태에서는 에어비앤비 빨간색(#FF385C)으로 색상 변경
+       * e.stopPropagation()으로 카드 클릭 이벤트 전파 차단
+       */
       document.querySelectorAll(".card-heart").forEach((heart) => {
         heart.addEventListener("click", (e) => {
           e.stopPropagation();
@@ -1497,7 +1597,10 @@
         });
       });
 
-      // Nav tab underline
+      /**
+       * 상단 네비게이션 탭(숙소/체험/서비스) 전환
+       * 클릭된 탭에만 'active' 클래스를 부여해 하단 밑줄 표시
+       */
       document.querySelectorAll(".nav-tab").forEach((tab) => {
         tab.addEventListener("click", () => {
           document
