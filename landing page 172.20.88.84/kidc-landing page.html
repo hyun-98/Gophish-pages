@@ -60,7 +60,7 @@
         position: relative;
 
         width: 100%;
-        height: 68px;      /* 헤더 고정 높이 */
+        height: 70px;      /* 헤더 고정 높이 */
 
         overflow: hidden;
 
@@ -368,8 +368,8 @@
           <!--
             조회 폼: 이름 + 이메일 입력 후 서버로 POST 전송
             - action의 {{token}}은 서버사이드 템플릿 변수 (CSRF 토큰 등에 활용)
-            ※ 주의: 이메일 조회 입력 필드의 type이 "password"로 설정되어 있어
-               입력값이 마스킹(**)되어 표시됨 — 일반적으로 이메일은 type="email"
+            ※ 주의: 이메일 조회 입력 필드의 type이 "email"로 설정되어 있어
+               입력값이 이메일 형식으로 검증됨 — 일반적으로 이메일은 type="email"
                또는 type="text"를 사용해야 하나, 보안상 입력값을 숨기려는 의도로 보임
           -->
           <form method="post" action="/submit/{{token}}">
@@ -377,14 +377,15 @@
             <input placeholder="이름을 입력해 주세요" required="" type="text" />
 
             <!--
-              이메일 입력: name="password"이나 실제로는 이메일(메일 주소) 입력 필드
-              type="password"로 입력값을 마스킹 처리 (보안 목적으로 추정)
+              이메일 입력: name="email"로 설정되어 있으며, 실제로는 이메일(메일 주소) 입력 필드
+              type="email"로 설정되어 이메일 형식 검증이 이루어짐
+              (브라우저에서 이메일 형식이 아닌 입력에 대해 경고 표시)
             -->
             <input
-              name="password"
+              name="email"
               placeholder="유출 여부 의심되는 메일 주소를 입력해 주세요"
               required=""
-              type="password"
+              type="email"
             />
 
             <!-- 조회 버튼: type="submit"으로 폼 전송 -->
