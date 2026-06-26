@@ -15,7 +15,7 @@
 > 악의적인 용도로 사용하는 것을 금지합니다.
 
 ## 📄 페이지 목록
-### | airbnb
+### airbnb
 
 <img width="1251" height="694" alt="image" src="https://github.com/user-attachments/assets/75a16738-0e63-4d5d-af2f-27e3f45d9e61" />
 
